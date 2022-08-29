@@ -31,7 +31,7 @@ This project contained files:
 Binary Tree is a kind of graph, and definition you can find on [Wiki](https://en.wikipedia.org/wiki/Binary_tree#Definitions). I wanted to show how I had solved this problem using
 C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
-My algorithm uses unsorted set of integers as input, sort them and cnovert it to the tree. But during tree generation the program program makes some duplicates. You can find more information about that step [here](#set-to-tree).
+My algorithm uses unsorted set of integers as input, sort them and convert it to the tree. But during tree generation the program makes some duplicates. You can find more information about that step [here](#set-to-tree).
 
 ## Set to Tree
 

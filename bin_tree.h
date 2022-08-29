@@ -48,10 +48,9 @@ namespace namebi{
 		}
 
 	template <class T>
-		void prnt_dup(T out)
+		void find_dup(T out, size_t len)
 		{
 			std::sort(out.begin(), out.end());
-			std::cout << "Sorted : ";
 			
 			auto tmp = out[0];
 			auto iter = out.begin();
@@ -62,13 +61,12 @@ namespace namebi{
 				if (tmp == *iter)
 					count++;
 				else if (count != 0){
-					//printf("(%zu) %d | ", count + 1, tmp);
 					count = 0;
 					total++;
 					}
 				tmp = *iter;
 			}
-			std::cout << total << std::endl;
+			std::cout << len << " " << total << std::endl;
 		}
 
 }

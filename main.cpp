@@ -80,9 +80,10 @@ void prnt_tree(STRUC *root, STDIV *out)
 
 int main(int argc, char* argv[])
 {
-	int	i = 1;
+	size_t	len = argc -1;
+	int		i = 1;
+	int		iarr[len];
 	STRUC	*root;
-	int		iarr[argc - 1];
 	STDIV	out;
 
 	for ( ; i < argc; i++)
@@ -91,13 +92,13 @@ int main(int argc, char* argv[])
 	}
 	//namebi::prnt_vec(iarr, argc - 1);
 
-	root = gen_triple(&iarr[0], 0 , argc - 1);
+	root = gen_triple(&iarr[0], 0 , len);
 	//prnt_left(root);
 	//prnt_right(root);
 	//prnt_tree(root, &out);
 	namebi::treeto_vec(root, &out);
 	//namebi::prnt_vec(&out);
-	namebi::prnt_dup(out);
+	namebi::find_dup(out, len);
 	//namebi::prnt_vec(&out);
     
 	std::cout << std::endl;

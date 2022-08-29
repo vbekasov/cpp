@@ -30,7 +30,7 @@ namespace namebi{
 	template <typename T>
 		void prnt_vec(T *iarr, int len)
 		{
-			for (size_t i = 0; i < len; i++)
+			for (int i = 0; i < len; i++)
 			{
 				std::cout << iarr[i] << " |";
 			}

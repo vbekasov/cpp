@@ -11,7 +11,7 @@ struct str_info
 void read_triple(STRUC *m);
 void set_bool(bool *b, int len)
 {
-	for (size_t i = 0; i < len; i++)
+	for (int i = 0; i < len; i++)
 	{
 		b[i] = false;
 	}
@@ -80,12 +80,12 @@ void prnt_tree(STRUC *root, STDIV *out)
 
 int main(int argc, char* argv[])
 {
-	size_t	i = 0;
+	int	i = 1;
 	STRUC	*root;
 	int		iarr[argc - 1];
 	STDIV	out;
 
-	for (i = 1; i < argc; i++)
+	for ( ; i < argc; i++)
 	{
 		iarr[i - 1] = atoi(argv[i]);
 	}

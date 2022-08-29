@@ -1,8 +1,8 @@
 rm -f ts;
 
-FLAGS=" -Wall -Wextra -Werror "
+FLAGS=" -Wall -Wextra -Werror -std=c++20"
 
-c++ tst.cpp -std=c++20 -o ts;
+c++ tst.cpp $FLAGS  -o ts;
 
 ./ts 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 21 22
 

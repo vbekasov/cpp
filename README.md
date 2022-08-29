@@ -9,7 +9,7 @@ Aim of this project is to show my knowledge in Computer Science. You will see ho
 *[Files] (#files)
 *[Binary Tree problem] (#problem-description)
 
-<a name="files"/>
+
 ## Files
 
 This project contained files:
@@ -25,7 +25,6 @@ This project contained files:
 
 * check_dup.sh : Shell script running binary with random integers
 
-<a name="problem-description"/>
 ## Problem Description
 
 How to solve.

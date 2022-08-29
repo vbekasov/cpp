@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include "stdio.h"
 
 namespace namebi{
 	struct s_bi_node
@@ -51,10 +52,22 @@ namespace namebi{
 		{
 			std::sort(out.begin(), out.end());
 			std::cout << "Sorted : ";
-			prnt_vec(&out);
+			//prnt_vec(&out);
 			
 			auto tmp = out[0];
 			auto iter = out.begin();
+			iter++;
+			size_t count = 0;
+			for ( ; iter != out.end(); iter++){
+				if (tmp == *iter)
+					count++;
+				else if (count != 0){
+					printf("(%zu) %d | ", count + 1, tmp);
+					count = 0;
+					}
+				tmp = *iter;
+			}
+			std::cout << std::endl;
 		}
 
 }

@@ -89,16 +89,16 @@ int main(int argc, char* argv[])
 	{
 		iarr[i - 1] = atoi(argv[i]);
 	}
-	namebi::prnt_vec(iarr, argc - 1);
+	//namebi::prnt_vec(iarr, argc - 1);
 
 	root = gen_triple(&iarr[0], 0 , argc - 1);
 	//prnt_left(root);
 	//prnt_right(root);
 	//prnt_tree(root, &out);
 	namebi::treeto_vec(root, &out);
-	namebi::prnt_vec(&out);
+	//namebi::prnt_vec(&out);
 	namebi::prnt_dup(out);
-	namebi::prnt_vec(&out);
+	//namebi::prnt_vec(&out);
     
 	std::cout << std::endl;
 	return 0;

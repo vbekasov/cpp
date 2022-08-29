@@ -8,7 +8,7 @@ Aim of this project is to show my knowledge in Computer Science. You will see ho
 ## Table of contents
 * [Files](#project-files)
 * [Binary Tree problem](#problem-description)
-# [Set to Tree](#set-to-tree)
+* [Set to Tree](#set-to-tree)
 
 
 ## Project Files
@@ -28,11 +28,11 @@ This project contained files:
 
 ## Problem Description
 
-Binary Tree is a kind of graph, and definition you can find on [Wiki](#https://en.wikipedia.org/wiki/Binary_tree#Definitions). I wanted to show how I had solved this problem using
+Binary Tree is a kind of graph, and definition you can find on [Wiki](https://en.wikipedia.org/wiki/Binary_tree#Definitions). I wanted to show how I had solved this problem using
 C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
-My algorithm uses unsorted set of integers as input, sort them and covert it to the tree. But during convertation program makes some duplicates. You can find more information about that step [here](#set-to-tree).
+My algorithm uses unsorted set of integers as input, sort them and cnovert it to the tree. But during tree generation the program program makes some duplicates. You can find more information about that step [here](#set-to-tree).
 
 ## Set to Tree
 
-Input and covertation.
+Input and tree generation.

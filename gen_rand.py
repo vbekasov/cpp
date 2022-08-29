@@ -1,4 +1,5 @@
 import random
+import sys
 
 class Rand_set:
 	def __init__(self, tot_numb):
@@ -20,6 +21,7 @@ class Rand_set:
 			print(i, end = ' ')
 
 if __name__ == "__main__":
+	numb = int(sys.argv[1])
 	Obj1 = Rand_set(5)
 	Obj1.prnt_row()
 	del(Obj1)

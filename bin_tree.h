@@ -52,22 +52,23 @@ namespace namebi{
 		{
 			std::sort(out.begin(), out.end());
 			std::cout << "Sorted : ";
-			//prnt_vec(&out);
 			
 			auto tmp = out[0];
 			auto iter = out.begin();
 			iter++;
 			size_t count = 0;
+			size_t total = 0;
 			for ( ; iter != out.end(); iter++){
 				if (tmp == *iter)
 					count++;
 				else if (count != 0){
-					printf("(%zu) %d | ", count + 1, tmp);
+					//printf("(%zu) %d | ", count + 1, tmp);
 					count = 0;
+					total++;
 					}
 				tmp = *iter;
 			}
-			std::cout << std::endl;
+			std::cout << total << std::endl;
 		}
 
 }

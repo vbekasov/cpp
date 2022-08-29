@@ -9,11 +9,11 @@ class Rand_set:
 
 	def __gen_row(self):
 		tmp = 0
-		r_len = len(self.__row)
+		r_len = 0
 		for i in range(self.__numb):
 			r_len += 1
 			while (r_len > len(self.__row)):
-				tmp = random.randint(-10000, 10000)
+				tmp = random.randint(-999999, 999999)
 				self.__row.add(tmp)
 	
 	def prnt_row(self):
@@ -22,6 +22,6 @@ class Rand_set:
 
 if __name__ == "__main__":
 	numb = int(sys.argv[1])
-	Obj1 = Rand_set(5)
+	Obj1 = Rand_set(numb)
 	Obj1.prnt_row()
 	del(Obj1)

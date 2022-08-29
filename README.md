@@ -6,11 +6,11 @@ Welcome to my project.
 Aim of this project is to show my knowledge in Computer Science. You will see how do I use modern C++ technologies, Python and Shell scripts to solve the Binary Tree problems and analyze its performance.
 
 ## Table of contents
-* [Files](#files)
+* [Files](#project-files)
 * [Binary Tree problem](#problem-description)
 
 
-## Files
+## Project Files
 
 This project contained files:
 

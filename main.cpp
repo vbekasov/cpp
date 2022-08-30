@@ -99,8 +99,6 @@ int main(int argc, char* argv[])
 	namebi::treeto_vec(root, &out);
 	//namebi::prnt_vec(&out);
 	namebi::find_dup(out, len);
-	//namebi::prnt_vec(&out);
-    
-	std::cout << std::endl;
+
 	return 0;
 }

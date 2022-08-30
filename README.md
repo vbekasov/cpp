@@ -1,4 +1,8 @@
 
+## REWORKING CONCEPT
+
+REWORKING CONCEPT OF CHECK
+
 ## Description
 
 Welcome to my project. 

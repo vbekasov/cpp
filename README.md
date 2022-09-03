@@ -46,6 +46,6 @@ the program makes some duplicates. You can find more information about that step
 
 ## Set to Tree
 
-To generate sets of random unique integers I use gen_rang.py. There are two ways you can get sets: print to stdout or
+To generate sets of random unique integers I use *gen_rang.py*. There are two ways you can get sets: print to stdout or
 return NumPy array of sets. You can find implementation of set-to-tree algorithm in *bi_tree.h* in 
 _"static STRUC* gen_triple(int* iarr, int start, int finish)"_ function. How it works you can find in dup_anal.ipynb file.

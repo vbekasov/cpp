@@ -1,13 +1,14 @@
 
 ## REWORKING CONCEPT
 
-REWORKING CONCEPT OF CHECK
+FUN from main.c to .h class. 
 
 ## Description
 
 Welcome to my project. 
 
-Aim of this project is to show my knowledge in Computer Science. You will see how do I use modern C++ technologies, Python and Shell scripts to solve the Binary Tree problems and analyze its performance.
+Aim of this project is to show my knowledge in Computer Science. You will see how do I use modern C++ technologies,
+Python and Shell scripts to solve the Binary Tree problems and analyze its performance.
 
 And never use it in real life, please.
 
@@ -21,7 +22,7 @@ And never use it in real life, please.
 
 This project contained files:
 
-* bin_tree.h  : header file with with Binary Tree class and support functions in
+* bin_tree.h : header file with with Binary Tree class and support functions in
 		namebi - namespace binary tree
 
 * main.cpp : C++ file with main function generating and printing binary tree
@@ -32,13 +33,19 @@ This project contained files:
 
 * check_dup.sh : Shell script running binary with random integers
 
+* dup_anal.ipynb : Jupyter Notebook document with algorithm analysis and visualization
+
 ## Problem Description
 
-Binary Tree is a kind of graph, and definition you can find on [Wiki](https://en.wikipedia.org/wiki/Binary_tree#Definitions). I wanted to show how I had solved this problem using
+Binary Tree is a kind of graph, and definition you can find on [Wiki](https://en.wikipedia.org/wiki/Binary_tree#Definitions).
+I wanted to show how I had solved this problem using
 C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
-My algorithm uses unsorted set of integers as input, sort them and convert it to the tree. But during tree generation the program makes some duplicates. You can find more information about that step [here](#set-to-tree).
+My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree.But during the tree generation
+the program makes some duplicates. You can find more information about that step [here](#set-to-tree).
 
 ## Set to Tree
 
-Input and tree generation.
+To generate sets of random unique integers I use gen_rang.py. There are two ways you can get sets: print to stdout or
+return NumPy array of sets. You can find implementation of set-to-tree algorithm in *bi_tree.h* in 
+_"static STRUC* gen_triple(int* iarr, int start, int finish)"_ function. How it works you can find in dup_anal.ipynb file.

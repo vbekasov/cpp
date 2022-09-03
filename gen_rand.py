@@ -18,7 +18,7 @@ class Rand_set:
 				while(l > len(out)):
 					out.add(random.randint(-999999, 999999))
 			if (prnt != 0):
-				print(out)
+				print(*out, sep=' ')
 			if (ret != 0):
 				r_arr = np.append(r_arr, out)
 			out = set()
@@ -29,10 +29,11 @@ class Rand_set:
 		print("TEST TEXT", tst)
 
 	def __del__(self):
-		print("Obj destroyed")
+		#print("Obj destroyed")
+		pass
 
 if __name__ == "__main__":
 	Obj1 = Rand_set(sys.argv[1], sys.argv[2], sys.argv[3])
-	out = Obj1.gen_rand_prnt(ret= 1)
-	print(out)
+	out = Obj1.gen_rand_prnt(prnt=1, ret= 1)
+	#print(out)
 	del(Obj1)

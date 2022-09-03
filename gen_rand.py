@@ -8,16 +8,19 @@ class Rand_set:
 		self.__sss = np.arange(int(i_start), int(i_stop), int(i_step))
 	
 	def gen_rand_prnt(self, prnt = 0, ret = 0):
-		#out = set()
+		out = set()
 		if (ret != 0):
 			r_arr = np.array([], dtype=int)
 		for rng in self.__sss:
 			l = 0
-			out = np.random.randint(low= -999999, high= 999999, size= rng)
+			for i in range(rng):
+				l +=1
+				while(l > len(out)):
+					out.add(random.randint(-999999, 999999))
 			if (prnt != 0):
 				print(out)
 			if (ret != 0):
-				r_arr = np.append(r_arr, set(out))
+				r_arr = np.append(r_arr, out)
 			out = set()
 		if (ret != 0):
 			return r_arr

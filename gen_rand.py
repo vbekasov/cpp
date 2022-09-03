@@ -35,5 +35,4 @@ class Rand_set:
 if __name__ == "__main__":
 	Obj1 = Rand_set(sys.argv[1], sys.argv[2], sys.argv[3])
 	out = Obj1.gen_rand_prnt(prnt=1, ret= 1)
-	#print(out)
 	del(Obj1)

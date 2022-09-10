@@ -3,6 +3,14 @@
 
 FUN from main.c to .h class. It compiles.
 
+Make .so for python.
+
+Make Docker with cpp and python modules running on Jupyter Lab.
+
+Connect it to my https://www.pythonanywhere.com/ projeckt.
+
+Add pyscrypt.
+
 ## Description
 
 Welcome to my project. 

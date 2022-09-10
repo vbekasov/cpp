@@ -1,9 +1,10 @@
 #ifndef BIN_TREE_H
 #define BIN_TREE_H
 
-#define BITR namebi::Bi_tree
-#define STDIV std::vector<int>
-#define STRUC namebi::tb_node
+#define BITR	namebi::Bi_tree
+#define STDIV	std::vector<int>
+#define STRUC	namebi::tb_node
+#define COUT	std::cout<<
 
 #include <iostream>
 #include <vector>
@@ -12,9 +13,9 @@
 namespace namebi{
 	struct s_bi_node
 	{
-		int val;
-		s_bi_node *left;
-		s_bi_node *right;
+		int			val;
+		s_bi_node	*left;
+		s_bi_node	*right;
 	} typedef tb_node ;	
 	
 	template <class T>
@@ -68,6 +69,54 @@ namespace namebi{
 			}
 			std::cout << len << " " << total << std::endl;
 		}
+	
+	class bin_tree_dup_int
+	{
+	private:
+		STRUC	*root;
+		STRUC*	gen_triple(int* iarr, int start, int finish);
+	public:
+		bin_tree_dup_int();
+		~bin_tree_dup_int();
+	};
+	
+	bin_tree_dup_int::bin_tree_dup_int()
+	{
+		root = NULL;
+	}
+	
+	bin_tree_dup_int::~bin_tree_dup_int()
+	{
+		root = NULL;
+		COUT"Finished\n";
+	}
+
+	STRUC* bin_tree_dup_int::gen_triple(int* iarr, int start, int finish)
+	{
+	STRUC	*m = new(STRUC);
+	int		pos = (finish - start) / 2;
+
+	m->val = iarr[pos];
+	if ((pos - start) / 2 > 0) {
+		m->left = gen_triple(iarr, start , pos);}
+	else {
+		STRUC *l = new(STRUC);
+		l->val = iarr[pos - 1];
+		l->left = NULL;
+		l->right = NULL;
+		m->left = l;}
+	if ((finish - pos ) > 2) {
+		m->right = gen_triple(&iarr[pos + 1], 0, finish - pos - 1);}
+	else {
+		STRUC *r = new(STRUC);
+		r->val = iarr[pos + 1];
+		r->left = NULL;
+		r->right = NULL;
+		m->right = r;}
+
+	return m;
+	}
+	
 
 }
 #endif

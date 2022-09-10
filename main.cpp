@@ -9,14 +9,6 @@ struct str_info
 
 
 void read_triple(STRUC *m);
-void set_bool(bool *b, int len)
-{
-	for (int i = 0; i < len; i++)
-	{
-		b[i] = false;
-	}
-	
-}
 
 void prnt_left(STRUC *root)
 {
@@ -90,15 +82,12 @@ int main(int argc, char* argv[])
 	{
 		iarr[i - 1] = atoi(argv[i]);
 	}
-	//namebi::prnt_vec(iarr, argc - 1);
 
 	root = gen_triple(&iarr[0], 0 , len);
-	//prnt_left(root);
-	//prnt_right(root);
-	//prnt_tree(root, &out);
 	namebi::treeto_vec(root, &out);
-	//namebi::prnt_vec(&out);
 	namebi::find_dup(out, len);
+	namebi::bin_tree_dup_int Obj1;
+	//delete(Obj1);
 
 	return 0;
 }

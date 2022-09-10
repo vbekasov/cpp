@@ -1,7 +1,7 @@
 
 ## REWORKING CONCEPT
 
-FUN from main.c to .h class. 
+FUN from main.c to .h class. It compiles.
 
 ## Description
 
@@ -46,6 +46,6 @@ the program makes some duplicates. You can find more information about that step
 
 ## Set to Tree
 
-To generate sets of random unique integers I use *gen_rang.py*. There are two ways you can get sets: print to stdout or
-return NumPy array of sets. You can find implementation of set-to-tree algorithm in *bi_tree.h* in 
-_"static STRUC* gen_triple(int* iarr, int start, int finish)"_ function. How it works you can find in dup_anal.ipynb file.
+To generate sets of random unique integers I use <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or
+return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in 
+<i><b>static STRUC* gen_triple(int* iarr, int start, int finish)</b></i> function. How it works you can find in <i>dup_anal.ipynb</i> file.

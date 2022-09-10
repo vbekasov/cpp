@@ -77,7 +77,8 @@ namespace namebi{
 		STRUC*	gen_triple(int* iarr, int start, int finish);
 	public:
 		bin_tree_dup_int();
-		~bin_tree_dup_int();
+		virtual ~bin_tree_dup_int();
+		void tst();
 	};
 	
 	bin_tree_dup_int::bin_tree_dup_int()
@@ -115,6 +116,11 @@ namespace namebi{
 		m->right = r;}
 
 	return m;
+	}
+
+	void bin_tree_dup_int::tst()
+	{
+		COUT"WORKS\n";
 	}
 	
 

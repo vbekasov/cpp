@@ -87,7 +87,8 @@ int main(int argc, char* argv[])
 	namebi::treeto_vec(root, &out);
 	namebi::find_dup(out, len);
 	namebi::bin_tree_dup_int Obj1;
-	//delete(Obj1);
+	Obj1.tst();
+	~Obj1();
 
 	return 0;
 }

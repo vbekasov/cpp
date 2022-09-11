@@ -86,9 +86,12 @@ int main(int argc, char* argv[])
 	root = gen_triple(&iarr[0], 0 , len);
 	namebi::treeto_vec(root, &out);
 	namebi::find_dup(out, len);
-	namebi::bin_tree_dup_int Obj1;
-	Obj1.tst();
-	~Obj1();
+	//namebi::bin_tree_dup_int Obj1;
+	
+	char* p = new char[sizeof(namebi::bin_tree_dup_int)];
+	namebi::bin_tree_dup_int* ap = new (p) namebi::bin_tree_dup_int;
+	ap->namebi::bin_tree_dup_int::~bin_tree_dup_int();
+	delete [] p;
 
 	return 0;
 }

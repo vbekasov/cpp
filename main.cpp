@@ -22,32 +22,6 @@ void prnt_right(STRUC *root)
 	if (root->left != NULL) { prnt_right(root->right);}
 }
 
-static STRUC* gen_triple(int* iarr, int start, int finish)
-{
-	STRUC	*m = new(STRUC);
-	int		pos = (finish - start) / 2;
-
-	m->val = iarr[pos];
-	if ((pos - start) / 2 > 0) {
-		m->left = gen_triple(iarr, start , pos);}
-	else {
-		STRUC *l = new(STRUC);
-		l->val = iarr[pos - 1];
-		l->left = NULL;
-		l->right = NULL;
-		m->left = l;}
-	if ((finish - pos ) > 2) {
-		m->right = gen_triple(&iarr[pos + 1], 0, finish - pos - 1);}
-	else {
-		STRUC *r = new(STRUC);
-		r->val = iarr[pos + 1];
-		r->left = NULL;
-		r->right = NULL;
-		m->right = r;}
-
-	return m;
-}
-
 void read_triple(STRUC *m)
 {
 	std::cout << "Root  = " << m->val << std::endl;
@@ -83,18 +57,19 @@ int main(int argc, char* argv[])
 		iarr[i - 1] = atoi(argv[i]);
 	}
 
-	root = gen_triple(&iarr[0], 0 , len);
+	root = namebi::gen_tree(&iarr[0], 0 , len);
 	namebi::treeto_vec(root, &out);
 	auto v_dup = namebi::find_dup(out, len);
-	namebi::prnt_tree(root); std::cout << std::endl;
-	namebi::prnt_vec(&v_dup);
-	namebi::del_dup(root, v_dup);
-	namebi::prnt_tree(root); std::cout << std::endl;
+	//namebi::prnt_tree(root); std::cout << std::endl;
+	//COUT"Dups : ";
+	//namebi::prnt_vec(&v_dup);
+	namebi::del_dup(root, &v_dup);
+	//namebi::prnt_tree(root); std::cout << std::endl;
 	
-	char* p = new char[sizeof(namebi::bin_tree_dup_int)];
-	namebi::bin_tree_dup_int* ap = new (p) namebi::bin_tree_dup_int;
-	ap->namebi::bin_tree_dup_int::~bin_tree_dup_int();
-	delete [] p;
+	//char* p = new char[sizeof(namebi::bin_tree_dup_int)];
+	//namebi::bin_tree_dup_int* ap = new (p) namebi::bin_tree_dup_int;
+	//ap->namebi::bin_tree_dup_int::~bin_tree_dup_int();
+	//delete [] p;
 
 	return 0;
 }

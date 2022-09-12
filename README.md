@@ -1,11 +1,11 @@
 
 ## REWORKING CONCEPT
 
-FUN from main.c to .h class. It compiles.
+FUN from main.c to .h class.
 
 Make .so for python.
 
-Make Docker with cpp and python modules running on Jupyter Lab.
+Make Docker with cpp and python modules running Jupyter Lab in browser.
 
 Connect it to my https://www.pythonanywhere.com/ projeckt.
 
@@ -17,6 +17,8 @@ Welcome to my project.
 
 Aim of this project is to show my knowledge in Computer Science. You will see how do I use modern C++ technologies,
 Python and Shell scripts to solve the Binary Tree problems and analyze its performance.
+
+You will see implimintation of this algorythm in Huffman coding.
 
 And never use it in real life, please.
 
@@ -46,10 +48,9 @@ This project contained files:
 ## Problem Description
 
 Binary Tree is a kind of graph, and definition you can find on [Wiki](https://en.wikipedia.org/wiki/Binary_tree#Definitions).
-I wanted to show how I had solved this problem using
-C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
+I wanted to show how I had solved this problem using C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
-My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree.But during the tree generation
+My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree. But during the tree generation
 the program makes some duplicates. You can find more information about that step [here](#set-to-tree).
 
 ## Set to Tree

@@ -18,6 +18,32 @@ namespace namebi{
 		s_bi_node	*right;
 	} typedef tb_node ;	
 	
+	STRUC* gen_tree(int* iarr, int start, int finish)
+	{
+		STRUC	*m = new(STRUC);
+		int		pos = (finish - start) / 2;
+
+		m->val = iarr[pos];
+		if ((pos - start) / 2 > 0) {
+			m->left = gen_tree(iarr, start , pos);}
+		else {
+			STRUC *l = new(STRUC);
+			l->val = iarr[pos - 1];
+			l->left = NULL;
+			l->right = NULL;
+			m->left = l;}
+		if ((finish - pos ) > 2) {
+			m->right = gen_tree(&iarr[pos + 1], 0, finish - pos - 1);}
+		else {
+			STRUC *r = new(STRUC);
+			r->val = iarr[pos + 1];
+			r->left = NULL;
+			r->right = NULL;
+			m->right = r;}
+
+		return m;
+	}
+	
 	template <class T>
 		void prnt_vec(T *out)
 		{
@@ -137,7 +163,6 @@ namespace namebi{
 			for (auto iter = out->begin(); iter != out->end(); iter++)
 			{
 				tmp = *iter;
-				find_el_tree(tmp, root);
 				del_el(root, &tmp);
 			}
 		}
@@ -216,7 +241,5 @@ namespace namebi{
 	{
 		COUT"WORKS\n";
 	}
-	
-
 }
 #endif

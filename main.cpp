@@ -88,8 +88,8 @@ int main(int argc, char* argv[])
 	auto v_dup = namebi::find_dup(out, len);
 	namebi::prnt_tree(root); std::cout << std::endl;
 	namebi::prnt_vec(&v_dup);
-	namebi::find_el_tree(2, root);
-	namebi::find_el_tree(1000, root);
+	namebi::del_dup(root, v_dup);
+	namebi::prnt_tree(root); std::cout << std::endl;
 	
 	char* p = new char[sizeof(namebi::bin_tree_dup_int)];
 	namebi::bin_tree_dup_int* ap = new (p) namebi::bin_tree_dup_int;

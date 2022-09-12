@@ -117,12 +117,33 @@ namespace namebi{
 	template <class T, class Y>
 		void del_el(T *root, Y *d_val)
 		{
-			if (*d_val == root->val && !root->left && !root->right)
-				delete root;
-			else if (root->left)
+			if (root->left)
 				del_el(root->left, d_val);
-			else if (root->right)
+			if (root->right)
 				del_el(root->right, d_val);
+			if (root->left && *d_val == root->left->val
+			&& !root->left->right && !root->left->left)
+				std::cout << "l " << *d_val << std::endl;
+			if (root->right && *d_val == root->right->val
+			&& !root->right->right && !root->right->left)
+				{
+					std::cout << "r " << *d_val << std::endl;
+					delete root->right;
+					root->right = NULL;
+				}
+		}
+	
+	template <class T, class Y>
+		void del_dup(T *root, Y out)
+		{
+			int tmp;
+			
+			for (auto iter = out.begin(); iter != out.end(); iter++)
+			{
+				tmp = *iter;
+				find_el_tree(tmp, root);
+				del_el(root, &tmp);
+			}
 		}
 	
 	class bin_tree_dup_int

@@ -21,6 +21,7 @@ namespace namebi{
 	template <class T>
 		void prnt_vec(T *out)
 		{
+			COUT"VEC : ";
 			for (auto it = out->begin();  it != out->end(); it++)
 			{
 				std::cout << *it << " !";
@@ -31,6 +32,7 @@ namespace namebi{
 	template <typename T>
 		void prnt_vec(T *iarr, int len)
 		{
+			COUT"ARR : ";
 			for (int i = 0; i < len; i++)
 			{
 				std::cout << iarr[i] << " |";
@@ -49,10 +51,24 @@ namespace namebi{
 		}
 
 	template <class T>
-		void find_dup(T out, size_t len)
+		void prnt_tree(T *root)
+		{
+			if (root->left)
+				prnt_tree(root->left);
+			if (root->right)
+				prnt_tree(root->right);
+			std::cout << root->val;
+			if (!root->left && !root->right)
+				std::cout << "~";
+			std::cout << " ";
+		}
+
+	template <class T>
+		T find_dup(T out, size_t len)
 		{
 			std::sort(out.begin(), out.end());
 			
+			T ret;
 			auto tmp = out[0];
 			auto iter = out.begin();
 			iter++;
@@ -60,7 +76,10 @@ namespace namebi{
 			size_t total = 0;
 			for ( ; iter != out.end(); iter++){
 				if (tmp == *iter)
-					count++;
+					{
+						count++;
+						ret.push_back(tmp);
+					}
 				else if (count != 0){
 					count = 0;
 					total++;
@@ -68,6 +87,7 @@ namespace namebi{
 				tmp = *iter;
 			}
 			std::cout << len << " " << total << std::endl;
+			return ret;
 		}
 	
 	template <class T>
@@ -92,6 +112,17 @@ namespace namebi{
 				std::cout << root->val << " ";
 				find_el_tree(find, root->right);
 			}
+		}
+
+	template <class T, class Y>
+		void del_el(T *root, Y *d_val)
+		{
+			if (*d_val == root->val && !root->left && !root->right)
+				delete root;
+			else if (root->left)
+				del_el(root->left, d_val);
+			else if (root->right)
+				del_el(root->right, d_val);
 		}
 	
 	class bin_tree_dup_int

@@ -85,7 +85,9 @@ int main(int argc, char* argv[])
 
 	root = gen_triple(&iarr[0], 0 , len);
 	namebi::treeto_vec(root, &out);
-	namebi::find_dup(out, len);
+	auto v_dup = namebi::find_dup(out, len);
+	namebi::prnt_tree(root); std::cout << std::endl;
+	namebi::prnt_vec(&v_dup);
 	namebi::find_el_tree(2, root);
 	namebi::find_el_tree(1000, root);
 	

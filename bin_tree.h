@@ -70,6 +70,30 @@ namespace namebi{
 			std::cout << len << " " << total << std::endl;
 		}
 	
+	template <class T>
+		void find_el_tree(T find, tb_node *root)
+		{
+			if (root == NULL)
+			{
+				COUT"Not in tree\n";
+				return ;
+			}
+			if (find == root->val)
+			{
+				std::cout << "Found " << find << std::endl;
+			}
+			else if (find < root->val)
+			{
+				std::cout << root->val << " ";
+				find_el_tree(find, root->left);
+			}
+			else
+			{
+				std::cout << root->val << " ";
+				find_el_tree(find, root->right);
+			}
+		}
+	
 	class bin_tree_dup_int
 	{
 	private:
@@ -79,6 +103,7 @@ namespace namebi{
 		bin_tree_dup_int();
 		virtual ~bin_tree_dup_int();
 		void tst();
+		template<class T> void find_dup(T out, size_t len);
 	};
 	
 	bin_tree_dup_int::bin_tree_dup_int()
@@ -116,6 +141,27 @@ namespace namebi{
 		m->right = r;}
 
 	return m;
+	}
+
+	template<class T> void bin_tree_dup_int::find_dup(T out, size_t len)
+	{
+		std::sort(out.begin(), out.end());
+		
+		auto tmp = out[0];
+		auto iter = out.begin();
+		iter++;
+		size_t count = 0;
+		size_t total = 0;
+		for ( ; iter != out.end(); iter++){
+			if (tmp == *iter)
+				count++;
+			else if (count != 0){
+				count = 0;
+				total++;
+				}
+			tmp = *iter;
+		}
+		std::cout << len << " " << total << std::endl;
 	}
 
 	void bin_tree_dup_int::tst()

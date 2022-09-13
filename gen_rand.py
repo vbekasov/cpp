@@ -16,7 +16,7 @@ class Rand_set:
 			for i in range(rng):
 				l +=1
 				while(l > len(out)):
-					out.add(random.randint(-9999999, 9999999))
+					out.add(random.randint(-999999, 999999))
 			if (prnt != 0):
 				print(*out, sep=' ')
 			if (ret != 0):

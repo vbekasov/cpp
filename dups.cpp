@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 	//namebi::prnt_tree(root); std::cout << std::endl;
 	//COUT"Dups : ";
 	//namebi::prnt_vec(&v_dup);
-	namebi::del_dup(root, &v_dup);
+	//namebi::del_dup(root, &v_dup);
 	//namebi::prnt_tree(root); std::cout << std::endl;
 	
 	//char* p = new char[sizeof(namebi::bin_tree_dup_int)];

@@ -105,10 +105,10 @@ namespace namebi{
 					{
 						count++;
 						ret.push_back(tmp);
+						total++;
 					}
 				else if (count != 0){
 					count = 0;
-					total++;
 					}
 				tmp = *iter;
 			}

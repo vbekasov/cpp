@@ -43,7 +43,7 @@ This project contained files:
 
 * check_dup.sh : Shell script running binary with random integers
 
-* dup_anal.ipynb : Jupyter Notebook document with algorithm analysis and visualization
+* dup_fun.ipynb : Jupyter Notebook document with algorithm analysis and visualization
 
 ## Problem Description
 
@@ -58,4 +58,4 @@ the program makes some duplicates. You can find more information about that step
 To generate sets of random unique integers I use <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or
 return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in 
 <i><b>STRUC* gen_triple(int* iarr, int start, int finish)</b></i> function. How it works you can find in 
-[Jupyter file](dup_anal.ipynb).
+[Jupyter file](dup_fun.ipynb).

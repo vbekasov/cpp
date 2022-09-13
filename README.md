@@ -5,7 +5,7 @@ FUN from main.c to .h class.
 
 Make .so for python.
 
-Make Docker with cpp and python modules running Jupyter Lab in browser.
+Make Docker with cpp and python modules running Jupyter Lab in the browser.
 
 Connect it to my https://www.pythonanywhere.com/ projeckt.
 
@@ -15,10 +15,10 @@ Add pyscrypt.
 
 Welcome to my project. 
 
-Aim of this project is to show my knowledge in Computer Science. You will see how do I use modern C++ technologies,
+Aim of this project is to show my knowledge in Computer Science. You will see how I use modern C++ technologies,
 Python and Shell scripts to solve the Binary Tree problems and analyze its performance.
 
-You will see implimintation of this algorythm in Huffman coding.
+You will see implementation of this algorithm in Huffman coding.
 
 And never use it in real life, please.
 
@@ -33,12 +33,12 @@ And never use it in real life, please.
 This project contained files:
 
 * bin_tree.h : header file with with Binary Tree class and support functions in
-		namebi - namespace binary tree
+        namebi - namespace binary tree
 
-* main.cpp : C++ file with main function generating and printing binary tree
+* dups.cpp : C++ file with main function generating and printing binary tree
 
 * comp.sh : Shell script compiling C++ sources
-	
+    
 * gen_rand.py : Python3 script generating set of random unique integers
 
 * check_dup.sh : Shell script running binary with random integers

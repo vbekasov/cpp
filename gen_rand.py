@@ -16,7 +16,7 @@ class Rand_set:
 			for i in range(rng):
 				l +=1
 				while(l > len(out)):
-					out.add(random.randint(-999999, 999999))
+					out.add(random.randint(-9999999, 9999999))
 			if (prnt != 0):
 				print(*out, sep=' ')
 			if (ret != 0):
@@ -36,3 +36,4 @@ if __name__ == "__main__":
 	Obj1 = Rand_set(sys.argv[1], sys.argv[2], sys.argv[3])
 	out = Obj1.gen_rand_prnt(prnt=1, ret= 1)
 	del(Obj1)
+	del(out)

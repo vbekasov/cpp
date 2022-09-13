@@ -17,11 +17,6 @@ int main(int argc, char* argv[])
 	root = namebi::gen_tree(&iarr[0], 0 , len);
 	namebi::treeto_vec(root, &out);
 	auto v_dup = namebi::find_dup(out, len);
-	//namebi::prnt_tree(root); std::cout << std::endl;
-	//COUT"Dups : ";
-	//namebi::prnt_vec(&v_dup);
-	//namebi::del_dup(root, &v_dup);
-	//namebi::prnt_tree(root); std::cout << std::endl;
 	
 	//char* p = new char[sizeof(namebi::bin_tree_dup_int)];
 	//namebi::bin_tree_dup_int* ap = new (p) namebi::bin_tree_dup_int;

@@ -20,8 +20,6 @@ Python and Shell scripts to solve the Binary Tree problems and analyze its perfo
 
 You will see implementation of this algorithm in Huffman coding.
 
-And never use it in real life, please.
-
 ## Table of contents
 * [Files](#project-files)
 * [Binary Tree problem](#problem-description)

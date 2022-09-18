@@ -35,7 +35,7 @@ This project contained files:
 
 * dups.cpp : C++ file with main function generating and printing binary tree
 
-* comp.sh : Shell script compiling C++ sources
+* MakeFile : script compiling C++ sources
     
 * gen_rand.py : Python3 script generating set of random unique integers
 

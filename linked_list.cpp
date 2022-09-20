@@ -48,8 +48,8 @@ template<class T> void c_scnd<T>::prnt_list()
 	
 	s_list<T>	*el;
 	el = loc;
-	std::cout<<"List : ";
-	while (el->next != NULL)
+	std::cout<<"List   : ";
+	while (el->next != nullptr)
 	{
 		std::cout << el->m << " ";
 		el = el->next;
@@ -61,7 +61,7 @@ template<class T> s_list<T>* c_scnd<T>::ret_last()
 {
 	s_list<T>	*el;
 	el = loc;
-	while (el->next != NULL)
+	while (el->next != nullptr)
 		el = el->next;
 
 	return el;
@@ -72,7 +72,7 @@ template<class T> void c_scnd<T>::add_el(T nel)
 	s_list<T>	*el;
 	el = new(s_list<T>);
 	el->m = nel;
-	std::cout << "New el " << el->m << std::endl;
+	std::cout << "New el : " << el->m << std::endl;
 	
 	s_list<T>	*last = ret_last();
 	last->next = el;
@@ -80,16 +80,16 @@ template<class T> void c_scnd<T>::add_el(T nel)
 
 template<class T> void c_scnd<T>::del_last()
 {
-	if (loc->next == NULL)
+	if (loc->next == nullptr)
 		return ;
 
 	s_list<T>	*el = loc;
-	while (el->next->next != NULL)
+	while (el->next->next != nullptr)
 		el = el->next;
 	
 	std::cout<<"del el : " << el->next->m <<std::endl;
 	delete el->next;
-	el->next = NULL;
+	el->next = nullptr;
 }
 
 template<class T> void c_scnd<T>::wipe_all()
@@ -99,6 +99,7 @@ template<class T> void c_scnd<T>::wipe_all()
 	
 	while (loc->next != nullptr)
 		del_last();
+	std::cout<< "del lst: " << loc->m << std::endl;
 	delete loc;
 	loc = nullptr;
 	prnt_list();	
@@ -107,25 +108,38 @@ template<class T> void c_scnd<T>::wipe_all()
 template<class T> void c_scnd<T>::add_fst(T fel)
 {
 	s_list<T>	*el = loc;
-	T			tmp = loc->next->m;
+	//T			tmp1 = loc->m;
+	//T			tmp2;
+	int			i = 0;
 
+	//loc->m = fel;
+	//tmp2++;
+	fel++;
 	while (el->next != nullptr)
 	{
-		el->next->m = el->m;
+		el->m = i;
+		el = el->next;
+		i++;
 	}
-	
+
+	el->m = i;
+	el->next = new s_list<T>;
+	el->next->m = ++i;
+	el->next->next = nullptr;
 }
 
 //----------------------------------------------------------------
 
 int main()
 {
-	std::cout << "\nPRG MAIN START\n";
+	std::cout << "\nPRG MAIN START\n\n";
 
 	char* p = new char[sizeof(c_scnd<int>)];
 	c_scnd<int>* Obj1 = new (p) c_scnd<int>(1);
 	Obj1->add_el(1234);
 	Obj1->add_el(987);
+	Obj1->prnt_list();
+	Obj1->add_fst(123);
 	Obj1->prnt_list();
 	Obj1->~c_scnd();
 	delete [] p;

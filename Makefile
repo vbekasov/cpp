@@ -15,7 +15,7 @@ $(TARGET):
 	$(CC) $(SRC_CPP) $(CFLAGS) -o $(TARGET)
 
 list: clean
-	$(CC) $(SRC_CPP) -o $(TARGET)
+	$(CC) $(SRC_CPP) $(CFLAGS) -o $(TARGET)
 
 olist: clean
 	$(CC) -c $(SRC_CPP) -o $(O_DIR)$(O_CPP)

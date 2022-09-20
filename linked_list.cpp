@@ -5,34 +5,48 @@ template <typename T>
 	struct s_list
 	{
 		T		m;
-		s_list<T>	*next;
+		s_list<T>	*next = nullptr;
 	};
 
 template <class T>
 	class c_scnd
 	{
 	private:
-		s_list<T>	loc;
+		s_list<T>*	loc;
 		T			var;
 		s_list<T>*	ret_last();
 	public:
 		c_scnd(T s_list);
-		~c_scnd() { std::cout<< "del\n";}
+		c_scnd();
+		~c_scnd() { wipe_all();}
 		void	add_el(T nel);
 		void	del_last();
+		void	wipe_all();
 		void	prnt_list();
 	};
 	
 template<class T> c_scnd<T>::c_scnd(T fst)
 {
-	loc.m = fst;
-	loc.next = NULL;
+	loc = new s_list<T>;
+	loc->m = fst;
+	loc->next = nullptr;
+}
+
+template<class T> c_scnd<T>::c_scnd()
+{
+	loc = nullptr;
 }
 
 template<class T> void c_scnd<T>::prnt_list()
 {
+	if (loc == nullptr)
+	{
+		std::cout<< "!!!Empty list!!!\n";
+		return ;
+	}
+	
 	s_list<T>	*el;
-	el = &loc;
+	el = loc;
 	std::cout<<"List : ";
 	while (el->next != NULL)
 	{
@@ -45,7 +59,7 @@ template<class T> void c_scnd<T>::prnt_list()
 template<class T> s_list<T>* c_scnd<T>::ret_last()
 {
 	s_list<T>	*el;
-	el = &loc;
+	el = loc;
 	while (el->next != NULL)
 		el = el->next;
 
@@ -65,10 +79,28 @@ template<class T> void c_scnd<T>::add_el(T nel)
 
 template<class T> void c_scnd<T>::del_last()
 {
-	if (loc.next == NULL)
+	if (loc->next == NULL)
 		return ;
 
-	s_list<T>	*el;
+	s_list<T>	*el = loc;
+	while (el->next->next != NULL)
+		el = el->next;
+	
+	std::cout<<"del el : " << el->next->m <<std::endl;
+	delete el->next;
+	el->next = NULL;
+}
+
+template<class T> void c_scnd<T>::wipe_all()
+{
+	if (loc == nullptr)
+		return ;
+	
+	while (loc->next != nullptr)
+		del_last();
+	delete loc;
+	loc = nullptr;
+	prnt_list();	
 }
 
 int main()
@@ -89,7 +121,12 @@ int main()
 	c_scnd<std::string>* Obj2 = new (p) c_scnd<std::string>("FST");
 	Obj2->add_el("ABC");
 	Obj2->add_el("QWERTY");
+	Obj2->add_el("SOME");
+	Obj2->add_el("!TO DELETE!");
 	Obj2->prnt_list();
+	Obj2->del_last();
+	Obj2->prnt_list();
+	Obj2->wipe_all();
 	Obj2->c_scnd::~c_scnd();
 	delete [] p;
 

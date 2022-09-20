@@ -1,11 +1,12 @@
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++20
-TARGET = ts
-SRC = tst
+TARGET = l_list
+SRC = linked_list
 SRC_CPP = $(SRC).cpp
 O_DIR = obj_dir/
 O_CPP = $(SRC).o
-DUPSCPP = dups.cpp
+DUP_SRC = dups
+DUP_CPP = $(DUP_SRC).cpp
 BITREE = gen_bi_tree
 
 all: $(TARGET)
@@ -22,7 +23,7 @@ mo: clean
 bi:
 	$(RM) size_dup.txt
 	echo "Len Dup" >> size_dup.txt;
-	$(CC) $(DUPSCPP) $(CFLAGS) -o $(BITREE)
+	$(CC) $(DUP_CPP) $(CFLAGS) -o $(BITREE)
 
 clean:
 	$(RM) $(TARGET) $(O_CPP)

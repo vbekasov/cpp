@@ -22,10 +22,8 @@ template <class T>
 	
 template<class T> void c_scnd<T>::prnt_str_type()
 {
-	std::cout << "fst " << sizeof(var) << std::endl;
 	loc.m = 3;
 	loc.next = NULL;
-	std::cout << "struct mem : " << loc.m << std::endl;
 }
 
 template<class T> fst<T>* c_scnd<T>::prnt_list()
@@ -66,9 +64,6 @@ template<class T> fst<T>* c_scnd<T>::add_el(T nel)
 
 int main()
 {
-	fst<int>	a;
-	fst<char>	b;
-
 	c_scnd<int> Obj1;
 	Obj1.prnt_str_type();
 	Obj1.add_el(1234);

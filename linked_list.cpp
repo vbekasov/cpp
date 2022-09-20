@@ -20,6 +20,7 @@ template <class T>
 		c_scnd();
 		~c_scnd() { wipe_all();}
 		void	add_el(T nel);
+		void	add_fst(T fel);
 		void	del_last();
 		void	wipe_all();
 		void	prnt_list();
@@ -102,6 +103,20 @@ template<class T> void c_scnd<T>::wipe_all()
 	loc = nullptr;
 	prnt_list();	
 }
+
+template<class T> void c_scnd<T>::add_fst(T fel)
+{
+	s_list<T>	*el = loc;
+	T			tmp = loc->next->m;
+
+	while (el->next != nullptr)
+	{
+		el->next->m = el->m;
+	}
+	
+}
+
+//----------------------------------------------------------------
 
 int main()
 {

@@ -13,13 +13,14 @@ template <class T>
 	{
 	private:
 		s_list<T>	loc;
-		T		var;
+		T			var;
+		s_list<T>*	ret_last();
 	public:
 		c_scnd(T s_list);
 		~c_scnd() { std::cout<< "del\n";}
-		s_list<T>*	add_el(T nel);
-		s_list<T>*	ret_last();
-		s_list<T>*	prnt_list();
+		void	add_el(T nel);
+		void	del_last();
+		void	prnt_list();
 	};
 	
 template<class T> c_scnd<T>::c_scnd(T fst)
@@ -28,7 +29,7 @@ template<class T> c_scnd<T>::c_scnd(T fst)
 	loc.next = NULL;
 }
 
-template<class T> s_list<T>* c_scnd<T>::prnt_list()
+template<class T> void c_scnd<T>::prnt_list()
 {
 	s_list<T>	*el;
 	el = &loc;
@@ -52,7 +53,7 @@ template<class T> s_list<T>* c_scnd<T>::ret_last()
 	return el;
 }
 
-template<class T> s_list<T>* c_scnd<T>::add_el(T nel)
+template<class T> void c_scnd<T>::add_el(T nel)
 {
 	s_list<T>	*el;
 	el = new(s_list<T>);
@@ -62,7 +63,16 @@ template<class T> s_list<T>* c_scnd<T>::add_el(T nel)
 	s_list<T>	*last = ret_last();
 	last->next = el;
 	return el;
-} 
+}
+
+template<class T> void c_scnd<T>::del_last()
+{
+	if (loc.next == NULL)
+		return NULL;
+
+	s_list<T>	el;
+	return NULL:
+}
 
 int main()
 {

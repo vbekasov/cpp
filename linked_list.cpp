@@ -5,7 +5,7 @@ template <typename T>
 	struct s_list
 	{
 		T		m;
-		fst<T>	*next;
+		s_list<T>	*next;
 	};
 
 template <class T>
@@ -15,11 +15,11 @@ template <class T>
 		s_list<T>	loc;
 		T		var;
 	public:
-		c_scnd(T fst);
+		c_scnd(T s_list);
 		~c_scnd() { std::cout<< "del\n";}
-		fst<T>*	add_el(T nel);
-		fst<T>*	ret_last();
-		fst<T>*	prnt_list();
+		s_list<T>*	add_el(T nel);
+		s_list<T>*	ret_last();
+		s_list<T>*	prnt_list();
 	};
 	
 template<class T> c_scnd<T>::c_scnd(T fst)
@@ -30,7 +30,7 @@ template<class T> c_scnd<T>::c_scnd(T fst)
 
 template<class T> s_list<T>* c_scnd<T>::prnt_list()
 {
-	fst<T>	*el;
+	s_list<T>	*el;
 	el = &loc;
 	std::cout<<"List : ";
 	while (el->next != NULL)

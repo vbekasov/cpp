@@ -40,7 +40,6 @@ template<class T> void c_scnd<T>::prnt_list()
 		el = el->next;
 	}
 	std::cout<< el->m <<std::endl;
-	return el;
 }
 
 template<class T> s_list<T>* c_scnd<T>::ret_last()
@@ -62,16 +61,14 @@ template<class T> void c_scnd<T>::add_el(T nel)
 	
 	s_list<T>	*last = ret_last();
 	last->next = el;
-	return el;
 }
 
 template<class T> void c_scnd<T>::del_last()
 {
 	if (loc.next == NULL)
-		return NULL;
+		return ;
 
-	s_list<T>	el;
-	return NULL:
+	s_list<T>	*el;
 }
 
 int main()

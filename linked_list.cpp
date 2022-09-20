@@ -2,7 +2,7 @@
 #include <string>
 
 template <typename T>
-	struct fst
+	struct s_list
 	{
 		T		m;
 		fst<T>	*next;
@@ -12,7 +12,7 @@ template <class T>
 	class c_scnd
 	{
 	private:
-		fst<T>	loc;
+		s_list<T>	loc;
 		T		var;
 	public:
 		c_scnd(T fst);
@@ -28,7 +28,7 @@ template<class T> c_scnd<T>::c_scnd(T fst)
 	loc.next = NULL;
 }
 
-template<class T> fst<T>* c_scnd<T>::prnt_list()
+template<class T> s_list<T>* c_scnd<T>::prnt_list()
 {
 	fst<T>	*el;
 	el = &loc;
@@ -42,9 +42,9 @@ template<class T> fst<T>* c_scnd<T>::prnt_list()
 	return el;
 }
 
-template<class T> fst<T>* c_scnd<T>::ret_last()
+template<class T> s_list<T>* c_scnd<T>::ret_last()
 {
-	fst<T>	*el;
+	s_list<T>	*el;
 	el = &loc;
 	while (el->next != NULL)
 		el = el->next;
@@ -52,14 +52,14 @@ template<class T> fst<T>* c_scnd<T>::ret_last()
 	return el;
 }
 
-template<class T> fst<T>* c_scnd<T>::add_el(T nel)
+template<class T> s_list<T>* c_scnd<T>::add_el(T nel)
 {
-	fst<T>	*el;
-	el = new(fst<T>);
+	s_list<T>	*el;
+	el = new(s_list<T>);
 	el->m = nel;
 	std::cout << "New el " << el->m << std::endl;
 	
-	fst<T>	*last = ret_last();
+	s_list<T>	*last = ret_last();
 	last->next = el;
 	return el;
 } 

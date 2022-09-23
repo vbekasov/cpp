@@ -1,7 +1,7 @@
-#ifndef STR_NS_HPP
-#define STR_NS_HPP
+#ifndef ST_NS_HPP_
+#define ST_NS_HPP_
 
-#include <iostream>
+#include <string>
 
 namespace ll
 {   
@@ -22,17 +22,16 @@ namespace ll
     char    ret_type(auto v)
         {v++; return 'O';}
 
-    struct  node
+    struct  st_node
     {
         char*   obj_cont;
         char    et;
-        node*   next;
+        st_node*   next;
         void    set_type(auto tt)
         {
             et = ret_type(tt);
         }
     };
-
 }
 
 #endif

@@ -22,6 +22,7 @@ You will see implementation of this algorithm in Huffman coding.
 
 ## Table of contents
 * [Files](#project-files)
+* [Linked List](#linked-list)
 * [Binary Tree problem](#problem-description)
 * [Set to Tree](#set-to-tree)
 
@@ -42,6 +43,22 @@ This project contained files:
 * check_dup.sh : Shell script running binary with random integers
 
 * dup_fun.ipynb : Jupyter Notebook document with algorithm analysis and visualization
+
+## Linked List
+
+Linked List (LL) is a kind of Data Structure, where  the next element is pointed by current. It is not a random access array, but elements still can have their IDs. LLs use much more memory then arrays, but have some advantages:
+    1. Adding a new element to the end of the list does not require memory reallocation for the whole list, only memory for the new element;
+    2. New elements can be inserted or deleted without copying and moving list: <b>A->B => A->C->B</b>; Bigger list you have -- more proffit you have;
+    3. LL can care mixed data type, what is impossible with standard array in C/C++;
+
+Problem     | Linked List  | Array
+----------- | ------------ | -------------
+Space Comp  | O(n) large   | O(n) small
+Time Comp   | O(1)         | O(n)
+Mixed Data  | OK           | NOK
+RAM         | NOK          | OK
+
+
 
 ## Problem Description
 

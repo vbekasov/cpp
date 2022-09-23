@@ -58,6 +58,8 @@ Time Comp   | O(1)         | O(n)
 Mixed Data  | OK           | NOK
 RAM         | NOK          | OK
 
+Classes you can find in [LL header directory.](ll_head)
+
 
 
 ## Problem Description

@@ -64,8 +64,7 @@ namespace ll
     void c_row::print_val()
     {
         c_dummy* nObj = (c_dummy*)root.obj_cont;
-        std::cout << nObj->val << std::endl << root.s_type << std::endl;
-        //root.ret_type();
+        std::cout << "Saved val :" << nObj->val << std::endl;
     }
     
 }

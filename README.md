@@ -1,5 +1,5 @@
 
-## REWORKING CONCEPT
+# REWORKING CONCEPT
 
 FUN from main.c to .h class.
 

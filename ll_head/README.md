@@ -1,8 +1,8 @@
-## Linked List Header
+# Linked List Header
 
 <b>tl.h</b> is a top LL header. It collects all support <i>*.hpp</i> headers, and only this one should to be included in your <i>cpp</i> file.
 
-### Table of Contents
+## Table of Contents
 * [Files](#project-files)
 * [State of LL Project](#current-state)
 * [Next Steps](#next-steps)
@@ -19,11 +19,11 @@ This library contained files:
 * cl_dt_ns.hpp : class data namespace. Template <i>ClassData</i> to store variables and classes.
 
 
-### Current State
+## Current State
 
 LL saves char double int string in root, and prints out data
 
-### Next steps
+## Next steps
 
 Object templates
 
@@ -31,6 +31,6 @@ Save and load LL
 
 User defined objects
 
-### Implementation
+## Implementation
 
 To enter string use <b>std::string temp = "TEXT";</b> or use <b>rs("TEXT")</b> function.

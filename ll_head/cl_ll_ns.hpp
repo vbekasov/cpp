@@ -4,6 +4,7 @@
 #include "st_ns.hpp"
 #include "cl_dt_ns.hpp"
 #include <iostream>
+#include <string>
 
 namespace ll
 {

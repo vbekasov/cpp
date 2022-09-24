@@ -12,17 +12,17 @@ namespace ll
     class   LinkedList
     {
         private:
-            static int icount;
-            st_node*   s_root;
+            static int  icount;
+            st_node*    s_root;
             template<typename T>
-                void sup_print_val(st_node* node);
-                void sup_print_val(st_node* node, int n);
+                void    sup_print_val(st_node* node);
+                void    sup_print_val(st_node* node, int n);
         public:
-            LinkedList();
-            template<typename T> void write_class(T add_val);
-            void    print_val(st_node* node);
-            void    print_val();
-            void*   ret_obj();
+                                            LinkedList();
+            template<typename T>    void    write_class(T add_val);
+                                    void    print_val(st_node* node);
+                                    void    print_val();
+            template<typename T>    T      ret_object();
     };
 
     int LinkedList::icount = 0;
@@ -104,9 +104,13 @@ namespace ll
         }
     }
 
-    void* LinkedList::ret_obj()
+    template<typename T>
+    T LinkedList::ret_object()
     {
-        return NULL;
+        ClassData<T>* nObj = (ClassData<T>*)this->s_root->obj_cont;
+        T ret = (T)nObj->val;
+
+        return ret;
     }
 }
 

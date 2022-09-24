@@ -13,16 +13,17 @@ class TestInput
         double  y;
     public:
         TestInput();
-        ~TestInput() {}
         TestInput(int a, double b);
+        ~TestInput() {}
         void print_xy(void);
+        void set_vars(int x, double y){this->x=x; this->y=y;}
 };
 
 TestInput::TestInput()
-    { x = 0; y = 0.0;}
+    { this->x=0;this->y=0.0;}
 
-TestInput::TestInput(int a, double b)
-    { x = a; y = b;}
+TestInput::TestInput(int x, double y)
+    { this->x=x;this->y=y;}
 
 void TestInput::print_xy(void)
     { std::cout << "x=" << x << " ; y=" << y << std::endl;}

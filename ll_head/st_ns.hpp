@@ -14,8 +14,9 @@ namespace ll
     char    ret_type(double* v)
         {v++; return 'D';}
 
-    char    ret_type(std::string v)
-        {v=""; return 'S';}
+    char    ret_type(std::string* v)
+        {v++; return 'S';}
+
     char    ret_type(char* v)
         {v++; return 'C';}
     

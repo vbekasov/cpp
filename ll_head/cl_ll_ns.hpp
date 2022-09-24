@@ -12,6 +12,7 @@ namespace ll
     class   LinkedList
     {
         private:
+            static int icount;
             st_node*   s_root;
             template<typename T>
                 void sup_print_val(st_node* node);
@@ -23,9 +24,11 @@ namespace ll
             void print_val();
     };
 
+    int LinkedList::icount = 0;
+
     LinkedList::LinkedList()
     {
-        s_root = nullptr;
+        this->s_root = nullptr;
     }
 
     template<typename T> 
@@ -36,7 +39,8 @@ namespace ll
         s_root->set_type(add_val);
         ClassData<T>* tmpObj = new (s_root->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
-        std::cout << "IN" << s_root->et << std::endl;
+        this->icount++;
+        std::cout << "IN" << s_root->et << this->icount << std::endl;
     }
 
     template<typename T>

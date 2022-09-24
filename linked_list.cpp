@@ -18,6 +18,7 @@ int main()
 
     TestInput       TObj(3, 434.54);
     Obj1.write_class(TObj);
+    Obj1.print_val();
 
     return 0;
 }

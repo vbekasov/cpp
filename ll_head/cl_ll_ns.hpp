@@ -3,7 +3,7 @@
 
 #include "st_ns.hpp"
 #include "cl_dt_ns.hpp"
-#include "tl.h"
+#include "cl_fun_over.hpp"
 #include <iostream>
 #include <string>
 
@@ -15,6 +15,7 @@ namespace ll
             st_node*   s_root;
             template<typename T>
                 void sup_print_val(st_node* node);
+                void sup_print_val(st_node* node, int n);
         public:
             LinkedList();
             template<typename T> void write_class(T add_val);
@@ -45,6 +46,13 @@ namespace ll
         std::cout << "Saved val  :" << nObj->val << std::endl;
         std::cout << "Struc type :" << node->et << std::endl;
     }
+
+    void LinkedList::sup_print_val(st_node* node, int n)
+    {
+        TestInput* nObj = (TestInput*)node->obj_cont;
+        nObj->print_xy();
+        n++;
+    }
     
     void LinkedList::print_val()
     {
@@ -62,6 +70,8 @@ namespace ll
         case 'S':
             sup_print_val<std::string>(s_root);
             break;
+        case 'O':
+            sup_print_val(s_root, 1);
         default:
             break;
         }

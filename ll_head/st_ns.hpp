@@ -1,6 +1,7 @@
 #ifndef ST_NS_HPP_
 #define ST_NS_HPP_
 
+#include "cl_fun_over.hpp"
 #include <string>
 
 namespace ll
@@ -15,14 +16,11 @@ namespace ll
 
     char    ret_type(std::string v)
         {v=""; return 'S';}
-// STRING TO CHAR ARR
     char    ret_type(char* v)
         {v++; return 'C';}
     
     char    ret_type(auto* v)
-        {v = nullptr;
-            //auto *a = &v; a =  nullptr;
-         return 'O';}
+        {v = nullptr; return 'O';}
 
     struct  st_node
     {

@@ -1,14 +1,14 @@
-### Linked List Header
+## Linked List Header
 
-## Current state
+### Current state
 
 LL saves char and int in root, and prints out data
 
-## Issues 
+### Issues 
 
 Float & String templates
 
-## Next steps
+### Next steps
 
 Float String Object templates
 

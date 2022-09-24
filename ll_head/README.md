@@ -1,6 +1,6 @@
 # Linked List Header
 
-<b>tl.h</b> is a top LL header. It collects all support <i>*.hpp</i> headers, and only this one should to be included in your <i>cpp</i> file.
+<b>tl.h</b> is a top LL header. It collects all support <i>*.hpp</i> headers, and only this one should be included in your <i>cpp</i> file.
 
 ## Table of Contents
 * [Files](#project-files)

@@ -34,6 +34,7 @@ namespace ll
         s_root->set_type(add_val);
         ClassData<T>* tmpObj = new (s_root->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
+        std::cout << "IN" << s_root->et << std::endl;
     }
 
     template<typename T>
@@ -56,8 +57,10 @@ namespace ll
             break;
         case 'D':
             sup_print_val<double>(s_root);
-        //case 'S':
-        //    sup_print_val<std::string>(s_root);
+            break;
+        case 'S':
+            sup_print_val<std::string>(s_root);
+            break;
         // ADD object        
         default:
             break;
@@ -74,10 +77,11 @@ namespace ll
         case 'C':
             sup_print_val<char>(node);
             break;
-        case 'F':
+        case 'D':
             sup_print_val<double>(node);
         case 'S':
             sup_print_val<std::string>(node);
+            break;
         // ADD object        
         default:
             break;

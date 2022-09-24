@@ -4,14 +4,14 @@
 
 LL saves char double int in root, and prints out data
 
-### Issues 
-
-String templates
-
 ### Next steps
 
-String Object templates
+Object templates
 
 Save and load LL
 
 User defined objects
+
+### Sup fun
+
+To enter string use <b>std::string temp = "TEXT";</b> or use <b>rs("TEXT")</b> function.

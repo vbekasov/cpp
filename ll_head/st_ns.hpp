@@ -15,7 +15,7 @@ namespace ll
 
     char    ret_type(std::string v)
         {v=""; return 'S';}
-
+// STRING TO CHAR ARR
     char    ret_type(char v)
         {v++; return 'C';}
     

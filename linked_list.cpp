@@ -13,5 +13,8 @@ int main()
     Obj1.write_class(123.445);
     Obj1.print_val();
 
+    Obj1.write_class(rs("TEST TEXT"));
+    Obj1.print_val();
+
     return 0;
 }

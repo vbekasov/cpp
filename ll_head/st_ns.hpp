@@ -7,20 +7,22 @@ namespace ll
 {   
     // can be overloaded by user
     
-    char    ret_type(int v)
+    char    ret_type(int* v)
         {v++; return 'I';}
 
-    char    ret_type(double v)
+    char    ret_type(double* v)
         {v++; return 'D';}
 
     char    ret_type(std::string v)
         {v=""; return 'S';}
 // STRING TO CHAR ARR
-    char    ret_type(char v)
+    char    ret_type(char* v)
         {v++; return 'C';}
     
-    char    ret_type(auto v)
-        {auto *a = &v; a =  nullptr; return 'O';}
+    char    ret_type(auto* v)
+        {v = nullptr;
+            //auto *a = &v; a =  nullptr;
+         return 'O';}
 
     struct  st_node
     {
@@ -29,7 +31,7 @@ namespace ll
         st_node*   next;
         void    set_type(auto tt)
         {
-            et = ret_type(tt);
+            et = ret_type(&tt);
         }
     };
 }

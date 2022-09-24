@@ -2,15 +2,15 @@
 
 ### Current state
 
-LL saves char and int in root, and prints out data
+LL saves char double int in root, and prints out data
 
 ### Issues 
 
-Float & String templates
+String templates
 
 ### Next steps
 
-Float String Object templates
+String Object templates
 
 Save and load LL
 

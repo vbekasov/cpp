@@ -11,9 +11,12 @@ namespace ll
     {
         private:
             st_node*   s_root;
+            template<typename T>
+                void sup_print_val(st_node* node);
         public:
             LinkedList();
             template<typename T> void write_class(T add_val);
+            void print_val(st_node* node);
             void print_val();
     };
 
@@ -22,7 +25,8 @@ namespace ll
         s_root = nullptr;
     }
 
-    template<typename T> void LinkedList::write_class(T add_val)
+    template<typename T> 
+    void LinkedList::write_class(T add_val)
     {
         s_root = new st_node;
         s_root->obj_cont = new char[sizeof(ClassData<T>)];
@@ -31,26 +35,52 @@ namespace ll
         tmpObj->val = add_val;
     }
 
+    template<typename T>
+    void LinkedList::sup_print_val(st_node* node)
+    {
+        ClassData<T>* nObj = (ClassData<T>*)node->obj_cont;
+        std::cout << "Saved val  :" << nObj->val << std::endl;
+        std::cout << "Struc type :" << node->et << std::endl;
+    }
+    
     void LinkedList::print_val()
     {
-        /*
-        switch (root->et)
+        switch (s_root->et)
         {
         case 'I':
-            c_dummy<char>* nObj = (c_dummy<char>*)root->obj_cont;
+            sup_print_val<int>(s_root);
             break;
         case 'C':
-            c_dummy<int>* nObj = (c_dummy<int>*)root->obj_cont;
+            sup_print_val<char>(s_root);
             break;
-        
+        case 'F':
+            sup_print_val<float>(s_root);
+        case 'S':
+            sup_print_val<std::string>(s_root);
+        // ADD object        
         default:
             break;
         }
-        */
-        
-        ClassData<int>* nObj = (ClassData<int>*)s_root->obj_cont;
-        std::cout << "Saved val  :" << nObj->val << std::endl;
-        std::cout << "Struc type :" << s_root->et << std::endl;
+    }
+
+    void LinkedList::print_val(st_node* node)
+    {
+        switch (node->et)
+        {
+        case 'I':
+            sup_print_val<int>(node);
+            break;
+        case 'C':
+            sup_print_val<char>(node);
+            break;
+        case 'F':
+            sup_print_val<float>(node);
+        case 'S':
+            sup_print_val<std::string>(node);
+        // ADD object        
+        default:
+            break;
+        }
     }
 }
 

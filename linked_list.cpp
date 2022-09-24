@@ -3,7 +3,8 @@
 int main()
 {
     ll::LinkedList   Obj1;
-    Obj1.write_class('A');
+    std::string tmp = "SOME TEST TEXT";
+    Obj1.write_class(tmp);
     Obj1.print_val();
 
     return 0;

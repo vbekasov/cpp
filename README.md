@@ -68,11 +68,11 @@ Binary Tree is a kind of graph, and definition you can find on [Wiki](https://en
 I wanted to show how I had solved this problem using C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
 My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree. But during the tree generation
-the program makes some duplicates. You can find more information about that step [here](#set-to-tree).
+the program makes some duplicates. You can find more information about that step [here.](#set-to-tree)
 
 ## Set to Tree
 
 To generate sets of random unique integers I use <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or
 return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in 
 <i><b>tb_node* gen_tree(int* iarr, int start, int finish)</b></i> function. How it works you can find in 
-[Jupyter file](dup_fun.ipynb).
+[Jupyter file.](dup_fun.ipynb)

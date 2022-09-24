@@ -54,10 +54,10 @@ namespace ll
         case 'C':
             sup_print_val<char>(s_root);
             break;
-        case 'F':
-            sup_print_val<float>(s_root);
-        case 'S':
-            sup_print_val<std::string>(s_root);
+        case 'D':
+            sup_print_val<double>(s_root);
+        //case 'S':
+        //    sup_print_val<std::string>(s_root);
         // ADD object        
         default:
             break;
@@ -75,7 +75,7 @@ namespace ll
             sup_print_val<char>(node);
             break;
         case 'F':
-            sup_print_val<float>(node);
+            sup_print_val<double>(node);
         case 'S':
             sup_print_val<std::string>(node);
         // ADD object        

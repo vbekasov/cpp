@@ -10,8 +10,8 @@ namespace ll
     char    ret_type(int v)
         {v++; return 'I';}
 
-    char    ret_type(float v)
-        {v++; return 'F';}
+    char    ret_type(double v)
+        {v++; return 'D';}
 
     char    ret_type(std::string v)
         {v=""; return 'S';}

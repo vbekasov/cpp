@@ -14,15 +14,14 @@ namespace ll
         private:
             static int  icount;
             st_node*    s_root;
-            template<typename T>
-                void    sup_print_val(st_node* node);
-                void    sup_print_val(st_node* node, int n);
+            template<typename T> void    sup_print_val(st_node* node);
         public:
-                                            LinkedList();
-            template<typename T>    void    write_class(T add_val);
-                                    void    print_val(st_node* node);
-                                    void    print_val();
-            template<typename T>    T      ret_object();
+            LinkedList();
+            template<typename T> void    write_object(T add_val);
+            template<typename T> T       ret_object();
+            void    print_val(st_node* node);
+            void    print_val();
+            char    ret_obj_type();
     };
 
     int LinkedList::icount = 0;
@@ -33,7 +32,7 @@ namespace ll
     }
 
     template<typename T> 
-    void LinkedList::write_class(T add_val)
+    void LinkedList::write_object(T add_val)
     {
         s_root = new st_node;
         s_root->obj_cont = new char[sizeof(ClassData<T>)];
@@ -41,7 +40,6 @@ namespace ll
         ClassData<T>* tmpObj = new (s_root->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
         this->icount++;
-        std::cout << "IN" << s_root->et << this->icount << std::endl;
     }
 
     template<typename T>
@@ -50,13 +48,6 @@ namespace ll
         ClassData<T>* nObj = (ClassData<T>*)node->obj_cont;
         std::cout << "Saved val  :" << nObj->val << std::endl;
         std::cout << "Struc type :" << node->et << std::endl;
-    }
-
-    void LinkedList::sup_print_val(st_node* node, int n)
-    {
-        TestInput* nObj = (TestInput*)node->obj_cont;
-        nObj->print_xy();
-        n++;
     }
     
     void LinkedList::print_val()
@@ -75,8 +66,6 @@ namespace ll
         case 'S':
             sup_print_val<std::string>(s_root);
             break;
-        case 'O':
-            sup_print_val(s_root, 1);
         default:
             break;
         }
@@ -97,8 +86,6 @@ namespace ll
         case 'S':
             sup_print_val<std::string>(node);
             break;
-        case 'O':
-            sup_print_val(s_root, 1);
         default:
             break;
         }
@@ -112,6 +99,10 @@ namespace ll
 
         return ret;
     }
+
+    char LinkedList::ret_obj_type()
+        { return this->s_root->et;}
+
 }
 
 #endif

@@ -28,6 +28,11 @@ namespace ll
         char*   obj_cont;
         char    et;
         st_node*   next;
+        ~st_node()
+        {
+            if (obj_cont) { delete [] obj_cont;}
+            obj_cont = nullptr;
+        }
         void    set_type(auto tt)
         {
             et = ret_type(&tt);

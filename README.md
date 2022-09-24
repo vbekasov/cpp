@@ -20,7 +20,7 @@ Python and Shell scripts to solve the Binary Tree problems and analyze its perfo
 
 You will see implementation of this algorithm in Huffman coding.
 
-## Table of contents
+## Table of Contents
 * [Files](#project-files)
 * [Linked List](#linked-list)
 * [Binary Tree problem](#problem-description)
@@ -64,7 +64,7 @@ Classes you can find in [LL header directory.](ll_head)
 
 ## Problem Description
 
-Binary Tree is a kind of graph, and definition you can find on [Wiki](https://en.wikipedia.org/wiki/Binary_tree#Definitions).
+Binary Tree is a kind of graph, and definition you can find on [Wiki.](https://en.wikipedia.org/wiki/Binary_tree#Definitions)
 I wanted to show how I had solved this problem using C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
 My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree. But during the tree generation

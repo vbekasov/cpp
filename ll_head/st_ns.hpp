@@ -20,7 +20,7 @@ namespace ll
         {v++; return 'C';}
     
     char    ret_type(auto v)
-        {v++; return 'O';}
+        {auto *a = &v; a =  nullptr; return 'O';}
 
     struct  st_node
     {

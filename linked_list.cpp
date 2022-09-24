@@ -16,5 +16,8 @@ int main()
     Obj1.write_class(rs("TEST TEXT"));
     Obj1.print_val();
 
+    TestInput       TObj(3, 434.54);
+    Obj1.write_class(TObj);
+
     return 0;
 }

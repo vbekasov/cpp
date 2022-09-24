@@ -2,7 +2,7 @@
 
 ### Current state
 
-LL saves char double int in root, and prints out data
+LL saves char double int string in root, and prints out data
 
 ### Next steps
 

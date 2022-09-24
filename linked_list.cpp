@@ -1,5 +1,12 @@
 #include "ll_head/tl.h"
 
+class Der: public TestInput 
+{
+    public:
+        int     a;
+        char    b;
+};
+
 int main()
 {
     ll::LinkedList   Obj1;
@@ -17,6 +24,10 @@ int main()
 
     TestInput       TObj(3, 434.54);
     Obj1.write_class(TObj);
+    Obj1.print_val();
+
+    Der             DObj;
+    Obj1.write_class(DObj);
     Obj1.print_val();
 
     return 0;

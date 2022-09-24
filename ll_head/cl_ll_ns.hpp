@@ -20,8 +20,9 @@ namespace ll
         public:
             LinkedList();
             template<typename T> void write_class(T add_val);
-            void print_val(st_node* node);
-            void print_val();
+            void    print_val(st_node* node);
+            void    print_val();
+            void*   ret_obj();
     };
 
     int LinkedList::icount = 0;
@@ -96,10 +97,16 @@ namespace ll
         case 'S':
             sup_print_val<std::string>(node);
             break;
-        // ADD object        
+        case 'O':
+            sup_print_val(s_root, 1);
         default:
             break;
         }
+    }
+
+    void* LinkedList::ret_obj()
+    {
+        return NULL;
     }
 }
 

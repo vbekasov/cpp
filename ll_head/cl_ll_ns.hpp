@@ -1,9 +1,8 @@
-#ifndef CL_LL_NS_HPP
-#define CL_LL_NS_HPP
+#ifndef CL_LL_NS_HPP_
+#define CL_LL_NS_HPP_
 
 #include "st_ns.hpp"
 #include "cl_dt_ns.hpp"
-#include "cl_fun_over.hpp"
 #include <iostream>
 #include <string>
 
@@ -12,19 +11,20 @@ namespace ll
     class   LinkedList
     {
         private:
-            static int  icount;
+            static unsigned short int  icount;
             st_node*    s_root;
             template<typename T> void    sup_print_val(st_node* node);
         public:
             LinkedList();
             template<typename T> void    write_object(T add_val);
             template<typename T> T       ret_object();
+            unsigned short int    ll_length();
             void    print_val(st_node* node);
             void    print_val();
             char    ret_obj_type();
     };
 
-    int LinkedList::icount = 0;
+    unsigned short int LinkedList::icount = 0;
 
     LinkedList::LinkedList()
     {
@@ -102,6 +102,25 @@ namespace ll
 
     char LinkedList::ret_obj_type()
         { return this->s_root->et;}
+
+    unsigned short int LinkedList::ll_length()
+    {
+        if (!this->s_root)
+            return 0;
+        if (!this->s_root->next)
+            return 1;
+
+        unsigned short int    tcount = 1;
+
+        st_node*    tmp = this->s_root->next;
+        while (tmp->next)
+        {
+            tcount++;
+            tmp = tmp->next;
+        }
+
+        return tcount;
+    }
 
 }
 

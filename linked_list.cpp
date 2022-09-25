@@ -5,7 +5,7 @@ class Der: public TestInput
     public:
         int     a;
         char    b;
-        void    print_val(){std::cout << a << b << std::endl;}
+        void    print_val(){std::cout << "Der val:"<< a << "  " << b << std::endl;}
 };
 
 int main()
@@ -33,6 +33,8 @@ int main()
     Der            Ocpy;
     Ocpy = Obj1.ret_object<Der>();
     Ocpy.print_val();
+
+    std::cout << "LL len :" << Obj1.ll_length() << std::endl;
 
     return 0;
 }

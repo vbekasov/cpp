@@ -1,5 +1,5 @@
-#ifndef CL_DT_NS_HPP
-#define CL_DT_NS_HPP
+#ifndef CL_DT_NS_HPP_
+#define CL_DT_NS_HPP_
 
 #include <iostream>
 

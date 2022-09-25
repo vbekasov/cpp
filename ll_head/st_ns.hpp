@@ -1,12 +1,11 @@
 #ifndef ST_NS_HPP_
 #define ST_NS_HPP_
 
-#include "cl_fun_over.hpp"
 #include <string>
 
 namespace ll
 {   
-    // can be overloaded by user
+    // BEFORE COMPILE FOR .SO REMOVE FLAGS and ++
     
     char    ret_type(int* v)
         {v++; return 'I';}

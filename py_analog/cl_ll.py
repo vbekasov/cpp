@@ -1,3 +1,6 @@
+from datetime import date
+
+
 class DT:
     def __init__(self, input):
         self.data = input
@@ -69,11 +72,8 @@ class LL:
 
         if (tmp == None):
             return
-        prev = tmp.next
-        #del(tmp)
-                
-
-        
+        prev.next = tmp.next
+        del(tmp)
 
 if __name__ == "__main__":
     print("Main Works")

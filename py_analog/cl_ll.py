@@ -75,6 +75,15 @@ class LL:
         prev.next = tmp.next
         del(tmp)
 
+    def ret_el(self, data):
+        tmp = self.__first
+        while(tmp.data != data and tmp != None):
+            tmp = tmp.next
+        return tmp.data
+
+    def __del__ (self):
+        pass
+
 if __name__ == "__main__":
     print("Main Works")
     Obj1 = LL(123)

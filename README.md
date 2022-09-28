@@ -45,6 +45,8 @@ This project contained files:
 
 * dup_fun.ipynb : Jupyter Notebook document with algorithm analysis and visualization
 
+* py_analog : same projects but on Python3
+
 ## Linked List
 
 Linked List (LL) is a kind of Data Structure, where  the next element is pointed by current. It is not a random access array, but elements still can have their IDs. LLs use much more memory then arrays, but have some advantages:

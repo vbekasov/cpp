@@ -20,21 +20,21 @@ namespace ll
         {v++; return 'C';}
     
     char    ret_type(auto* v)
-        {v = nullptr; return 'O';}
+        {v++; return 'O';}
 
     struct  st_node
     {
-        char*   obj_cont;
-        char    et;
-        st_node*   next;
+        char*       obj_cont;
+        char        et;
+        st_node*    next;
         ~st_node()
         {
             if (obj_cont) { delete [] obj_cont;}
             obj_cont = nullptr;
         }
-        void    set_type(auto tt)
+        void    set_type(auto *tt)
         {
-            et = ret_type(&tt);
+            et = ret_type(tt);
         }
     };
 }

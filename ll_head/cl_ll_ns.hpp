@@ -14,14 +14,18 @@ namespace ll
             static unsigned short int  icount;
             st_node*    s_root;
             template<typename T> void    sup_print_val(st_node* node);
+            void    show_last();
         public:
             LinkedList();
-            template<typename T> void    write_object(T add_val);
+            template<typename T> void    push_back(T add_val);
+            template<typename T> void    push_forword(T add_val);
             template<typename T> T       ret_object();
-            unsigned short int    ll_length();
+            unsigned short int           ll_length();
             void    print_val(st_node* node);
             void    print_val();
             char    ret_obj_type();
+            void    print_ll();
+
     };
 
     unsigned short int LinkedList::icount = 0;
@@ -32,63 +36,66 @@ namespace ll
     }
 
     template<typename T> 
-    void LinkedList::write_object(T add_val)
+    void LinkedList::push_back(T add_val)
     {
-        s_root = new st_node;
-        s_root->obj_cont = new char[sizeof(ClassData<T>)];
-        s_root->set_type(add_val);
-        ClassData<T>* tmpObj = new (s_root->obj_cont) ClassData<T>;
+        //s_root = new st_node;
+        st_node*    tmp = new st_node;
+        tmp->obj_cont = new char[sizeof(ClassData<T>)];
+        tmp->set_type(&add_val);
+        ClassData<T>* tmpObj = new (tmp->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
+        if (!this->s_root)
+            {this->s_root = tmp;}
+        else
+        {
+            this->s_root->next = tmp;
+        }
         this->icount++;
+    }
+
+    template<typename T>
+    void LinkedList::push_forword(T add_val)
+    {
+        st_node*    tmp = new st_node;
+        tmp->obj_cont = new char[sizeof(ClassData<T>)];
+        tmp->set_type(&add_val);
+        ClassData<T>* tmpObj = new (tmp->obj_cont) ClassData<T>;
+        tmpObj->val = add_val;
+        if (!this->s_root)
+            {s_root = tmp;}
+        else
+        {
+            ClassData<T> exCNG;
+            exCNG = *s_root;
+            s_root = tmp;
+            
+        }
     }
 
     template<typename T>
     void LinkedList::sup_print_val(st_node* node)
     {
         ClassData<T>* nObj = (ClassData<T>*)node->obj_cont;
-        std::cout << "Saved val  :" << nObj->val << std::endl;
-        std::cout << "Struc type :" << node->et << std::endl;
+        std::cout << nObj->val ;
+        std::cout << "!" << node->et << " | " ;
     }
     
     void LinkedList::print_val()
     {
-        switch (s_root->et)
-        {
-        case 'I':
-            sup_print_val<int>(s_root);
-            break;
-        case 'C':
-            sup_print_val<char>(s_root);
-            break;
-        case 'D':
-            sup_print_val<double>(s_root);
-            break;
-        case 'S':
-            sup_print_val<std::string>(s_root);
-            break;
-        default:
-            break;
-        }
+        if      (s_root->et == 'I') {sup_print_val<int>(s_root);}
+        else if (s_root->et == 'C') {sup_print_val<char>(s_root);}
+        else if (s_root->et == 'D') {sup_print_val<double>(s_root);}
+        else if (s_root->et == 'S') {sup_print_val<std::string>(s_root);}
+        else {std::cout << "Object";}
     }
 
     void LinkedList::print_val(st_node* node)
     {
-        switch (node->et)
-        {
-        case 'I':
-            sup_print_val<int>(node);
-            break;
-        case 'C':
-            sup_print_val<char>(node);
-            break;
-        case 'D':
-            sup_print_val<double>(node);
-        case 'S':
-            sup_print_val<std::string>(node);
-            break;
-        default:
-            break;
-        }
+        if      (node->et == 'I') {sup_print_val<int>(node);}
+        else if (node->et == 'C') {sup_print_val<char>(node);}
+        else if (node->et == 'D') {sup_print_val<double>(node);}
+        else if (node->et == 'S') {sup_print_val<std::string>(node);}
+        else {std::cout << "Object";}
     }
 
     template<typename T>
@@ -118,10 +125,29 @@ namespace ll
             tcount++;
             tmp = tmp->next;
         }
-
         return tcount;
     }
 
+    void LinkedList::print_ll()
+    {
+        st_node*    tmp = this->s_root;
+
+        while (tmp)
+        {
+            print_val(tmp);
+            tmp = tmp->next;
+        }
+        std::cout << std::endl;
+    }
+
+    void LinkedList::show_last()
+    {
+        st_node*    tmp = this->s_root;
+
+        while (tmp->next)
+            tmp = tmp->next;
+        print_val(tmp);
+    }
 }
 
 #endif

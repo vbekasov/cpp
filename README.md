@@ -23,6 +23,7 @@ You will see implementation of this algorithm in Huffman coding.
 ## Table of Contents
 * [Files](#project-files)
 * [Linked List](#linked-list)
+* [LL Python3](py_analog)
 * [Binary Tree problem](#problem-description)
 * [Set to Tree](#set-to-tree)
 

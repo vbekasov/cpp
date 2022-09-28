@@ -1,4 +1,4 @@
-from cl_ll import LL
+from module_ll import LL
 
 class TstClass:
     def __init__(self, x, y):

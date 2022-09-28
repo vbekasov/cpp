@@ -1,5 +1,3 @@
-from datetime import date
-
 
 class DT:
     def __init__(self, input):

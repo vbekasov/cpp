@@ -15,8 +15,15 @@ class PyBinTree:
         else:
             tmp.right = Node(input)
 
-    def print_tree(self, tmp = self.__root):
-        pass
+    def print_tree(self):
+        tmp = self.__root
+        print(tmp.data, end="|")
+        tmp = tmp.left
+        print(tmp.data, end="<-|")
+        tmp = self.__root
+        tmp = tmp.right
+        print(tmp.data, end="->|")
+        print()
 
 if __name__ == "__main__":
     Obj1 = PyBinTree(231)

@@ -16,17 +16,11 @@ int main()
     ll::LinkedList   Obj1;
     Obj1.push_back(123);
     Obj1.push_back(rs("Test text"));
+    Obj1.print_ll();
+    Obj1.push_back('F');
     Obj1.push_forword(rs("FRST"));
 
-    Der             InObj(876, 'Q');
-    Obj1.push_forword(InObj);
-    InObj.~Der();
-
     Obj1.print_ll();
-    Der            OutObj;
-    OutObj = Obj1.ret_object<Der>();
-    OutObj.print_val();
-    OutObj.~Der();
 
     return 0;
 }

@@ -80,7 +80,9 @@ class LL:
         return tmp.data
 
     def __del__ (self):
-        pass
+        tmp = self.__first
+        while(tmp.next != None):
+            tmp = tmp.next
 
 if __name__ == "__main__":
     print("Main Works")

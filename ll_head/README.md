@@ -13,7 +13,7 @@
 This library contained files:
 
 * tl.h : header file only one has to be included in your project
-* st_ns.hpp : struct namespace. Header with structure used in <i>LinkedList</i> class. Functions to be overloaded to determine classes in the linked list. Objects and variables stored in <i>ClassData</i> are written in this structure.
+* st_ns.hpp : struct namespace. Header with structure used in <i>LinkedList</i> class. Functions to be overloaded to determine classes in the linked list. Objects and variables stored in <i>ClassData</i> are written in this structure. To copy struct content and destuct struct, change st_node::et to '+' after copying and before call destructor.
 * cl_ll_ns.hpp : class LinkedList in namespace. Header with <i>LinkedList</i> class. Usage you can find in [implementation.](#implementation)
 * cl_fun_over.hpp : classes and functions to be overloaded by user.
 * cl_dt_ns.hpp : class data namespace. Template <i>ClassData</i> to store variables and classes.

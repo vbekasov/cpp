@@ -14,8 +14,8 @@ class TestInput
     public:
         TestInput();
         TestInput(int x, double y){this->x=x; this->y=y;}
-        ~TestInput() {}
-        void print_xy(void);
+        virtual ~TestInput() {}
+        virtual void print_val(void);
         void set_vars(int x, double y){this->x=x; this->y=y;}
     protected:
         int     x;
@@ -25,7 +25,7 @@ class TestInput
 TestInput::TestInput()
     { this->x=0; this->y=0.0;}
 
-void TestInput::print_xy(void)
+void TestInput::print_val(void)
     { std::cout << "x=" << x << " ; y=" << y << std::endl;}
 
 #endif

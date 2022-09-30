@@ -29,8 +29,11 @@ namespace ll
         st_node*    next;
         ~st_node()
         {
-            if (obj_cont) { delete [] obj_cont;}
-            obj_cont = nullptr;
+            if (obj_cont && et != '+') 
+            { 
+                delete [] obj_cont;
+                obj_cont = nullptr;
+            }
         }
         void    set_type(auto *tt)
         {

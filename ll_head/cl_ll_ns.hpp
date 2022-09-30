@@ -62,14 +62,15 @@ namespace ll
         ClassData<T>* tmpObj = new (tmp->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
         if (!this->s_root)
-            {s_root = tmp;}
-        else
-        {
-            ClassData<T> exCNG;
-            exCNG = *s_root;
-            s_root = tmp;
-            
-        }
+            {s_root = tmp; return ;}
+
+        st_node*    exCng = new st_node;
+        *exCng = *s_root;
+        s_root->et = '+';
+        s_root->~st_node();
+        s_root = tmp;
+        s_root->next = exCng;
+
     }
 
     template<typename T>
@@ -95,7 +96,7 @@ namespace ll
         else if (node->et == 'C') {sup_print_val<char>(node);}
         else if (node->et == 'D') {sup_print_val<double>(node);}
         else if (node->et == 'S') {sup_print_val<std::string>(node);}
-        else {std::cout << "Object";}
+        else {std::cout << "Object | ";}
     }
 
     template<typename T>

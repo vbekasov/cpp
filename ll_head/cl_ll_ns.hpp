@@ -11,7 +11,7 @@ namespace ll
     class   LinkedList
     {
         private:
-            static unsigned short int  icount;
+            static size_t  icount;
             st_node*    s_root;
             template<typename T> void    sup_print_val(st_node* node);
             void    show_last();
@@ -19,17 +19,31 @@ namespace ll
             LinkedList();
             template<typename T> void    push_back(T add_val);
             template<typename T> void    push_forword(T add_val);
-            template<typename T> T       ret_object(int num = 0);
+            template<typename T> T       ret_object(size_t num = 0);
             template<typename T, typename U> void   l_insert(T find, U insert);
-            unsigned short int           ll_length();
+            size_t  ll_length();
             void    print_val(st_node* node);
-            void    print_val(int num = 0);
+            void    print_val(size_t num = 0);
             char    ret_obj_type();
             void    print_ll();
 
+            char* operator[] (const size_t num)
+            {
+                if (!this->s_root)
+                    {return nullptr;}
+                
+                st_node* tmp = this->s_root;
+                for (size_t i = 0; i < num && tmp; i++)
+                    tmp = tmp->next;
+                
+                if (!tmp)
+                    {return nullptr;}                
+                return tmp->obj_cont;
+            }
+
     };
 
-    unsigned short int LinkedList::icount = 0;
+    size_t LinkedList::icount = 0;
 
     LinkedList::LinkedList()
     {
@@ -77,11 +91,11 @@ namespace ll
     }
 
     template<typename T>
-    T LinkedList::ret_object(int num)
+    T LinkedList::ret_object(size_t num)
     {
         st_node*    tmp = s_root;
 
-        for (int i=0; i<num && tmp; tmp++)
+        for (size_t i=0; i<num && tmp; tmp++)
             tmp = tmp->next;
 
         if (!tmp)
@@ -120,11 +134,11 @@ namespace ll
         std::cout << "!" << node->et << " | " ;
     }
     
-    void LinkedList::print_val(int num)
+    void LinkedList::print_val(size_t num)
     {
         st_node*    tmp = s_root;
 
-        for (int i=0; i<num && tmp; i++)
+        for (size_t i=0; i<num && tmp; i++)
             tmp = tmp->next; 
 
         if      (!tmp) { std::cout << "Empty\n";}
@@ -148,14 +162,14 @@ namespace ll
     char LinkedList::ret_obj_type()
         { return this->s_root->et;}
 
-    unsigned short int LinkedList::ll_length()
+    size_t LinkedList::ll_length()
     {
         if (!this->s_root)
             return 0;
         if (!this->s_root->next)
             return 1;
 
-        unsigned short int    tcount = 1;
+        size_t      tcount = 1;
 
         st_node*    tmp = this->s_root->next;
         while (tmp->next)

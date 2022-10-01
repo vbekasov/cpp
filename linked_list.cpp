@@ -22,5 +22,8 @@ int main()
 
     Obj1.print_ll();
 
+    ll::ClassData<int>* retObj = (ll::ClassData<int>*)Obj1[1];
+    std::cout << retObj->val << std::endl;
+
     return 0;
 }

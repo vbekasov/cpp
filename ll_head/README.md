@@ -6,6 +6,7 @@
 * [Files](#project-files)
 * [State of LL Project](#current-state)
 * [Next Steps](#next-steps)
+* [LL Methods](#ll-class-methods)
 * [Implementation](#implementation)
 
 ### Project Files
@@ -21,15 +22,29 @@ This library contained files:
 
 ## Current State
 
-LL saves char double int string in root, and prints out data
+LL multiple data, operator[], basic LL function
 
 ## Next steps
 
-Object templates
-
 Save and load LL
 
-User defined objects
+## LL class methods
+
+Public methods:
+* <i>template<typename T> void push_back(T add_val);</i><br>
+This function receives any argument and add it at the end of LL.
+* <i>template<typename T> void    push_forword(T add_val);</i><br>
+This function receives any argument and add it at tne begining of LL.
+* <i>template<typename T> T       ret_object(size_t num = 0);</i><br>
+This template function receives <datatype> and element number, and returns object.
+* <i>template<typename T, typename U> void   l_insert(T find, U insert);</i><br>
+UNDER CONSTRUCTION
+* <i>size_t  ll_length();</i><br>
+This function returns length of LL.
+* <i>void    print_val(size_t num = 0);</i><br>
+This function prints element if it is char, int, double or string. Otherwise prints "Object".
+* <i>void    print_ll();</i><br>
+This function prints LL elements if it is char, int, double or string. Otherwise prints "Object".
 
 ## Implementation
 

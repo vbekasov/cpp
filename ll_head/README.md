@@ -45,6 +45,8 @@ This function returns length of LL.
 This function prints element if it is char, int, double or string. Otherwise prints "Object".
 * <i>void    print_ll();</i><br>
 This function prints all LL elements if it is char, int, double or string. Otherwise prints "Object".
+* <i>template<typename T> void   l_insert(size_t pos, T insert);</i><br>
+This function inserts an element to the LL after position. Position >= 0. If pos > length of the LL function does nothing.
 
 ## Implementation
 

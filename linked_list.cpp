@@ -23,12 +23,11 @@ int main()
 
     Obj1.print_ll();
 
-    //ll::ClassData<int>* retObj = (ll::ClassData<int>*)Obj1[1];
-    //std::cout << retObj->val << std::endl;
-    //std::cout << Obj1[3] << std::endl;
+    ll::ClassData<int>* retObj = (ll::ClassData<int>*)Obj1[1];
+    std::cout << retObj->val << std::endl;
+    std::cout << Obj1[3] << std::endl;
     Obj1.l_insert(0, 987);
 
-    //Obj1.push_forword(987);
     Obj1.print_ll();
 
     return 0;

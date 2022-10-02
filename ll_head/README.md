@@ -44,7 +44,7 @@ This function returns length of LL.
 * <i>void    print_val(size_t num = 0);</i><br>
 This function prints element if it is char, int, double or string. Otherwise prints "Object".
 * <i>void    print_ll();</i><br>
-This function prints LL elements if it is char, int, double or string. Otherwise prints "Object".
+This function prints all LL elements if it is char, int, double or string. Otherwise prints "Object".
 
 ## Implementation
 

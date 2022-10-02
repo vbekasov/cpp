@@ -20,7 +20,7 @@ namespace ll
             template<typename T> void    push_back(T add_val);
             template<typename T> void    push_forword(T add_val);
             template<typename T> T       ret_object(size_t num = 0);
-            template<typename T, typename U> void   l_insert(T find, U insert);
+            template<typename T> void   l_insert(size_t pos, T insert);
             size_t  ll_length();
             void    print_val(st_node* node);
             void    print_val(size_t num = 0);
@@ -79,7 +79,7 @@ namespace ll
         ClassData<T>* tmpObj = new (tmp->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
         if (!this->s_root)
-            {this->s_root = tmp; return ;}
+            {tmp->next=nullptr; this->s_root=tmp; return ;}
 
         st_node*    exCng = new st_node;
         *exCng = *s_root;
@@ -106,26 +106,20 @@ namespace ll
 
         return ret;
     }
-/*
-    template<typename T, typename U>
-    void LinkedList::l_insert(T find, U insert)
-    {
-        st_node*    tmp = this->s_root;
-        while (tmp->next && *tmp->obj_cont != find)
-            tmp = tmp->next;
-        
-        if (!tmp->next && *tmp->obj_cont != insert)
-            return ;
 
-        st_node* intmp = new st_node;
-        intmp->obj_cont = new char[sizeof(ClassData<T>)];
-        intmp->set_type(&insert);
-        ClassData<U>* tmpObj = new (intmp->obj_cont) ClassData<U>;
-        tmpObj->val = insert;
-        intmp->next = tmp->next;
-        tmp->next = intmp;
+    template<typename T>
+    void LinkedList::l_insert(size_t pos, T insert)
+    {
+        if (!this->s_root || pos = 0)
+            {push_forword(insert); return ;}
+        
+        st_node*    tmp = s_root;
+        size_t      i;
+        for (i = 0; i < pos && tmp->next; i++)
+            tmp = tmp->next;
+           
     }
-*/
+
     template<typename T>
     void LinkedList::sup_print_val(st_node* node)
     {

@@ -24,6 +24,7 @@ int main()
 
     ll::ClassData<int>* retObj = (ll::ClassData<int>*)Obj1[1];
     std::cout << retObj->val << std::endl;
+    std::cout << Obj1[3] << std::endl;
 
     return 0;
 }

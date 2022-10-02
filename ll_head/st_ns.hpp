@@ -34,6 +34,7 @@ namespace ll
                 delete [] obj_cont;
                 obj_cont = nullptr;
             }
+            next = nullptr;
         }
         void    set_type(auto *tt)
         {

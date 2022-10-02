@@ -14,7 +14,6 @@ namespace ll
             static size_t  icount;
             st_node*    s_root;
             template<typename T> void    sup_print_val(st_node* node);
-            void    show_last();
         public:
             LinkedList();
             template<typename T> void    push_back(T add_val);
@@ -27,21 +26,22 @@ namespace ll
             char    ret_obj_type();
             void    print_ll();
 
-            char* operator[] (const size_t num)
-            {
-                if (!this->s_root)
-                    {return nullptr;}
-                
-                st_node* tmp = this->s_root;
-                for (size_t i = 0; i < num && tmp; i++)
-                    tmp = tmp->next;
-                
-                if (!tmp)
-                    {return nullptr;}                
-                return tmp->obj_cont;
-            }
-
+            char* operator[] (const size_t num);
     };
+
+    char* LinkedList::operator[] (const size_t num)
+    {
+        if (!this->s_root)
+            {return nullptr;}
+                
+        st_node* tmp = this->s_root;
+        for (size_t i = 0; i < num && tmp; i++)
+            tmp = tmp->next;
+                
+        if (!tmp)
+            {return nullptr;}                
+        return tmp->obj_cont;
+    }
 
     size_t LinkedList::icount = 0;
 
@@ -73,6 +73,8 @@ namespace ll
     template<typename T>
     void LinkedList::push_forword(T add_val)
     {
+        this->icount++;
+        
         st_node*    tmp = new st_node;
         tmp->obj_cont = new char[sizeof(ClassData<T>)];
         tmp->set_type(&add_val);
@@ -109,15 +111,33 @@ namespace ll
 
     template<typename T>
     void LinkedList::l_insert(size_t pos, T insert)
-    {
-        if (!this->s_root || pos = 0)
+    {   
+        if (!this->s_root)
             {push_forword(insert); return ;}
         
         st_node*    tmp = s_root;
-        size_t      i;
-        for (i = 0; i < pos && tmp->next; i++)
-            tmp = tmp->next;
-           
+
+        for (size_t i = 0; i < pos && tmp; i++)
+            {tmp = tmp->next;}
+        
+        if (!tmp)
+            return ;
+
+        if (!tmp->next)
+            {
+                push_back(insert);
+                return ;
+            }
+        
+        st_node*    tmp_in = new st_node;
+        tmp_in->obj_cont = new char[sizeof(ClassData<T>)];
+        tmp_in->set_type(&insert);
+        ClassData<T>* tmpObj = new (tmp_in->obj_cont) ClassData<T>;
+        tmpObj->val = insert;
+
+        tmp_in->next = tmp->next;
+        tmp->next = tmp_in;
+        icount++;
     }
 
     template<typename T>
@@ -158,20 +178,8 @@ namespace ll
 
     size_t LinkedList::ll_length()
     {
-        if (!this->s_root)
-            return 0;
-        if (!this->s_root->next)
-            return 1;
-
-        size_t      tcount = 1;
-
-        st_node*    tmp = this->s_root->next;
-        while (tmp->next)
-        {
-            tcount++;
-            tmp = tmp->next;
-        }
-        return tcount;
+        std::cout<< this->icount << std::endl;
+        return this->icount;
     }
 
     void LinkedList::print_ll()
@@ -184,15 +192,6 @@ namespace ll
             tmp = tmp->next;
         }
         std::cout << std::endl;
-    }
-
-    void LinkedList::show_last()
-    {
-        st_node*    tmp = this->s_root;
-
-        while (tmp->next)
-            tmp = tmp->next;
-        print_val(tmp);
     }
 }
 

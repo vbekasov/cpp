@@ -14,7 +14,8 @@ class Der: public TestInput
 int main()
 {
     ll::LinkedList   Obj1;
-    Obj1.push_back(123);
+
+    Obj1.push_forword(123);
     Obj1.push_back(rs("Test text"));
     Obj1.print_ll();
     Obj1.push_back('F');
@@ -22,9 +23,13 @@ int main()
 
     Obj1.print_ll();
 
-    ll::ClassData<int>* retObj = (ll::ClassData<int>*)Obj1[1];
-    std::cout << retObj->val << std::endl;
-    std::cout << Obj1[3] << std::endl;
+    //ll::ClassData<int>* retObj = (ll::ClassData<int>*)Obj1[1];
+    //std::cout << retObj->val << std::endl;
+    //std::cout << Obj1[3] << std::endl;
+    Obj1.l_insert(0, 987);
+
+    //Obj1.push_forword(987);
+    Obj1.print_ll();
 
     return 0;
 }

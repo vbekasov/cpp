@@ -10,6 +10,7 @@ class DT:
 class LL:
     def __init__(self, input):
         self.__first = DT(input)
+        self.__l = 1
 
     def find_lst(self):
         pass
@@ -19,6 +20,7 @@ class LL:
         while(tmp.next != None):
             tmp = tmp.next
         tmp.next = DT(input)
+        self.__l += 1
 
     def push_forword(self, input):
         tmp = self.__first
@@ -26,6 +28,7 @@ class LL:
         #print(tmp is self.__first)
         self.__first = tmpFst
         self.__first.next = tmp
+        self.__l += 1
 
     def print_ll(self):
         tmp = self.__first
@@ -36,17 +39,7 @@ class LL:
         print()
 
     def ll_length(self):
-        if (self.__first.next == None):
-            print('1')
-            return 1
-        
-        tmp = self.__first.next
-        l = 2
-        while(tmp.next != None):
-            l += 1
-            tmp = tmp.next
-        print(l)
-        return l
+        return self.__l
 
     def insert_after(self, find, input):
         tmp = self.__first
@@ -57,6 +50,7 @@ class LL:
         ins = DT(input)
         ins.next = tmp.next
         tmp.next = ins
+        self.__l += 1
 
     def del_el(self, el):
         if (self.__first.next == None):
@@ -72,6 +66,7 @@ class LL:
             return
         prev.next = tmp.next
         del(tmp)
+        self.__l -= 1
 
     def ret_el(self, data):
         tmp = self.__first
@@ -94,3 +89,4 @@ if __name__ == "__main__":
     Obj1.del_el("ABC")
 
     Obj1.print_ll()
+    print(Obj1.ll_length())

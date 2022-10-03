@@ -44,12 +44,40 @@ class PyBinTree:
             self.__sup_print(node.left)
         if (node.right != None):
             self.__sup_print(node.right)
-
-        #print(node.data)
         self.__print_three(node)
 
     def print_tree(self):
         self.__sup_print(self.__root)
+
+    def __sup_plot_three(self, node):
+        if (node.left != None):
+            tmpl = node.left
+            tmpl = tmpl.data
+        else:
+            tmpl = node.data
+        if (node.right != None):
+            tmpr = node.right
+            tmpr = tmpr.data
+        else:
+            tmpr = node.data
+        return tmpl, tmpr
+
+    def __sup_plot(self, node, lvl):
+        lvl += 1
+        l = list()
+        if (node.left != None):
+            l += (self.__sup_plot(node.left, lvl ))
+        if (node.right != None):
+            l += (self.__sup_plot(node.right, lvl))
+        tmpl, tmpr = self.__sup_plot_three(node)
+        tmp = [lvl, node.data, tmpl, tmpr]
+        l += [tuple(tmp)]
+        return l
+
+    def l_plot(self):
+        l_l = list()
+        l_l += self.__sup_plot(self.__root, 0)
+        return l_l
 
 if __name__ == "__main__":
     Obj1 = PyBinTree(231)
@@ -59,3 +87,4 @@ if __name__ == "__main__":
     Obj1.add_el(150)
     Obj1.add_el(160)
     Obj1.print_tree()
+    print(Obj1.l_plot())

@@ -110,8 +110,12 @@ class PyBinTree:
             self.__sup_balance(l_v[:tmp])
             self.__sup_balance(l_v[tmp:])
 
-    def balance_tree(self):
-        l_v = self.vectorize_tree()
+    def balance_tree(self, vec = None):
+        if (vec == None):
+            l_v = self.vectorize_tree()
+        else:
+            l_v = vec
+            l_v.sort()
         self.__root = None
         self.__root = Node(l_v[int(len(l_v)/2)])
         self.__sup_balance(l_v)

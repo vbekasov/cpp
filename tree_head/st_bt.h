@@ -1,16 +1,16 @@
-#ifndef ST_BIN_TREE_H
-#define ST_BIN_TREE_H
+#ifndef ST_BT_H_
+#define ST_BT_H_
 
-#define BITR	namebi::Bi_tree
+#define BITR	nbt::Bi_tree
 #define STDIV	std::vector<int>
-#define STRUC	namebi::tb_node
+#define STRUC	nbt::tb_node
 #define COUT	std::cout<<
 
 #include <iostream>
 #include <vector>
 #include "stdio.h"
 
-namespace namebi{
+namespace nbt{
 	struct s_bi_node
 	{
 		int			val;

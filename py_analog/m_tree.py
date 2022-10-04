@@ -1,3 +1,6 @@
+from re import S
+
+
 class Node:
     def __init__(self, fst = None):
         self.data = fst
@@ -24,6 +27,8 @@ class PyBinTree:
                 else:
                     tmp.right = Node(input)
                     out = False
+            if (tmp.data == input):
+                out = False
 
     def __print_three(self, node):
         print(node.data)
@@ -75,9 +80,42 @@ class PyBinTree:
         return l
 
     def l_plot(self):
-        l_l = list()
-        l_l += self.__sup_plot(self.__root, 0)
-        return l_l
+        l_t = list()
+        l_t += self.__sup_plot(self.__root, 0)
+        return l_t
+
+    def __sup_vector(self, node):
+        l = list()
+        if (node.left != None):
+            l += (self.__sup_vector(node.left))
+        if (node.right != None):
+            l += (self.__sup_vector(node.right))
+        l.append(node.data)
+        return l
+
+    def vectorize_tree(self):
+        l_v = list()
+        l_v += self.__sup_vector(self.__root)
+        l_v.sort()
+        return l_v
+
+    def __sup_balance(self, l_v):
+        tmp = int(len(l_v)/2)
+        #print(tmp, len(l_v))
+        if (len(l_v) > 1):
+            self.add_el(l_v[tmp])
+        else:
+            self.add_el(l_v[0])
+        if (tmp > 0):
+            self.__sup_balance(l_v[:tmp])
+            self.__sup_balance(l_v[tmp:])
+
+    def balance_tree(self):
+        l_v = self.vectorize_tree()
+        self.__root = None
+        self.__root = Node(l_v[int(len(l_v)/2)])
+        self.__sup_balance(l_v)
+
 
 if __name__ == "__main__":
     Obj1 = PyBinTree(231)
@@ -87,4 +125,5 @@ if __name__ == "__main__":
     Obj1.add_el(150)
     Obj1.add_el(160)
     Obj1.print_tree()
-    print(Obj1.l_plot())
+    #print(Obj1.l_plot())
+    Obj1.balance_tree()

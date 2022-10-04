@@ -1,6 +1,3 @@
-from re import S
-
-
 class Node:
     def __init__(self, fst = None):
         self.data = fst

@@ -1,5 +1,5 @@
-#ifndef BIN_TREE_H
-#define BIN_TREE_H
+#ifndef ST_BIN_TREE_H
+#define ST_BIN_TREE_H
 
 #define BITR	namebi::Bi_tree
 #define STDIV	std::vector<int>

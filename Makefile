@@ -1,17 +1,13 @@
-
-SRC_CPP = $(SRC).cpp
-O_DIR = obj_dir/
-O_CPP = $(SRC).o
-
-#####################
+########VALS############
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++20
-BT = gen_bi_tree
+BT = struct_bt
 LIST = l_list
 BIN = bin/
 T_SRC = cpp_src/
 SBT = st_dups.cpp
 LSRC = linked_list.cpp
+#########################
 
 all: $(TARGET)
 

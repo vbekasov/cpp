@@ -1,7 +1,7 @@
 import random
 import sys
 #import pandas as pd
-#import numpy as np
+import numpy as np
 
 class Rand_set:
 	def __init__(self, i_start, i_stop, i_step):

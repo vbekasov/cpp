@@ -1,5 +1,5 @@
-#ifndef ST_BT_H_
-#define ST_BT_H_
+#ifndef ST_BT_HPP_
+#define ST_BT_HPP_
 
 #define BITR	nbt::Bi_tree
 #define STDIV	std::vector<int>

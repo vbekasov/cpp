@@ -26,6 +26,6 @@ resbt:
 clean:
 	$(RM) $(BIN)$(BT) $(BIN)$(LIST)
 
-re: clean
+re: clean rell resbt
 
 .PHONY: some_file

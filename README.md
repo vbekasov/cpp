@@ -32,18 +32,22 @@ You will see implementation of this algorithm in Huffman coding.
 
 This project contained files:
 
-* bin_tree.h : header file with with Binary Tree class and support functions in
-        namebi - namespace binary tree
+* /cpp_src : C++ source files to be compiled as binaries
 
-* dups.cpp : C++ file with main function generating and printing binary tree
+* /ll_head : LL C++ library
+
+* /tree_head : BT C++ library
+
+* tree_head/bin_tree.h : header file with with Binary Tree class and support functions in
+        nbt - namespace binary tree
+
+* cpp_src/st_dups.cpp : C++ file with main function generating and printing binary tree
 
 * MakeFile : script compiling C++ sources
     
 * gen_rand.py : Python3 script generating set of random unique integers
 
-* check_dup.sh : Shell script running binary with random integers
-
-* dup_fun.ipynb : Jupyter Notebook document with algorithm analysis and visualization
+* bt_analise.ipynb : Jupyter Notebook document with algorithm analysis and visualization
 
 * py_analog : same projects but on Python3
 
@@ -67,7 +71,7 @@ Classes you can find in [LL header directory.](ll_head)
 
 ## Problem Description
 
-Binary Tree is a kind of graph, and definition you can find on [Wiki.](https://en.wikipedia.org/wiki/Binary_tree#Definitions)
+Binary Tree (BT) is a kind of graph, and definition you can find on [Wiki.](https://en.wikipedia.org/wiki/Binary_tree#Definitions)
 I wanted to show how I had solved this problem using C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
 My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree. But during the tree generation

@@ -7,7 +7,7 @@ class Rand_set:
 	def __init__(self, i_start, i_stop, i_step):
 		self.__sss = np.arange(int(i_start), int(i_stop), int(i_step))
 	
-	def gen_rand_prnt(self, prnt = 0, ret = 0):
+	def gen_rand_print(self, prnt = 0, ret = 0):
 		out = set()
 		if (ret != 0):
 			r_arr = np.array([], dtype=int)

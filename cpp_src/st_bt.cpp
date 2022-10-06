@@ -1,6 +1,6 @@
-#include "../tree_head/st_bt.hpp"
+//#include "../tree_head/st_bt.hpp"
 #include <iostream>
-
+#include "../nbt/nbt.h"
 
 int main(int argc, char* argv[])
 {

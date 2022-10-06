@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "stdio.h"
 
 namespace nbt{
@@ -92,7 +93,7 @@ namespace nbt{
 	template <class T>
 		T find_dup(T out, size_t len)
 		{
-			std::qsort(out.begin(), out.end());
+			std::sort(out.begin(), out.end());
 			
 			T ret;
 			auto tmp = out[0];
@@ -218,7 +219,7 @@ namespace nbt{
 
 	template<class T> void bin_tree_dup_int::find_dup(T out, size_t len)
 	{
-		std::qsort(out.begin(), out.end());
+		std::sort(out.begin(), out.end());
 		
 		auto tmp = out[0];
 		auto iter = out.begin();

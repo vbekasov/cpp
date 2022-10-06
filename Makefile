@@ -1,30 +1,37 @@
-########VALS############
+########VALS#############
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++20
-BT = struct_bt
-LIST = l_list
-BIN = bin/
-T_SRC = cpp_src/
-SBT = st_dups.cpp
-LSRC = linked_list.cpp
+BIN    = bin/
+D_SRC  = cpp_src/
+D_DATA = data/
+#########################
+STBT  = st_bt
+SSTBT = $(STBT).cpp
+LL    = linked_list
+SLL   = $(LL).cpp
+SER   = serealization
+SSER  = $(SER).cpp
+#########################
+B_SER = student.dat
 #########################
 
-all: $(TARGET)
-
-$(TARGET): 
-	$(CC) $(SRC_CPP) $(CFLAGS) -o $(TARGET)
+all: clean rell resbt reser
 
 rell:
-	$(RM) $(BIN)$(LIST) 
-	$(CC) $(T_SRC)$(LSRC) $(CFLAGS) -o $(BIN)$(LIST)
+	$(RM) $(BIN)$(LL) 
+	$(CC) $(D_SRC)$(SLL) $(CFLAGS) -o $(BIN)$(LL)
 
 resbt:
-	$(RM) size_dup.txt $(BIN)$(BT)
+	$(RM) size_dup.txt $(BIN)$(STBT)
 	echo "Len Dup" >> size_dup.txt;
-	$(CC) $(T_SRC)$(SBT) $(CFLAGS) -o $(BIN)$(BT)
+	$(CC) $(D_SRC)$(SSTBT) $(CFLAGS) -o $(BIN)$(STBT)
+
+reser:
+	$(RM) $(BIN)$(SER) $(D_DATA)$(B_SER)
+	$(CC) $(D_SRC)$(SSER) -std=c++20 -o $(BIN)$(SER)
 
 clean:
-	$(RM) $(BIN)$(BT) $(BIN)$(LIST)
+	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) $(BIN)$(SER)
 
 re: clean rell resbt
 

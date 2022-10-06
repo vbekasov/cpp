@@ -24,8 +24,8 @@ namespace ll
 
     struct  st_node
     {
-        char*       obj_cont;
         char        et;
+        char*       obj_cont;
         st_node*    next;
         ~st_node()
         {

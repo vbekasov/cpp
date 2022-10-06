@@ -8,5 +8,7 @@ __pycache__
 gen_bi_tree
 /.vscode
 l_list
-struct_bt
+st_bt
+linked_list
+serealization
 .DS_Store

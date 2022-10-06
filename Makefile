@@ -22,8 +22,8 @@ rell:
 	$(CC) $(D_SRC)$(SLL) $(CFLAGS) -o $(BIN)$(LL)
 
 resbt:
-	$(RM) size_dup.txt $(BIN)$(STBT)
-	echo "Len Dup" >> size_dup.txt;
+	$(RM) $(D_DATA)size_dup.txt $(BIN)$(STBT)
+	echo "Len Dup" >> $(D_DATA)size_dup.txt;
 	$(CC) $(D_SRC)$(SSTBT) $(CFLAGS) -o $(BIN)$(STBT)
 
 reser:

@@ -1,4 +1,5 @@
-#include "../ll_head/tl.h"
+//#include "../ll_head/tl.h"
+#include "../nbt/nbt.h"
 
 class Der: public TestInput 
 {
@@ -13,7 +14,7 @@ class Der: public TestInput
 
 int main()
 {
-    ll::LinkedList   Obj1;
+    nbt::LinkedList   Obj1;
 
     Obj1.push_forword(123);
     Obj1.push_back(rs("Test text"));
@@ -23,7 +24,7 @@ int main()
 
     Obj1.print_ll();
 
-    ll::ClassData<int>* retObj = (ll::ClassData<int>*)Obj1[1];
+    nbt::ClassData<int>* retObj = (nbt::ClassData<int>*)Obj1[1];
     std::cout << retObj->val << std::endl;
     std::cout << Obj1[3] << std::endl;
     Obj1.l_insert(0, 987);

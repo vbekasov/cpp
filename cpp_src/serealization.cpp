@@ -4,118 +4,84 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <vector>
 
-int rw_c_stile(void);
-int carr_len(const char* txt);
-
-class Container
-{
+class   Container{
     private:
-        char    otype;
-        int     len_o;
+        int     o_len;
         char*   object;
+        std::vector<int>    file_map = {0};
     public:
         Container(){};
-        Container(char q, char* txt);
-        virtual ~Container(){};
+        Container(char* y);
         virtual void print_var(void);
-        void save(std::ofstream& wfile);
+        virtual void add_str(char* txt);
+        virtual void save(std::ofstream& wf);
+        virtual void read(std::ifstream& rf, unsigned int num);
+        virtual int str_len(const char* txt);
+        virtual Container return_cont(void);
 };
 
-Container::Container(char q, char* txt){
-    this->otype = q;
-    this->len_o = carr_len(txt);
+Container::Container(char* y)
+{
+    this->o_len  = this->str_len(y);
+    this->object = y;
+}
+
+Container Container::return_cont(){return *this;}
+
+void Container::print_var(){
+    std::cout<< this->o_len << "  " << this->object << std::endl;
+}
+
+void Container::save(std::ofstream& wf){
+    wf.write((char*)&this->o_len, sizeof(this->o_len));
+    wf.write((char*)&this->object, sizeof(this->object));
+    wf.close();
+    this->file_map.push_back(this->file_map.back() + this->o_len);
+}
+
+void Container::read(std::ifstream& rf, unsigned int num){
+    rf.read((char*) &this->o_len, sizeof(int));
+    rf.read((char*)&this->object , this->o_len);
+}
+
+void Container::add_str(char* txt){
+    this->o_len = this->str_len(txt);
     this->object = txt;
 }
 
-void Container::print_var(void)
-{
-    std::cout<< "Type   :" << this->otype << std::endl;
-    std::cout<< "Int    :" << this->len_o << std::endl;
-    std::cout<< "Text   :" << this->object << std::endl;
-    std::cout << std::endl;
-}
-
-void Container::save(std::ofstream& wfile){
-    wfile.write(&otype, sizeof(otype));
-    auto tmp = this->len_o;
-    //wfile.write(&tmp, sizeof(len_o));
-
+int Container::str_len(const char* txt){
+    int i = 0;
+    while(*txt){
+        txt++;
+        i++;
+    }
+    return i;
 }
 
 int main(void){
 
-    //Container   Objw1('S', 21, 87.68, (char *)"TEST TEXT");
-    //Container   Objw2('K', 65, 632.632, (char *)"!!!NEXT ROW!!!");
-    //Container*   pObj = &Objw1;
-    char*       cobj = new char[sizeof(Container)];
-    Container*  tmpObj = new (cobj) Container('S', (char *)"TEST TEXT");
-    //tmpObj->print_var();
+    Container       wObj((char*)"TEST TEXT!!!!!!!!!!");
 
     mkdir("data", 0777);
     chdir("data");
 
-    std::ofstream   wfile;
-    tmpObj->save(wfile);
-    wfile.open("student.dat", std::ios::binary | std::ios::out);
-    int tmp = 123;
-    //wfile.write(reinterpret_cast<char*>(&tmp), sizeof(tmp));
-    //wfile.write(cobj, sizeof(cobj));
-    //pObj = nullptr; Objw1.~Container();
-    //pObj = &Objw2;
-    //pObj = nullptr; Objw2.~Container();
-    //wfile.write((char*)pObj, sizeof(Container));
-    wfile.close();
+    std::ofstream   wf;
+    wf.open("data.dat", std::ios::out | std::ios::binary);
+    wObj.save(wf);
+    wf.close();
 
-    std::ifstream   rfile;
-    char*          outObj;
-    rfile.open("student.dat", std::ios::binary | std::ios::in);
-    int tmp2; char* out;
-    //rfile.read(out, sizeof(tmp));
-    //rfile.read(outObj, sizeof(Container));
-    rfile.close();
-    //Container*  rObj = (Container*)outObj;
-    //rObj->print_var();
-    
+    std::ifstream   rf;
+    rf.open("data.dat", std::ios::out | std::ios::binary);
+    wObj.read(rf, 12);
+    wObj.print_var();
+
+    Container       nObj;
+    nObj = wObj.return_cont();
+    nObj.print_var();
+
     chdir("..");
 
     return 0;
-}
-
-int rw_c_stile(void){
-    std::ofstream wf("student.dat", std::ios::out | std::ios::binary);
-    if (!wf){
-        std::cout<< "Cannot open file to write!\n";
-        return 1;
-    }
-    //wf.write((char *) &Objw1, sizeof(Objw1));
-    //wf.write((char *) &Objw2, sizeof(Objw2));
-    wf.close();
-    //Objw1.~Container();
-    //Objw2.~Container();
-
-    std::ifstream rf("student.dat", std::ios::out | std::ios::binary);
-    if (!rf) {
-        std::cout<< "Cannot open file to read!\n";
-        return 1;
-    }
-    Container   Objr;
-    rf.read((char *) &Objr, sizeof(Container));
-    Objr.print_var();
-    rf.read((char *) &Objr, sizeof(Container));
-    Objr.print_var();
-    rf.close();
-    Objr.~Container();
-
-    return 1;
-}
-
-int carr_len(const char* txt){
-    int out = 0;
-    while (*txt)
-    {
-        out++;
-        txt++;
-    }
-    return out;
 }

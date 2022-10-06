@@ -1,13 +1,15 @@
-#include <iostream>
-#include <fstream>
-#include <filesystem>
+//#include <filesystem>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+//---------------------
+#include <iostream>
+#include <fstream>
 #include <vector>
+#include <cstring>
 
 class   Container{
-    private:
+    public:
         int     o_len;
         char*   object;
         std::vector<int>    file_map = {0};
@@ -25,30 +27,43 @@ class   Container{
 Container::Container(char* y)
 {
     this->o_len  = this->str_len(y);
-    this->object = y;
+    this->object = new char[this->o_len];
+    strcpy(this->object, y);
 }
 
 Container Container::return_cont(){return *this;}
 
 void Container::print_var(){
-    std::cout<< this->o_len << "  " << this->object << std::endl;
+    std::cout<< this->o_len << std::endl;
+    std::cout<< this->object << std::endl;
 }
 
 void Container::save(std::ofstream& wf){
-    wf.write((char*)&this->o_len, sizeof(this->o_len));
-    wf.write((char*)&this->object, sizeof(this->object));
-    wf.close();
+    int tmp = this->o_len;
+    wf.write((char*)&tmp, sizeof(int));
+    wf.write((char*)&this->object, this->o_len);
     this->file_map.push_back(this->file_map.back() + this->o_len);
 }
 
 void Container::read(std::ifstream& rf, unsigned int num){
-    rf.read((char*) &this->o_len, sizeof(int));
-    rf.read((char*)&this->object , this->o_len);
+    rf.read((char*) &o_len, sizeof(int));
+    std::cout << o_len;
+    char* tmp;
+    rf.read((char*)&tmp , this->o_len);
+    std::cout<<tmp;
+    //delete [] this->object;
+    this->object = nullptr;
+    this->object = new char[this->o_len];
+    strcpy(this->object, tmp);
+    //o_len = 32;
 }
 
 void Container::add_str(char* txt){
     this->o_len = this->str_len(txt);
-    this->object = txt;
+    delete [] this->object;
+    this->object = nullptr;
+    this->object = new char[this->o_len];
+    strcpy(this->object, txt);
 }
 
 int Container::str_len(const char* txt){
@@ -62,7 +77,8 @@ int Container::str_len(const char* txt){
 
 int main(void){
 
-    Container       wObj((char*)"TEST TEXT!!!!!!!!!!");
+    Container       wObj((char*)"TEST TEXT!!!!!!!");
+    //wObj.print_var();
 
     mkdir("data", 0777);
     chdir("data");
@@ -70,18 +86,29 @@ int main(void){
     std::ofstream   wf;
     wf.open("data.dat", std::ios::out | std::ios::binary);
     wObj.save(wf);
+    int k = 2;
+    wf.write((char*) &k, sizeof(int));
     wf.close();
+    if(!wf.good()) {
+      std::cout << "Error occurred at writing time!" << std::endl;
+      return 1;
+    }
 
     std::ifstream   rf;
     rf.open("data.dat", std::ios::out | std::ios::binary);
-    wObj.read(rf, 12);
-    wObj.print_var();
-
-    Container       nObj;
-    nObj = wObj.return_cont();
-    nObj.print_var();
+    if(!rf.good()) {
+      std::cout << "Error occurred at reading time!" << std::endl;
+      return 1;
+    }
+    int t;
+    Container       rObj;
+    rObj.read(rf, 2);
+    //rObj.o_len = 321;
+    std::cout<< rObj.o_len;
+    //rObj.print_var();
 
     chdir("..");
 
+    std::cout<< "\nFinished\n";
     return 0;
 }

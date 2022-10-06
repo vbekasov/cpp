@@ -12,7 +12,7 @@ SLL   = $(LL).cpp
 SER   = serealization
 SSER  = $(SER).cpp
 #########################
-B_SER = student.dat
+B_SER = data.dat
 #########################
 
 all: clean rell resbt reser

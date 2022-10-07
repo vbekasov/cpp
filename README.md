@@ -117,10 +117,8 @@ You will see realization of this probleblem using structure and class.
 
 ### Binary Tree based on structure
 My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree. But during the tree generation
-the program makes some duplicates. You can find more information about that step [here.](#set-to-tree)
+the program makes some duplicates. You can find more information about that step [here.](#set-to-tree-(structure))
 
 ### Set to Tree (structure)
 
-To generate sets of random unique integers I use <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in 
-<i><b>tb_node* gen_tree(int* iarr, int start, int finish)</b></i> function. How it works you can find in 
-[Jupyter file.](bt_analise.ipynb)
+To generate sets of random unique integers I have used <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in <i><b>tb_node* gen_tree(int* iarr, int start, int finish)</b></i> function. How it works you can find in [Jupyter file.](bt_analise.ipynb)

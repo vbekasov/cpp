@@ -54,7 +54,7 @@ This project contained files:
 
 ---
 
-## Linked List
+## Linked List (LL)
 
 Linked List (LL) is a kind of Data Structure, where  the next element is pointed by current. It is not a random access array, but elements still can have their IDs. LLs use much more memory
  (+8 bytes) for each element then arrays, but have some advantages:
@@ -62,13 +62,16 @@ Linked List (LL) is a kind of Data Structure, where  the next element is pointed
  2. New elements can be inserted or deleted without copying and moving list: <b>A->B => A->C->B</b>; Bigger list you have -- more proffit you have;
  3. LL can care mixed data type, what is impossible with standard array in C/C++;
  4. Greater size of element you care -- less difirent ageinst arrey you have. E.g. you have object size of 128 bytes. It will be: in arrey 128 bytes, in LL 136 bytes. 128~136;
+<br><br>
+Chart Format: |Linked List ; Array | 
 
-Problem     | Linked List  | Array
------------ | ------------ | -------------
-Space Comp  | O(n) large   | O(n) small
-Time Comp   | O(1)         | O(n)
-Mixed Data  | OK           | NOK
-RAM         | NOK          | OK
+Complexity\Problem |Find Element|Find by ID|Push Forword`|Push Back|Insert   |Replace  |Delete|
+-------------------|------------|----------|-------------|---------|---------|---------|------|
+<b> Space </b>     |            |          |             |O(1)/O(n)|O(1)/O(n)|O(1)/O(1)|RanD  |
+<b> Time </b>      | O(n)/O(n)  |O(n)/O(1) |O(1)/O(n)    |O(n)/O(n)|O(n)/O(n)|O(n)/O(1)|RanD  |
+<b> Performance</b>| same       |✘/✔      |✔/✘         |✔/✘     |✔/✘     |✘/✔     |RanD  |
+
+` Push Forword : works extrimly slow with array and vary rapid in LL. To add an element at the begining of the array OS have to reallocate all array. To push element forword at the begining of the LL program will only allocate the mamory for the new element, and rewrite root pointer.
 
 Classes you can find in [LL header directory.](nbt/ll_head)
 
@@ -76,7 +79,7 @@ Classes you can find in [LL header directory.](nbt/ll_head)
 
 ## Serealization
 
-To save, transmit and load BT we use serealization. Serealization library saves all/any object which was constructed in the memory allocated by char array. Like in this [manual.](https://www.ibm.com/docs/en/i/7.3?topic=only-destructors-c)
+To save, transmit and load BT we use serealization. Serealization library saves all/any object which was constructed in the memory allocated by char (byte) array. Like in this [manual.](https://www.ibm.com/docs/en/i/7.3?topic=only-destructors-c)
 
 ```
 #include <new>
@@ -103,7 +106,7 @@ As any object is represented in memory as structure of variables, mathods of cla
 
 ---
 
-## Problem Description
+## Binary Tree Problem Description (BT)
 
 Binary Tree (BT) is a kind of graph, and definition you can find on [Wiki.](https://en.wikipedia.org/wiki/Binary_tree#Definitions)
 I wanted to show how I had solved this problem using C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.

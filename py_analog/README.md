@@ -27,3 +27,5 @@ Public methods:
 
 Python had used additional RAM and drive space, which dramatically increased time complexity.<br><br>
 Data racing will be implemented further.
+
+* gen_rand.py : Python3 script generating set of random unique integers

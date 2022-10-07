@@ -5,13 +5,16 @@
 #include "cl_dt_ns.hpp"
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace nbt
 {
     class   LinkedList
     {
         private:
-            static size_t  icount;
+            int         icount;
+            int         id;
+            st_node*    position;
             st_node*    s_root;
             template<typename T> void    sup_print_val(st_node* node);
         public:
@@ -20,34 +23,42 @@ namespace nbt
             template<typename T> void    push_forword(T add_val);
             template<typename T> T       ret_object(size_t num = 0);
             template<typename T> void   l_insert(size_t pos, T insert);
-            size_t  ll_length();
+            int     ll_length(){ return this->icount;}
             void    print_val(st_node* node);
             void    print_val(size_t num = 0);
             char    ret_obj_type();
             void    print_ll();
 
-            char* operator[] (const size_t num);
+            char*   operator[] (const int num);
     };
 
-    char* LinkedList::operator[] (const size_t num)
+    char* LinkedList::operator[] (const int num)
     {
-        if (!this->s_root)
+        if (!this->s_root || num > icount)
             {return nullptr;}
-                
+
+        int lim = num;
         st_node* tmp = this->s_root;
-        for (size_t i = 0; i < num && tmp; i++)
+        if (id <= num && this->position && id >= 0){
+            tmp = this->position;
+            lim -= id;}
+        int i;
+        for (i = 0; i < lim && tmp; i++)
             tmp = tmp->next;
                 
         if (!tmp)
-            {return nullptr;}                
+            {return nullptr;}
+        this->position = tmp;
+        this->id = num;
         return tmp->obj_cont;
     }
 
-    size_t LinkedList::icount = 0;
-
     LinkedList::LinkedList()
     {
-        this->s_root = nullptr;
+        this->s_root    = nullptr;
+        this->icount    = 0;
+        this->id        = -1;
+        this->position  = nullptr;
     }
 
     template<typename T> 
@@ -61,13 +72,14 @@ namespace nbt
         ins->set_type(&add_val);
         ClassData<T>* tmpObj = new (ins->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
-        if (!this->s_root)
-            {this->s_root = ins; return ;}
+        if (!this->s_root){
+            this->s_root = ins;
+            return ;}
         
         st_node*    tmp = s_root;
         while (tmp->next)
             tmp = tmp->next;
-        tmp->next = ins;        
+        tmp->next = ins;
     }
 
     template<typename T>
@@ -80,8 +92,10 @@ namespace nbt
         tmp->set_type(&add_val);
         ClassData<T>* tmpObj = new (tmp->obj_cont) ClassData<T>;
         tmpObj->val = add_val;
-        if (!this->s_root)
-            {tmp->next=nullptr; this->s_root=tmp; return ;}
+        if (!this->s_root){
+            tmp->next=nullptr;
+            this->s_root=tmp;
+            return ;}
 
         st_node*    exCng = new st_node;
         *exCng = *s_root;
@@ -175,12 +189,6 @@ namespace nbt
 
     char LinkedList::ret_obj_type()
         { return this->s_root->et;}
-
-    size_t LinkedList::ll_length()
-    {
-        std::cout<< this->icount << std::endl;
-        return this->icount;
-    }
 
     void LinkedList::print_ll()
     {

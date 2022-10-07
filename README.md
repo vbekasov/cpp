@@ -11,6 +11,8 @@ Connect it to my https://www.pythonanywhere.com/ projeckt.
 
 Add pyscrypt.
 
+---
+
 ## Description
 
 Welcome to my project. 
@@ -32,12 +34,15 @@ You will see implementation of this algorithm in Huffman coding.
 
 This project contained files:
 
-* [/nbt](nbt) : directory with header file nbt.h and supdirectories containing LL, BT and Serealization libraries.
+* [/nbt](nbt) : directory with header file <b>nbt.h</b> and supdirectories with libraries. 
+<b>nbt.h</b> header file, that collects BT, LL and Serealization classes to <b>nbt::</b> - namespace binary tree
+
 
 * [/cpp_src](cpp_src) : C++ source files to be compiled as binaries
 
-* tree_head/bin_tree.h : header file with with Binary Tree class and support functions in
-        nbt - namespace binary tree
+* [/py_analog](py_analog) : same projects but on Python3
+
+* [/data](data) : direactory with data files with serealized objects
 
 * cpp_src/st_dups.cpp : C++ file with main function generating and printing binary tree
 
@@ -47,14 +52,16 @@ This project contained files:
 
 * bt_analise.ipynb : Jupyter Notebook document with algorithm analysis and visualization
 
-* py_analog : same projects but on Python3
+---
 
 ## Linked List
 
-Linked List (LL) is a kind of Data Structure, where  the next element is pointed by current. It is not a random access array, but elements still can have their IDs. LLs use much more memory then arrays, but have some advantages:
+Linked List (LL) is a kind of Data Structure, where  the next element is pointed by current. It is not a random access array, but elements still can have their IDs. LLs use much more memory
+ (+8 bytes) for each element then arrays, but have some advantages:
  1. Adding a new element to the end of the list does not require memory reallocation for the whole list, only memory for the new element;
  2. New elements can be inserted or deleted without copying and moving list: <b>A->B => A->C->B</b>; Bigger list you have -- more proffit you have;
  3. LL can care mixed data type, what is impossible with standard array in C/C++;
+ 4. Greater size of element you care -- less difirent ageinst arrey you have. E.g. you have object size of 128 bytes. It will be: in arrey 128 bytes, in LL 136 bytes. 128~136;
 
 Problem     | Linked List  | Array
 ----------- | ------------ | -------------
@@ -63,7 +70,9 @@ Time Comp   | O(1)         | O(n)
 Mixed Data  | OK           | NOK
 RAM         | NOK          | OK
 
-Classes you can find in [LL header directory.](ll_head)
+Classes you can find in [LL header directory.](nbt/ll_head)
+
+---
 
 ## Serealization
 
@@ -92,18 +101,23 @@ To restore the BT, and objects saved there, we need to have type and size of obj
 
 As any object is represented in memory as structure of variables, mathods of class are stored separetly, we can write and read objects represented in byte array.
 
+---
 
 ## Problem Description
 
 Binary Tree (BT) is a kind of graph, and definition you can find on [Wiki.](https://en.wikipedia.org/wiki/Binary_tree#Definitions)
 I wanted to show how I had solved this problem using C++20. You will find algorithm analysis and visualization using Python and SQLite3 as well.
 
+You will see realization of this probleblem using structure and class.
+
+<br><br>
+
+### Binary Tree based on structure
 My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree. But during the tree generation
 the program makes some duplicates. You can find more information about that step [here.](#set-to-tree)
 
-## Set to Tree
+### Set to Tree (structure)
 
-To generate sets of random unique integers I use <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or
-return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in 
+To generate sets of random unique integers I use <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in 
 <i><b>tb_node* gen_tree(int* iarr, int start, int finish)</b></i> function. How it works you can find in 
 [Jupyter file.](dup_fun.ipynb)

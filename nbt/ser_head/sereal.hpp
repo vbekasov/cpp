@@ -10,6 +10,8 @@
 #include <fstream>
 #include <vector>
 #include <cstring>
+//---------------------
+#include "../nbt.h"
 
 namespace nbt
 {
@@ -39,6 +41,7 @@ namespace nbt
     Container::Container(){
         this->object = nullptr;
         this->f_name = "";
+        this->et = 'S';
     }
 
     Container::Container(char* y)
@@ -47,6 +50,7 @@ namespace nbt
         this->object = new char[this->o_len];
         strcpy(this->object, y);
         this->f_name = "";
+        this->et = 'S';
     }
 
     Container::Container(char* y, std::string fn){
@@ -54,6 +58,7 @@ namespace nbt
         this->object = new char[this->o_len];
         strcpy(this->object, y);
         this->f_name = fn;
+        this->et = 'S';
     }
 
     Container::~Container(){
@@ -65,6 +70,8 @@ namespace nbt
     Container Container::return_cont(){return *this;}
 
     void Container::print_var(){
+        std::cout<< std::endl;
+        std::cout<< this->et << std::endl;
         std::cout<< this->o_len << std::endl;
         std::cout<< this->object << std::endl;
     }
@@ -72,8 +79,9 @@ namespace nbt
     void Container::save(std::ofstream& wf){
         int tmp = this->o_len;
         wf.write((char*)&tmp, sizeof(int));
+        wf.write((char*)&this->et, sizeof(unsigned char));
         wf.write(this->object, this->o_len);
-        file_map.push_back(file_map.back() + this->o_len + sizeof(int));
+        file_map.push_back(file_map.back()+this->o_len+sizeof(int)+sizeof(unsigned char));
     }
 
     void Container::read(int num){
@@ -81,6 +89,7 @@ namespace nbt
         rf.open(this->f_name, std::ios::out | std::ios::binary);
         rf.seekg(Container::file_map[num]);
         rf.read((char*) &this->o_len, sizeof(int));
+        rf.read((char*) &this->et, sizeof(unsigned char));
         if (this->object)
             delete [] this->object;
         this->object = new char[this->o_len];

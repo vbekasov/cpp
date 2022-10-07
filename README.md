@@ -24,7 +24,7 @@ You will see implementation of this algorithm in Huffman coding.
 
 ## Table of Contents
 * [Files](#project-files)
-* [Linked List](#linked-list)
+* [Linked List](#linked-list-(LL))
 * [Binary Tree problem](#problem-description)
 * [LL & BT in Python3](py_analog)
 * [Set to Tree](#set-to-tree)
@@ -58,10 +58,10 @@ This project contained files:
 
 Linked List (LL) is a kind of Data Structure, where  the next element is pointed by current. It is not a random access array, but elements still can have their IDs. LLs use much more memory
  (+8 bytes) for each element then arrays, but have some advantages:
- 1. Adding a new element to the end of the list does not require memory reallocation for the whole list, only memory for the new element;
+ 1. Adding a new element to the end or beginning of the list does not require memory reallocation for the whole list, only memory for the new element;
  2. New elements can be inserted or deleted without copying and moving list: <b>A->B => A->C->B</b>; Bigger list you have -- more proffit you have;
- 3. LL can care mixed data type, what is impossible with standard array in C/C++;
- 4. Greater size of element you care -- less difirent ageinst arrey you have. E.g. you have object size of 128 bytes. It will be: in arrey 128 bytes, in LL 136 bytes. 128~136;
+ 3. LL can care mixed data types, which is impossible with <i>standard</i> array in C/C++;
+ 4. Greater size of element you care -- less difference against arrey you have. E.g. you have an object size of 128 bytes. It will be: in the arrey 128 bytes, in the LL 136 bytes. 128~136;
 <br><br>
 Chart Format: |Linked List ; Array | 
 
@@ -71,7 +71,7 @@ Complexity\Problem |Find Element|Find by ID|Push Forword`|Push Back|Insert   |Re
 <b> Time </b>      | O(n)/O(n)  |O(n)/O(1) |O(1)/O(n)    |O(n)/O(n)|O(n)/O(n)|O(n)/O(1)|RanD  |
 <b> Performance</b>| same       |✘/✔      |✔/✘         |✔/✘     |✔/✘     |✘/✔     |RanD  |
 
-` Push Forword : works extrimly slow with array and vary rapid in LL. To add an element at the begining of the array OS have to reallocate all array. To push element forword at the begining of the LL program will only allocate the mamory for the new element, and rewrite root pointer.
+` Push Forward : works extremely slow with array and vary rapid in LL. To add an element at the beginning of the array OS have to reallocate all array. To push element forward at the beginning of the LL program will only allocate the memory for the new element, and rewrite root pointer.
 
 Classes you can find in [LL header directory.](nbt/ll_head)
 

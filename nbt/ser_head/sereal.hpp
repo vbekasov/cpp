@@ -15,6 +15,7 @@ namespace nbt
 {
     class   Container{
         private:
+            unsigned char        et;
             int         o_len;
             char*       object;
             std::string f_name;

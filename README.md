@@ -32,6 +32,8 @@ You will see implementation of this algorithm in Huffman coding.
 
 This project contained files:
 
+* /nbt : directory with header file nbt.h and supdirectories containing LL, BT and Serealization libraries.
+
 * /cpp_src : C++ source files to be compiled as binaries
 
 * /ll_head : LL C++ library
@@ -67,6 +69,32 @@ RAM         | NOK          | OK
 
 Classes you can find in [LL header directory.](ll_head)
 
+## Serealization
+
+To save, transmit and load BT we use serealization. Serealization library saves all/any object which was constructed in the memory allocated by char array. Like in this [manual.](https://www.ibm.com/docs/en/i/7.3?topic=only-destructors-c)
+
+```
+#include <new>
+#include <iostream>
+using namespace std;
+class A {
+  public:
+    A() { cout << "A::A()" << endl; }
+    ~A() { cout << "A::~A()" << endl; }
+};
+int main () {
+  char* p = new char[sizeof(A)];
+  A* ap = new (p) A;
+  ap->A::~A();
+  delete [] p;
+}
+```
+To restore the BT, and objects saved there, we need to have type and size of object. Element type is stored and saved first in <i>unsigned char et;</i> format. After that goes <i>int o_len;</i> variable representing size of object. Next we have an array of bytes storing object. One object is stored in format:<br>
+* <b>Element Type</b> - one byte
+* <b>Size of Object</b> - four bytes
+* <b>Array of Bytes</b>
+
+As any object is represented in memory as structure of variables, mathods of class are stored separetly, we can write and read objects represented in byte array.
 
 
 ## Problem Description

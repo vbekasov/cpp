@@ -32,13 +32,9 @@ You will see implementation of this algorithm in Huffman coding.
 
 This project contained files:
 
-* /nbt : directory with header file nbt.h and supdirectories containing LL, BT and Serealization libraries.
+* [/nbt](nbt) : directory with header file nbt.h and supdirectories containing LL, BT and Serealization libraries.
 
-* /cpp_src : C++ source files to be compiled as binaries
-
-* /ll_head : LL C++ library
-
-* /tree_head : BT C++ library
+* [/cpp_src](cpp_src) : C++ source files to be compiled as binaries
 
 * tree_head/bin_tree.h : header file with with Binary Tree class and support functions in
         nbt - namespace binary tree

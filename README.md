@@ -25,7 +25,7 @@ You will see implementation of this algorithm in Huffman coding.
 ## Table of Contents
 * [Files](#project-files)
 * [Linked List](#linked-list-(LL))
-* [Binary Tree problem](#problem-description)
+* [Binary Tree problem](#binary-tree-problem-description-(bt))
 * [LL & BT in Python3](py_analog)
 * [Set to Tree](#set-to-tree)
 
@@ -44,13 +44,17 @@ This project contained files:
 
 * [/data](data) : direactory with data files with serealized objects
 
-* cpp_src/st_dups.cpp : C++ file with main function generating and printing binary tree
+* [st_bt.cpp](cpp_src/st_bt.cpp) : C++ file with main function generating and printing binary tree
 
-* MakeFile : script compiling C++ sources
+* [MakeFile](Makefile) : script compiling C++ sources
     
-* gen_rand.py : Python3 script generating set of random unique integers
+* [gen_rand.py](py_analog/gen_rand.py) : Python3 script generating set of random unique integers
 
-* bt_analise.ipynb : Jupyter Notebook document with algorithm analysis and visualization
+* [bt_analise.ipynb](bt_analise.ipynb) : Jupyter Notebook document with algorithm analysis and visualization
+
+* [push.sh](push.sh) : script to push project to reposetory <i>$ sh push.sh "Commit Text"</i>
+
+* [py venv](requirements.txt) : requirements for Python venv to run Jupyter-Lab
 
 ---
 
@@ -121,4 +125,4 @@ the program makes some duplicates. You can find more information about that step
 
 ### Set to Tree (structure)
 
-To generate sets of random unique integers I have used <i>gen_rang.py</i>. There are two ways you can get sets: print to stdout or return NumPy array of sets. You can find implementation of set-to-tree algorithm in <i>bi_tree.h</i> in <i><b>tb_node* gen_tree(int* iarr, int start, int finish)</b></i> function. How it works you can find in [Jupyter file.](bt_analise.ipynb)
+To generate sets of random unique integers I have used [gen_rang.py.](py_analog/gen_rand.py) There are two ways you can get sets: print to stdout or return NumPy array of sets. You can find implementation of set-to-tree algorithm in [st_bt.hpp](nbt/tree_head/st_bt.hpp) in <i><b>tb_node* gen_tree(int* iarr, int start, int finish)</b></i> function. How it works you can find in [Jupyter file.](bt_analise.ipynb)

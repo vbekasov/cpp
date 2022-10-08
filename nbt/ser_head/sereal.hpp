@@ -15,7 +15,7 @@
 
 namespace nbt
 {
-    class   Container{
+    class   SContainer{
         private:
             unsigned char        et;
             int         o_len;
@@ -23,29 +23,28 @@ namespace nbt
             std::string f_name;
         public:
             static std::vector<int>    file_map;
-            Container();
-            Container(char* y);
-            Container(char* y, std::string fn);
-            ~Container();
+            SContainer();
+            SContainer(char* y);
+            SContainer(char* y, std::string fn);
+            ~SContainer();
             virtual void print_var(void);
             virtual void add_str(char* txt);
             virtual void save(std::ofstream& wf);
             virtual void read(int num);
             virtual void set_wfile(std::string fn){ this->f_name = fn;};
             virtual int str_len(const char* txt);
-            virtual Container return_cont(void);
+            virtual SContainer return_cont(void);
     };
 
-    std::vector<int> Container::file_map = {0};
+    std::vector<int> SContainer::file_map = {0};
 
-    Container::Container(){
+    SContainer::SContainer(){
         this->object = nullptr;
         this->f_name = "";
         this->et = 'S';
     }
 
-    Container::Container(char* y)
-    {
+    SContainer::SContainer(char* y){
         this->o_len  = this->str_len(y);
         this->object = new char[this->o_len];
         strcpy(this->object, y);
@@ -53,7 +52,7 @@ namespace nbt
         this->et = 'S';
     }
 
-    Container::Container(char* y, std::string fn){
+    SContainer::SContainer(char* y, std::string fn){
         this->o_len  = this->str_len(y);
         this->object = new char[this->o_len];
         strcpy(this->object, y);
@@ -61,22 +60,22 @@ namespace nbt
         this->et = 'S';
     }
 
-    Container::~Container(){
+    SContainer::~SContainer(){
         if (this->object){
             delete [] this->object;
             this->object = nullptr; }
     }
 
-    Container Container::return_cont(){return *this;}
+    SContainer SContainer::return_cont(){return *this;}
 
-    void Container::print_var(){
+    void SContainer::print_var(){
         std::cout<< std::endl;
         std::cout<< this->et << std::endl;
         std::cout<< this->o_len << std::endl;
         std::cout<< this->object << std::endl;
     }
 
-    void Container::save(std::ofstream& wf){
+    void SContainer::save(std::ofstream& wf){
         int tmp = this->o_len;
         wf.write((char*)&tmp, sizeof(int));
         wf.write((char*)&this->et, sizeof(unsigned char));
@@ -84,23 +83,23 @@ namespace nbt
         file_map.push_back(file_map.back()+this->o_len+sizeof(int)+sizeof(unsigned char));
     }
 
-    void Container::read(int num){
+    void SContainer::read(int num){
         std::ifstream   rf;
         rf.open(this->f_name, std::ios::out | std::ios::binary);
-        rf.seekg(Container::file_map[num]);
+        rf.seekg(SContainer::file_map[num]);
         rf.read((char*) &this->o_len, sizeof(int));
         rf.read((char*) &this->et, sizeof(unsigned char));
         if (this->object)
             delete [] this->object;
         this->object = new char[this->o_len];
-        char* tmp = new char[16];
-        rf.read(tmp, 16);
+        char* tmp = new char[this->o_len];
+        rf.read(tmp, this->o_len);
         strcpy(this->object, tmp);
         delete [] tmp;
         rf.close();
     }
 
-    void Container::add_str(char* txt){
+    void SContainer::add_str(char* txt){
         this->o_len = this->str_len(txt);
         delete [] this->object;
         this->object = nullptr;
@@ -108,7 +107,7 @@ namespace nbt
         strcpy(this->object, txt);
     }
 
-    int Container::str_len(const char* txt){
+    int SContainer::str_len(const char* txt){
         int i = 0;
         while(*txt){
             txt++;

@@ -33,6 +33,6 @@ reser:
 clean:
 	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) $(BIN)$(SER)
 
-re: clean rell resbt
+re: clean rell resbt reser
 
 .PHONY: some_file

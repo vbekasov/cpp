@@ -3,7 +3,7 @@
 
 int main(void){
 
-    nbt::Container       wObj((char*)"TEST TEXT!!!!!!!", "data.dat");
+    nbt::SContainer       wObj((char*)"TEST TEXT!!!!!!!", "data.dat");
 
     mkdir("data", 0777);
     chdir("data");
@@ -19,10 +19,10 @@ int main(void){
       std::cout << "Error occurred at writing time!" << std::endl;
       return 1;
     }
-    wObj.~Container();
+    wObj.~SContainer();
 
 
-    nbt::Container       rObj;
+    nbt::SContainer       rObj;
     rObj.set_wfile("data.dat");
 
     rObj.read(0);
@@ -34,7 +34,7 @@ int main(void){
     rObj.read(0);
     rObj.print_var();
 
-    rObj.~Container();
+    rObj.~SContainer();
 
     chdir("..");
 

@@ -24,7 +24,7 @@ rell:
 resbt:
 	$(RM) $(D_DATA)size_dup.txt $(BIN)$(STBT)
 	echo "Len Dup" >> $(D_DATA)size_dup.txt;
-	$(CC) $(D_SRC)$(SSTBT) $(CFLAGS) -o $(BIN)$(STBT)
+	$(CC) $(D_SRC)$(SSTBT) -std=c++20 -o $(BIN)$(STBT)
 
 reser:
 	$(RM) $(BIN)$(SER) $(D_DATA)$(B_SER)

@@ -12,15 +12,16 @@
 #include <cstring>
 //---------------------
 #include "../nbt.h"
+#include "../tree_head/st_bt.hpp"
 
 namespace nbt
 {
     class   SContainer{
         private:
             unsigned char        et;
-            int         o_len;
-            char*       object;
-            std::string f_name;
+            int                 o_len;
+            char*               object;
+            std::string         f_name;
         public:
             static std::vector<int>    file_map;
             SContainer();
@@ -29,10 +30,11 @@ namespace nbt
             ~SContainer();
             virtual void print_var(void);
             virtual void add_str(char* txt);
-            virtual void save(std::ofstream& wf);
+            virtual void save();
             virtual void read(int num);
             virtual void set_wfile(std::string fn){ this->f_name = fn;};
-            virtual int str_len(const char* txt);
+            virtual int  str_len(const char* txt);
+            virtual char* ret_obj(void) { return this->object;}
             virtual SContainer return_cont(void);
     };
 
@@ -75,12 +77,18 @@ namespace nbt
         std::cout<< this->object << std::endl;
     }
 
-    void SContainer::save(std::ofstream& wf){
+    void SContainer::save(){
+        std::ofstream  wf;
+        wf.open("data.dat", std::ios_base::app);
+        
         int tmp = this->o_len;
         wf.write((char*)&tmp, sizeof(int));
         wf.write((char*)&this->et, sizeof(unsigned char));
         wf.write(this->object, this->o_len);
         file_map.push_back(file_map.back()+this->o_len+sizeof(int)+sizeof(unsigned char));
+        prnt_vec(&file_map);
+
+        wf.close();
     }
 
     void SContainer::read(int num){

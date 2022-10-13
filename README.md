@@ -25,6 +25,8 @@ You will see implementation of this algorithm in Huffman coding.
 ## Table of Contents
 * [Files](#project-files)
 * [Linked List](#linked-list-(LL))
+* [Serealization](#serealization)
+* [Rotation](#rotation)
 * [Binary Tree problem](#binary-tree-problem-description-(bt))
 * [LL & BT in Python3](py_analog)
 * [Set to Tree](#set-to-tree)
@@ -73,7 +75,7 @@ Complexity\Problem |Find Element|Find by ID|Push Forword`|Push Back|Insert   |Re
 -------------------|------------|----------|-------------|---------|---------|---------|------|
 <b> Space </b>     |            |          |             |O(1)/O(n)|O(1)/O(n)|O(1)/O(1)|RanD  |
 <b> Time </b>      | O(n)/O(n)  |O(n)/O(1) |O(1)/O(n)    |O(n)/O(n)|O(n)/O(n)|O(n)/O(1)|RanD  |
-<b> Performance</b>| same       |✘/✔      |✔/✘         |✔/✘     |✔/✘     |✘/✔     |RanD  |
+<b> Performance</b>| same       |✘/✔       |✔/✘          |✔/✘      |✔/✘      |✘/✔      |RanD  |
 
 ` Push Forward : works extremely slow with array and vary rapid in LL. To add an element at the beginning of the array OS have to reallocate all array. To push element forward at the beginning of the LL program will only allocate the memory for the new element, and rewrite root pointer.
 
@@ -101,12 +103,18 @@ int main () {
   delete [] p;
 }
 ```
-To restore the BT, and objects saved there, we need to have type and size of object. Element type is stored and saved first in <i>unsigned char et;</i> format. After that goes <i>int o_len;</i> variable representing size of object. Next we have an array of bytes storing object. One object is stored in format:<br>
+To restore the BT, and objects saved there, we need to have type and size of object. Element type is stored and saved first in <i>unsigned char et;</i> format. After that goes <i>int o_len;</i> variable representing size of object. Next we have an array of bytes storing the object. One object is stored in format:<br>
 * <b>Element Type</b> - one byte
 * <b>Size of Object</b> - four bytes
 * <b>Array of Bytes</b>
 
 As any object is represented in memory as structure of variables, mathods of class are stored separetly, we can write and read objects represented in byte array.
+
+---
+
+## Rotation
+
+In case coordinates are stored in <i>/data/rot.txt</i> run <i>./bin/rotation</i>.
 
 ---
 

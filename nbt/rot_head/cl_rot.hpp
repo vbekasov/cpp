@@ -54,8 +54,6 @@ namespace nbt{
     Rot::Rot(){
         read_last();
 
-        //this->equator  = 12.3;
-        //this->latetude = 14.8;
         this->equ_rot  = 0.5;
         this->lat_rot  = 0.7;
         this->r        = 70.;

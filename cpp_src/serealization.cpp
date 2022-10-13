@@ -1,27 +1,19 @@
 #include <iostream>
 #include "../nbt/nbt.h"
+#include "../nbt/test_cl.hpp"
 
 int main(void){
 
-    nbt::SContainer       wObj((char*)"TEST TEXT!!!!!!!", "data.dat");
+    nbt::SContainer       wObj((char*)"ABCdefg", "data.dat");
 
     mkdir("data", 0777);
     chdir("data");
 
-    std::ofstream   wf;
-    wf.open("data.dat", std::ios::out | std::ios::binary);
-    wObj.save(wf);
-    wObj.add_str((char*)"????NextText???");
-    wObj.save(wf);
+    wObj.save();
+    wObj.add_str((char*)"XYZZZqwerty");
+    wObj.save();
 
-    wf.close();
-    if(!wf.good()) {
-      std::cout << "Error occurred at writing time!" << std::endl;
-      return 1;
-    }
-    wObj.~SContainer();
-
-
+//------------
     nbt::SContainer       rObj;
     rObj.set_wfile("data.dat");
 
@@ -33,6 +25,23 @@ int main(void){
     
     rObj.read(0);
     rObj.print_var();
+
+//-------------
+
+  //CL1 cObj(5, 2345.235);
+  char* p = new char[sizeof(CL1)];
+  CL1* ap = new (p) CL1(423, 65.31);
+  //ap->print_var();
+  wObj.add_str(p);
+  wObj.save();
+
+  rObj.read(2);
+  CL1* cObj;
+  cObj = (CL1*)rObj.ret_obj();
+  cObj->print_var();
+
+  ap->CL1::~CL1();
+  delete [] p;
 
     rObj.~SContainer();
 

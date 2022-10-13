@@ -1,5 +1,5 @@
 ########VALS#############
-CC = c++
+CC = g++
 CFLAGS = -Wall -Werror -Wextra -std=c++20
 BIN    = bin/
 D_SRC  = cpp_src/
@@ -11,6 +11,8 @@ LL    = linked_list
 SLL   = $(LL).cpp
 SER   = serealization
 SSER  = $(SER).cpp
+ROT   = rotation
+SROT  = $(ROT).cpp
 #########################
 B_SER = data.dat
 #########################
@@ -29,6 +31,10 @@ resbt:
 reser:
 	$(RM) $(BIN)$(SER) $(D_DATA)$(B_SER)
 	$(CC) $(D_SRC)$(SSER) -std=c++20 -o $(BIN)$(SER)
+
+rerot:
+	$(RM) $(BIN)$(ROT)
+	$(CC) $(D_SRC)$(SROT) -std=c++20 -o $(BIN)$(ROT)
 
 clean:
 	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) $(BIN)$(SER)

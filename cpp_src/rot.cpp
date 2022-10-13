@@ -8,6 +8,7 @@ int main(void){
     chdir("data");
 
     nbt::Rot Obj1;
+    Obj1.one_step();
     Obj1.in_put();
 
     chdir("..");

@@ -36,6 +36,7 @@ namespace nbt
             virtual int  str_len(const char* txt);
             virtual char* ret_obj(void) { return this->object;}
             virtual SContainer return_cont(void);
+            void add_obj(auto Obj);
     };
 
     std::vector<int> SContainer::file_map = {0};
@@ -113,6 +114,14 @@ namespace nbt
         this->object = nullptr;
         this->object = new char[this->o_len];
         strcpy(this->object, txt);
+    }
+
+    void SContainer::add_obj(auto Obj){
+        this->o_len = sizeof(Obj);
+        delete [] this->object;
+        this->object = nullptr;
+        this->object = new char[this->o_len];
+        memccpy(this->object, Obj, this->o_len);
     }
 
     int SContainer::str_len(const char* txt){

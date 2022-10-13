@@ -31,7 +31,7 @@ int main(void){
   //CL1 cObj(5, 2345.235);
   char* p = new char[sizeof(CL1)];
   CL1* ap = new (p) CL1(423, 65.31);
-  //ap->print_var();
+  ap->print_var();
   wObj.add_str(p);
   wObj.save();
 

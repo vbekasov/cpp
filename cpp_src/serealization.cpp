@@ -4,27 +4,27 @@
 
 int main(void){
 
-    nbt::SContainer       wObj((char*)"ABCdefg", "data.dat");
+  nbt::SContainer       wObj((char*)"ABCdefg", "data.dat");
 
-    mkdir("data", 0777);
-    chdir("data");
+  mkdir("data", 0777);
+  chdir("data");
 
-    wObj.save();
-    wObj.add_str((char*)"XYZZZqwerty");
-    wObj.save();
+  wObj.save();
+  wObj.add_str((char*)"XYZZZqwerty");
+  wObj.save();
 
 //------------
-    nbt::SContainer       rObj;
-    rObj.set_wfile("data.dat");
+  nbt::SContainer       rObj;
+  rObj.set_wfile("data.dat");
 
-    rObj.read(0);
-    rObj.print_var();
+  rObj.read(0);
+  rObj.print_var();
 
-    rObj.read(1);
-    rObj.print_var();
-    
-    rObj.read(0);
-    rObj.print_var();
+  rObj.read(1);
+  rObj.print_var();
+
+  rObj.read(0);
+  rObj.print_var();
 
 //-------------
 
@@ -43,10 +43,10 @@ int main(void){
   ap->CL1::~CL1();
   delete [] p;
 
-    rObj.~SContainer();
+  rObj.~SContainer();
 
-    chdir("..");
+  chdir("..");
 
-    std::cout<< "\nFinished\n";
-    return 0;
+  std::cout<< "\nFinished\n";
+   return 0;
 }

@@ -15,7 +15,7 @@ Add pyscrypt.
 
 ## Description
 
-Welcome to my project. 
+Welcome to my project.
 
 Aim of this project is to show my knowledge in Computer Science. You will see how I use modern C++ technologies,
 Python and Shell scripts to solve the Binary Tree problems and analyze its performance.
@@ -36,7 +36,7 @@ You will see implementation of this algorithm in Huffman coding.
 
 This project contained files:
 
-* [/nbt](nbt) : directory with header file <b>nbt.h</b> and supdirectories with libraries. 
+* [/nbt](nbt) : directory with header file <b>nbt.h</b> and supdirectories with libraries.
 <b>nbt.h</b> header file, that collects BT, LL and Serealization classes to <b>nbt::</b> - namespace binary tree
 
 
@@ -49,7 +49,7 @@ This project contained files:
 * [st_bt.cpp](cpp_src/st_bt.cpp) : C++ file with main function generating and printing binary tree
 
 * [MakeFile](Makefile) : script compiling C++ sources
-    
+
 * [gen_rand.py](py_analog/gen_rand.py) : Python3 script generating set of random unique integers
 
 * [bt_analise.ipynb](bt_analise.ipynb) : Jupyter Notebook document with algorithm analysis and visualization
@@ -71,7 +71,7 @@ Linked List (LL) is a kind of Data Structure, where  the next element is pointed
 <br><br>
 Chart Format: |Linked List ; Array | 
 
-Complexity\Problem |Find Element|Find by ID|Push Forword`|Push Back|Insert   |Replace  |Delete|
+Complexity\Problem |Find Element|Find by ID|Push Forward`|Push Back|Insert   |Replace  |Delete|
 -------------------|------------|----------|-------------|---------|---------|---------|------|
 <b> Space </b>     |            |          |             |O(1)/O(n)|O(1)/O(n)|O(1)/O(1)|RanD  |
 <b> Time </b>      | O(n)/O(n)  |O(n)/O(1) |O(1)/O(n)    |O(n)/O(n)|O(n)/O(n)|O(n)/O(1)|RanD  |

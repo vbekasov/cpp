@@ -1,4 +1,5 @@
 
+![img](art/TriangleFan2.png)
 # REWORKING CONCEPT
 
 FUN from main.c to .h class.

@@ -1,5 +1,5 @@
 ########VALS#############
-CC = g++
+CC     = g++
 CFLAGS = -Wall -Werror -Wextra -std=c++20
 BIN    = bin/
 D_SRC  = cpp_src/
@@ -21,7 +21,7 @@ all: clean rell resbt reser
 
 rell:
 	$(RM) $(BIN)$(LL) 
-	$(CC) $(D_SRC)$(SLL) $(CFLAGS) -o $(BIN)$(LL)
+	$(CC) $(D_SRC)$(SLL) -std=c++20 -o $(BIN)$(LL)
 
 resbt:
 	$(RM) $(D_DATA)size_dup.txt $(BIN)$(STBT)

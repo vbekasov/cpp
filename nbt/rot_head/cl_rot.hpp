@@ -9,6 +9,8 @@
 namespace nbt{
   class Rot{
     private:
+      double  center[3]; //xyz 
+      double  ray[3]; //xyz
       double  equator;
       double  equ_rot;
       double  latetude;
@@ -34,8 +36,8 @@ namespace nbt{
       out += ch;
     }
     std::reverse(out.begin(), out.end());
-    this->latetude = std::stod(out);
-    std::cout<< this->latetude << std::endl;
+    ray[1] = std::stod(out);
+    std::cout<< ray[1] << std::endl;
 
     out = "";
     for ( ; ch != '|'; i++){
@@ -45,8 +47,8 @@ namespace nbt{
     }
     out.pop_back();
     std::reverse(out.begin(), out.end());
-    this->equator = std::stod(out);
-    std::cout<< this->equator << std::endl;
+    ray[0] = std::stod(out);
+    std::cout<< ray[0] << std::endl;
     MyRead.close();
   }
 
@@ -55,16 +57,18 @@ namespace nbt{
     this->equ_rot  = 0.5;
     this->lat_rot  = 0.7;
     this->r        = 70.;
+    this->center[0]=0.; this->center[1]=0.; this->center[2]=0.;
+    this->ray[2]=0;
   }
 
   void Rot::one_step(){
-    this->equator  += this->equ_rot;
-    this->latetude += this->lat_rot;
+    ray[0] += this->equ_rot;
+    ray[1] += this->lat_rot;
   }
 
   void Rot::in_put(){
     std::ofstream MyWrite("rot.txt", std::ios::app);
-    std::string out = "|" + std::to_string(this->equator) + " " + std::to_string(this->latetude) + "\n";
+    std::string out = "|" + std::to_string(ray[0]) + " " + std::to_string(ray[1]) + "\n";
     MyWrite << out;
     MyWrite.close();
   }

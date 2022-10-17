@@ -3,12 +3,13 @@ bi_tree_bin
 temp.txt
 .ipynb_checkpoints
 Untitled*
-__pycache__
-/vproj
 gen_bi_tree
-/.vscode
 l_list
 st_bt
 linked_list
 serealization
-.DS_Store
+rotation
+/.vscode
+__pycache__
+/vproj
+/cpp_src/serealization.dSYM

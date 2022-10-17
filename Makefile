@@ -37,7 +37,7 @@ rerot:
 	$(CC) $(D_SRC)$(SROT) -std=c++20 -o $(BIN)$(ROT)
 
 clean:
-	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) $(BIN)$(SER)
+	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) $(BIN)$(SER) $(BIN)$(ROT)
 
 re: clean rell resbt reser
 

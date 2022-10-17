@@ -1,19 +1,21 @@
 #ifndef CL_ROT_HPP_
 #define CL_ROT_HPP_
 
+#define _USE_MATH_DEFINES
+
 #include "math.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <math.h>
+#include <chrono>
 
 namespace nbt{
   class Rot{
     private:
       double  center[3]; //xyz 
       double  ray[3]; //xyz
-      double  equator;
       double  equ_rot;
-      double  latetude;
       double  lat_rot;
       double  dtime;
       double  r;
@@ -54,16 +56,27 @@ namespace nbt{
 
   Rot::Rot(){
     read_last();
-    this->equ_rot  = 0.5;
-    this->lat_rot  = 0.7;
-    this->r        = 70.;
+    this->equ_rot  = M_PI / 10.;
+    this->lat_rot  = M_PI / 10.;
+    this->r        = 0.5;
     this->center[0]=0.; this->center[1]=0.; this->center[2]=0.;
     this->ray[2]=0;
   }
 
   void Rot::one_step(){
-    ray[0] += this->equ_rot;
-    ray[1] += this->lat_rot;
+    ray[0] += this->r * cos(this->equ_rot);
+    if (abs(ray[0]) >= this->r)
+      this->equ_rot *= -1;
+    ray[1] += this->r * sin(this->lat_rot);
+    if (abs(ray[1]) >= this->r)
+      this->lat_rot *= -1;
+
+    uint64_t ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
+    usleep(pow(10,5));
+
+    ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - ms;
+    //std::cout << ms << " milliseconds since the Epoch\n";
   }
 
   void Rot::in_put(){

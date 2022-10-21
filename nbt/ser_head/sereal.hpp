@@ -31,12 +31,12 @@ namespace nbt
             virtual void print_var(void);
             virtual void add_str(char* txt);
             virtual void save();
-            virtual void read(int num);
+            virtual char read(int num);
             virtual void set_wfile(std::string fn){ this->f_name = fn;};
             virtual int  str_len(const char* txt);
             virtual char* ret_obj(void) { return this->object;}
             virtual SContainer return_cont(void);
-            void add_obj(auto Obj);
+            void add_obj(char* Obj, int o_size, char o_type);
     };
 
     std::vector<int> SContainer::file_map = {0};
@@ -92,7 +92,7 @@ namespace nbt
         wf.close();
     }
 
-    void SContainer::read(int num){
+    char SContainer::read(int num){
         std::ifstream   rf;
         rf.open(this->f_name, std::ios::out | std::ios::binary);
         rf.seekg(SContainer::file_map[num]);
@@ -103,25 +103,28 @@ namespace nbt
         this->object = new char[this->o_len];
         char* tmp = new char[this->o_len];
         rf.read(tmp, this->o_len);
-        strcpy(this->object, tmp);
+        memcpy(this->object, tmp, this->o_len);
         delete [] tmp;
         rf.close();
+        return this->et;
     }
 
     void SContainer::add_str(char* txt){
         this->o_len = this->str_len(txt);
+        this->et    = 'S';
         delete [] this->object;
         this->object = nullptr;
         this->object = new char[this->o_len];
         strcpy(this->object, txt);
     }
 
-    void SContainer::add_obj(auto Obj){
-        this->o_len = sizeof(Obj);
+    void SContainer::add_obj(char* Obj, int o_size, char o_type){
+        this->o_len = o_size;
+        this->et    = o_type;
         delete [] this->object;
         this->object = nullptr;
         this->object = new char[this->o_len];
-        memccpy(this->object, Obj, this->o_len);
+        memcpy(this->object, Obj, this->o_len);
     }
 
     int SContainer::str_len(const char* txt){

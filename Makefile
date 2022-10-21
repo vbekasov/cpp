@@ -32,9 +32,9 @@ reser:
 	$(RM) $(BIN)$(SER) $(D_DATA)$(B_SER)
 	$(CC) $(D_SRC)$(SSER) -std=c++20 -o $(BIN)$(SER)
 
-rerot:
-	$(RM) $(BIN)$(ROT)
-	$(CC) $(D_SRC)$(SROT) -std=c++20 -o $(BIN)$(ROT)
+#rerot:
+#	$(RM) $(BIN)$(ROT)
+#	$(CC) $(D_SRC)$(SROT) -std=c++20 -o $(BIN)$(ROT)
 
 clean:
 	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) $(BIN)$(SER) $(BIN)$(ROT)

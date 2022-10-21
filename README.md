@@ -10,6 +10,8 @@ Make Docker with cpp and python modules running Jupyter Lab in the browser.
 
 Connect it to my https://www.pythonanywhere.com/ projeckt.
 
+try it https://www.khronos.org/api/webgl
+
 Add pyscrypt.
 
 ---

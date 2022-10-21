@@ -1,17 +1,14 @@
 #ifndef SEREAL_HPP_
 #define SEREAL_HPP_
 
-//#include <filesystem>
 #include <unistd.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 //---------------------
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <cstring>
 //---------------------
-#include "../nbt.h"
 #include "../tree_head/st_bt.hpp"
 
 namespace nbt
@@ -25,15 +22,15 @@ namespace nbt
         public:
             static std::vector<int>    file_map;
             SContainer();
-            SContainer(char* y);
-            SContainer(char* y, std::string fn);
+            SContainer(const char* y);
+            SContainer(const char* y, std::string fn);
             ~SContainer();
-            virtual void print_var(void);
-            virtual void add_str(char* txt);
-            virtual void save();
-            virtual char read(int num);
-            virtual void set_wfile(std::string fn){ this->f_name = fn;};
-            virtual int  str_len(const char* txt);
+            virtual void  print_var(void);
+            virtual void  add_str(const char* txt);
+            virtual void  save();
+            virtual char  read(int num);
+            virtual void  set_wfile(std::string fn){ this->f_name = fn;};
+            virtual int   str_len(const char* txt);
             virtual char* ret_obj(void) { return this->object;}
             virtual SContainer return_cont(void);
             void add_obj(char* Obj, int o_size, char o_type);
@@ -44,21 +41,21 @@ namespace nbt
     SContainer::SContainer(){
         this->object = nullptr;
         this->f_name = "";
-        this->et = 'S';
+        this->et     = 'S';
     }
 
-    SContainer::SContainer(char* y){
+    SContainer::SContainer(const char* y){
         this->o_len  = this->str_len(y);
         this->object = new char[this->o_len];
-        strcpy(this->object, y);
+        memcpy(this->object, y, this->o_len);
         this->f_name = "";
         this->et = 'S';
     }
 
-    SContainer::SContainer(char* y, std::string fn){
+    SContainer::SContainer(const char* y, std::string fn){
         this->o_len  = this->str_len(y);
         this->object = new char[this->o_len];
-        strcpy(this->object, y);
+        memcpy(this->object, y, this->o_len);
         this->f_name = fn;
         this->et = 'S';
     }
@@ -81,7 +78,7 @@ namespace nbt
     void SContainer::save(){
         std::ofstream  wf;
         wf.open("data.dat", std::ios_base::app);
-        
+
         int tmp = this->o_len;
         wf.write((char*)&tmp, sizeof(int));
         wf.write((char*)&this->et, sizeof(unsigned char));
@@ -109,18 +106,18 @@ namespace nbt
         return this->et;
     }
 
-    void SContainer::add_str(char* txt){
-        this->o_len = this->str_len(txt);
-        this->et    = 'S';
+    void SContainer::add_str(const char* txt){
+        this->o_len  = this->str_len(txt);
+        this->et     = 'S';
         delete [] this->object;
         this->object = nullptr;
         this->object = new char[this->o_len];
-        strcpy(this->object, txt);
+        memcpy(this->object, txt, this->o_len);
     }
 
     void SContainer::add_obj(char* Obj, int o_size, char o_type){
-        this->o_len = o_size;
-        this->et    = o_type;
+        this->o_len  = o_size;
+        this->et     = o_type;
         delete [] this->object;
         this->object = nullptr;
         this->object = new char[this->o_len];

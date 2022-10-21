@@ -30,19 +30,21 @@ void CL1::print_var(){
 
 class CL_CSTR{
   private:
-    int   x;
-    char* c_str;
+    int     x;
+    char*   c_str;
+    double  y;
     public:
       CL_CSTR(){}
-      CL_CSTR(int a, const char* input);
+      CL_CSTR(int a, const char* input, double b);
       virtual ~CL_CSTR();
       virtual void print_var(void);
 };
 
-CL_CSTR::CL_CSTR(int a, const char* input){
+CL_CSTR::CL_CSTR(int a, const char* input, double b){
   this->x = a;
   this->c_str = new char[str_len(input)];
   strcpy(this->c_str, input);
+  this->y = b;
 }
 
 CL_CSTR::~CL_CSTR(){
@@ -51,7 +53,8 @@ CL_CSTR::~CL_CSTR(){
 }
 
 void CL_CSTR::print_var(){
-  std::cout<< "Int :" << this->x << " | CStr :" << this->c_str << std::endl;
+  std::cout<< "Int :" << this->x << " | CStr :" << this->c_str << 
+  "| Doub : " << this->y <<std::endl;
 }
 
 #endif

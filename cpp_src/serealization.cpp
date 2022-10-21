@@ -4,13 +4,13 @@
 
 int main(void){
 
-  nbt::SContainer       wObj((char*)"ABCdefg", "data.dat");
+  nbt::SContainer       wObj("ABCdefg", "data.dat");
 
   mkdir("data", 0777);
   chdir("data");
 
   wObj.save();
-  wObj.add_str((char*)"XYZZZqwerty");
+  wObj.add_str("XYZZZqwerty");
   wObj.save();
 //------------
   nbt::SContainer       rObj;
@@ -44,8 +44,8 @@ int main(void){
   CL1* scCL1 = (CL1*)rObj.ret_obj();
   scCL1->print_var();
 //-------------
-  char* o     = new char[sizeof(CL_CSTR)];
-  CL_CSTR* ao = new (o) CL_CSTR(123, "UUU11111UUUUUUU");
+  char*    o  = new char[sizeof(CL_CSTR)];
+  CL_CSTR* ao = new (o) CL_CSTR(123, "UUU11111UUUUUUU", 518.73);
   //CL_CSTR tt(123, "TEEXXT");
   ao->print_var();
 

@@ -108,10 +108,10 @@ int main () {
   delete [] p;
 }
 ```
-To restore the BT, and objects saved there, we need to have the type and size of an object. Element type is stored and saved first in <i>unsigned char et;</i> format. After that goes <i>int o_len;</i> variable representing size of object. Next, we have an array of bytes storing the object. One object is stored in format:<br>
-* <b>Element Type</b> - one byte
+To restore the BT, and objects saved there, we need to have the size and type of an object. Size is stored and saved first in <i>int o_len;</i> format. After that goes <i>unsigned char et;</i> variable representing type of object. Next, we have an array of bytes storing the object. One object is stored in format:<br>
 * <b>Size of Object</b> - four bytes
-* <b>Array of Bytes</b>
+* <b>Element Type</b> - one byte
+* <b>Array of Bytes</b> - object
 
 As any object is represented in the memory as a structure of the variables, methods of class are stored separately, we can write and read objects represented in the byte array.
 
@@ -144,7 +144,7 @@ To generate sets of random unique integers I have used [gen_rang.py.](py_analog/
 
 https://www.opengl.org/
 <br>
-In the [OpenGL](/openGL) directory, you can find the <i>main.cpp</i> file using the <b>nbt::Rot</b> class. This program displays several animated primitives in 2D/3D. Movement depends on $Δt$ inside an infinite loop.<br>
+In the [OpenGL](/openGL) directory, you can find the <i>main.cpp</i> source code file using the <b>nbt::Rot</b> class. This program displays several animated primitives in 2D/3D. Movement depends on $Δt$ inside an infinite loop.<br>
 $f(Δt)= x + Δt*const$<br><br>
 
 In case OpenGL is a cross-platform framework, please mind, FPS or refresh rate could be locked on diffirent [devices.](https://support.apple.com/en-us/HT210742)

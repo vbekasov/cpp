@@ -16,7 +16,7 @@ int main(void)
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(480, 480, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -32,18 +32,18 @@ int main(void)
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        usleep(pow(10, 5));
+        //usleep(pow(10, 6));
         
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
         
-        Obj.one_step(&xy_coord);
+        Obj.one_step(&xy_coord, 10);
         glBegin(GL_LINES);
         glVertex2d(0.,0.);
         glVertex2d(xy_coord.x, xy_coord.y);
         glEnd();
         
-        Obj.t_step(&xy_coord);
+        Obj.t_step(&xy_coord, pow(10, 3));
         glBegin(GL_LINES);
         glVertex2d(0.,0.);
         glVertex2d(xy_coord.x, xy_coord.y);

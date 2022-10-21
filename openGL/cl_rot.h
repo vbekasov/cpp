@@ -26,14 +26,15 @@ namespace nbt{
       double    direction;
       double    equ_rot;
       double    lat_rot;
-      uint64_t  dtime;
+      uint64_t  r_time;
+      uint64_t  t_time;
       double    r;
       void read_last();
       uint64_t tMilSec();
     public:
       Rot();
-      virtual void one_step(st_xy* out);
-      virtual void t_step(st_xy* out);
+      virtual void one_step(st_xy* out, uint64_t mil);
+      virtual void t_step(st_xy* out, uint64_t mil);
       virtual void in_put(void);
   };
 
@@ -71,28 +72,36 @@ namespace nbt{
     this->lat_rot  = 0.01;
     this->r        = 0.5;
     this->direction = -1;
-    this->center[0]=0.; this->center[1]=0.; this->center[2]=0.;
-    this->ray[0]=0.5; this->ray[1]=0.0; this->ray[2]=0;
-    this->t_ray[0]=M_PI; this->t_ray[1]=0; this->t_ray[2]=0;
-    this->dtime   = this->tMilSec();
+    this->center[0]=0.;  this->center[1]=0.; this->center[2]=0.;
+    this->ray[0]=0.5;    this->ray[1]=0.0;   this->ray[2]=0;
+    this->t_ray[0]=M_PI; this->t_ray[1]=0;   this->t_ray[2]=0;
+    this->r_time    = this->tMilSec();
+    this->t_time    = this->r_time;
   }
 
-  void Rot::one_step(st_xy* out){
-      if (this->dtime - this->tMilSec() < 2){
+  void Rot::one_step(st_xy* out, uint64_t mil){
+      if (this->tMilSec() - this->r_time < 3){
+          out->x = ray[0]; out->y = ray[1];
+          std::cout<< tMilSec() - r_time << "    ";
           return ;}
       
+      this->r_time = this->tMilSec();
       this->ray[0] += this->equ_rot;
       if (abs(ray[0]) >= this->r)
           this->equ_rot *= -1;
       this->ray[1] = sqrt(abs(r*r - ray[0]*ray[0]));
       out->x = ray[0]; out->y = ray[1];
-      
   }
 
-  void Rot::t_step(st_xy* out){
-      if (this->dtime - this->tMilSec() < 2){
+  void Rot::t_step(st_xy* out, uint64_t mil){
+      if (this->tMilSec() - this->t_time < mil){
+          out->x = cos(t_ray[0]) * this->r;
+          out->y = sin(this->t_ray[0]) * this->r;
+          std::cout<< tMilSec() - t_time << std::endl;
           return ;}
       
+      //std::cout<< t_time - tMilSec() << std::endl;
+      this->t_time = this->tMilSec();
       this->t_ray[0] -= (M_PI / 20) * this->direction;
       out->x = cos(t_ray[0]) * this->r;
       if (abs(out->x) >= this->r)
@@ -108,7 +117,7 @@ namespace nbt{
   }
 
   uint64_t Rot::tMilSec() {
-  return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() ;
   }
 
 }

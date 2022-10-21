@@ -9,7 +9,10 @@ st_bt
 linked_list
 serealization
 rotation
+*.DS_Store*
+
 /.vscode
 __pycache__
 /vproj
 /cpp_src/serealization.dSYM
+art/.DS_Store

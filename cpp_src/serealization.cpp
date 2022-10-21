@@ -12,7 +12,6 @@ int main(void){
   wObj.save();
   wObj.add_str((char*)"XYZZZqwerty");
   wObj.save();
-
 //------------
   nbt::SContainer       rObj;
   rObj.set_wfile("data.dat");
@@ -27,24 +26,36 @@ int main(void){
   rObj.print_var();
 
 //-------------
-
-  //CL1 cObj(5, 2345.235);
   char* p = new char[sizeof(CL1)];
   CL1* ap = new (p) CL1(423, 65.31);
   ap->print_var();
-  wObj.add_str(p);
+
+  wObj.add_obj(p, sizeof(CL1), 'O');
   wObj.save();
 
-  rObj.read(2);
+  std::cout<< "Obj type : " << rObj.read(2) << std::endl;
   CL1* cObj;
   cObj = (CL1*)rObj.ret_obj();
   cObj->print_var();
 
   ap->CL1::~CL1();
   delete [] p;
+  cObj->~CL1();
+  CL1* scCL1 = (CL1*)rObj.ret_obj();
+  scCL1->print_var();
+//-------------
+  char* o     = new char[sizeof(CL_CSTR)];
+  CL_CSTR* ao = new (o) CL_CSTR(123, "UUU11111UUUUUUU");
+  //CL_CSTR tt(123, "TEEXXT");
+  ao->print_var();
+
+  wObj.add_obj(o, sizeof(CL_CSTR), 'T');
+  wObj.save();
+  rObj.read(3);
+  CL_CSTR* tO = (CL_CSTR*)rObj.ret_obj();
+  tO->print_var();
 
   rObj.~SContainer();
-
   chdir("..");
 
   std::cout<< "\nFinished\n";

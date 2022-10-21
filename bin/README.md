@@ -1,2 +1,3 @@
 ### Binaries
-text
+
+Directory for compiled binaries.

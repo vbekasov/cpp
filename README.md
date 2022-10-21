@@ -13,7 +13,6 @@ Connect it to my https://www.pythonanywhere.com/ projeckt.
 Add pyscrypt.
 
 ---
-
 ## Description
 
 Welcome to my project.
@@ -31,6 +30,7 @@ You will see implementation of this algorithm in Huffman coding.
 * [Binary Tree problem](#binary-tree-problem-description-(bt))
 * [LL & BT in Python3](py_analog)
 * [Set to Tree](#set-to-tree)
+* [OpenGL](#openGL)
 
 
 ## Project Files
@@ -47,43 +47,47 @@ This project contained files:
 
 * [/data](data) : direactory with data files with serealized objects
 
-* [st_bt.cpp](cpp_src/st_bt.cpp) : C++ file with main function generating and printing binary tree
+* [/art](art) : collection of visual files
 
-* [MakeFile](Makefile) : script compiling C++ sources
+* [/OpenGl](openGL) : OpenGL directory
 
 * [gen_rand.py](py_analog/gen_rand.py) : Python3 script generating set of random unique integers
 
 * [bt_analise.ipynb](bt_analise.ipynb) : Jupyter Notebook document with algorithm analysis and visualization
 
+* [py_lab.ipynb](py_lab.ipynb) : same functions on Python3
+
+* [school-math.ipynb](school-math.ipynb) : basic functions will be used in the OpenGL project
+
 * [push.sh](push.sh) : script to push project to reposetory <i>$ sh push.sh "Commit Text"</i>
 
 * [py venv](requirements.txt) : requirements for Python venv to run Jupyter-Lab
 
----
+* [MakeFile](Makefile) : script compiling C++ sources
 
+---
 ## Linked List (LL)
 
-Linked List (LL) is a kind of Data Structure, where  the next element is pointed by current. It is not a random access array, but elements still can have their IDs. LLs use much more memory
+A Linked List (LL) is a kind of Data Structure, where the next element is pointed by the current. It is not a random access array, but elements still can have their IDs. LLs use much more memory
  (+8 bytes) for each element then arrays, but have some advantages:
  1. Adding a new element to the end or beginning of the list does not require memory reallocation for the whole list, only memory for the new element;
- 2. New elements can be inserted or deleted without copying and moving list: <b>A->B => A->C->B</b>; Bigger list you have -- more proffit you have;
+ 2. New elements can be inserted or deleted without copying and moving list: <b>A->B => A->C->B</b>; Bigger list you have -- more profit you have;
  3. LL can care mixed data types, which is impossible with <i>standard</i> array in C/C++;
- 4. Greater size of element you care -- less difference against arrey you have. E.g. you have an object size of 128 bytes. It will be: in the arrey 128 bytes, in the LL 136 bytes. 128~136;
+ 4. Greater size of element you care -- less difference against the array you have. E.g. you have an object size of 128 bytes. It will be: in the arrey 128 bytes, in the LL 136 bytes. 128~136;
 <br><br>
 Chart Format: |Linked List ; Array | 
 
 Complexity\Problem |Find Element|Find by ID|Push Forward`|Push Back|Insert   |Replace  |Delete|
 -------------------|------------|----------|-------------|---------|---------|---------|------|
-<b> Space </b>     |            |          |             |O(1)/O(n)|O(1)/O(n)|O(1)/O(1)|RanD  |
+<b> Space </b>     |            |          |O(1)/O(n)    |O(1)/O(n)|O(1)/O(n)|O(1)/O(1)|RanD  |
 <b> Time </b>      | O(n)/O(n)  |O(n)/O(1) |O(1)/O(n)    |O(n)/O(n)|O(n)/O(n)|O(n)/O(1)|RanD  |
 <b> Performance</b>| same       |✘/✔       |✔/✘          |✔/✘      |✔/✘      |✘/✔      |RanD  |
 
-` Push Forward : works extremely slow with array and vary rapid in LL. To add an element at the beginning of the array OS have to reallocate all array. To push element forward at the beginning of the LL program will only allocate the memory for the new element, and rewrite root pointer.
+` Push Forward : works extremely slow with array and vary rapid in LL. To add an element at the beginning of the array OS have to reallocate all array. To push the element forward at the beginning of the LL program will only allocate the memory for the new element, and rewrite the root pointer.
 
 Classes you can find in [LL header directory.](nbt/ll_head)
 
 ---
-
 ## Serealization
 
 To save, transmit and load BT we use serealization. Serealization library saves all/any object which was constructed in the memory allocated by char (byte) array. Like in this [manual.](https://www.ibm.com/docs/en/i/7.3?topic=only-destructors-c)
@@ -104,21 +108,19 @@ int main () {
   delete [] p;
 }
 ```
-To restore the BT, and objects saved there, we need to have type and size of object. Element type is stored and saved first in <i>unsigned char et;</i> format. After that goes <i>int o_len;</i> variable representing size of object. Next we have an array of bytes storing the object. One object is stored in format:<br>
+To restore the BT, and objects saved there, we need to have the type and size of an object. Element type is stored and saved first in <i>unsigned char et;</i> format. After that goes <i>int o_len;</i> variable representing size of object. Next, we have an array of bytes storing the object. One object is stored in format:<br>
 * <b>Element Type</b> - one byte
 * <b>Size of Object</b> - four bytes
 * <b>Array of Bytes</b>
 
-As any object is represented in memory as structure of variables, mathods of class are stored separetly, we can write and read objects represented in byte array.
+As any object is represented in the memory as a structure of the variables, methods of class are stored separately, we can write and read objects represented in the byte array.
 
 ---
-
 ## Rotation
 
 In case coordinates are stored in <i>/data/rot.txt</i> run <i>./bin/rotation</i>.
 
 ---
-
 ## Binary Tree Problem Description (BT)
 
 Binary Tree (BT) is a kind of graph, and definition you can find on [Wiki.](https://en.wikipedia.org/wiki/Binary_tree#Definitions)
@@ -126,7 +128,7 @@ I wanted to show how I had solved this problem using C++20. You will find algori
 
 You will see realization of this probleblem using structure and class.
 
-<br><br>
+<br>
 
 ### Binary Tree based on structure
 My algorithm uses an unsorted set of integers as input, sorting them and converting it to the tree. But during the tree generation
@@ -135,3 +137,14 @@ the program makes some duplicates. You can find more information about that step
 ### Set to Tree (structure)
 
 To generate sets of random unique integers I have used [gen_rang.py.](py_analog/gen_rand.py) There are two ways you can get sets: print to stdout or return NumPy array of sets. You can find implementation of set-to-tree algorithm in [st_bt.hpp](nbt/tree_head/st_bt.hpp) in <i><b>tb_node* gen_tree(int* iarr, int start, int finish)</b></i> function. How it works you can find in [Jupyter file.](bt_analise.ipynb)
+
+---
+### OpenGL
+<br>
+
+https://www.opengl.org/
+<br>
+In the [OpenGL](/openGL) directory, you can find the <i>main.cpp</i> file using the <b>nbt::Rot</b> class. This program displays several animated primitives in 2D/3D. Movement depends on $Δt$ inside an infinite loop.<br>
+$f(Δt)= x + Δt*const$<br><br>
+
+In case OpenGL is a cross-platform framework, please mind, FPS or refresh rate could be locked on diffirent [devices.](https://support.apple.com/en-us/HT210742)

@@ -1,6 +1,7 @@
 ########VALS#############
 CC     = g++
 CFLAGS = -Wall -Werror -Wno-unused-variable -std=c++20
+OGLLIB   = -lglut -lGLU -lGL -lglfw #OpenGL libs
 BIN    = bin/
 D_SRC  = cpp_src/
 D_DATA = data/
@@ -33,7 +34,7 @@ reser:
 
 reclock:
 	$(RM) $(BIN)clock
-	$(CC) $(SCLOCK) $(CFLAGS) -lglut -lGLU -lGL -lglfw \
+	$(CC) $(SCLOCK) $(CFLAGS)  $(OGLLIB) \
 	-o $(BIN)clock
 
 clean:

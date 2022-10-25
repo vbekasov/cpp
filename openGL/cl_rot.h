@@ -3,7 +3,6 @@
 
 #define _USE_MATH_DEFINES
 
-#include "math.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -11,25 +10,27 @@
 #include <chrono>
 #include "unistd.h"
 #include <vector>
+#include <algorithm>
 
 namespace nbt{
 
     struct d2_ray{
-        double      center[2];  //xy
-        double      ray[2];     //xy
-        double      x_rot;
-        double      r;
-        uint64_t    t_time;
-        char        direction;
+        double        center[2];  //xy
+        double        ray[2];     //xy
+        double        x_rot;
+        double        r;
+        uint64_t      t_time;
+        char          direction;
         d2_ray(){}
-        d2_ray(double x1, double y1, double x2, double y2, double xr, uint64_t tm){
+        d2_ray(double x1, double y1, double ro, double xr, uint64_t tm){
             center[0] = x1; center[1] = y1;
-            ray[0] = x1 + x2; ray[1] = y1 + y2;
+            ray[0] = x1 + ro; ray[1] = y1;
             t_time = tm;
-            r = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
-            std::cout<< "Radius  " << r << std::endl;
+            //r = sqrt(pow(r, 2) + pow(y1 - y2, 2));
+            r = ro;
+            //std::cout<< "Radius  " << r << std::endl;
             x_rot = xr;
-            direction = 1;
+            direction = (xr < 0) ? 1 : -1;
         }
     };
 
@@ -37,11 +38,12 @@ namespace nbt{
     private:
       std::vector<d2_ray>   ray_colection;
       uint64_t              loop_stime;
+      unsigned int          min_frame_time;
       void read_last();
     public:
-      Rot(){ this->loop_stime = this->tMilSec();};
+      Rot(unsigned int tT){ this->min_frame_time = tT; this->loop_stime = this->tMilSec();};
       uint64_t tMilSec();
-      virtual void add_ray(double x1, double y1, double x2, double y2, double xx);
+      virtual void add_ray(double x1, double y1, double ro, double xx);
       virtual void elipse_step(d2_ray* out, int v_num);
       virtual void t_step(d2_ray* out, int v_num, uint64_t mil){};
       //virtual void in_put(void);
@@ -76,24 +78,30 @@ namespace nbt{
   }
 
   void Rot::elipse_step(d2_ray* out, int v_num){
-      if (this->loop_stime - this->ray_colection[v_num].t_time < 20){
-          out->ray[0] = this->ray_colection[v_num].ray[0];
-          out->ray[1] = this->ray_colection[v_num].ray[1];
-          //std::cout<< this->loop_stime - this->ray_colection[v_num].t_time << "   \n ";
+      if (this->loop_stime - this->ray_colection[v_num].t_time < this->min_frame_time){
+          out->center[0] = this->ray_colection[v_num].center[0];
+          out->center[1] = this->ray_colection[v_num].center[1];
+          out->ray[0]    = this->ray_colection[v_num].ray[0];
+          out->ray[1]    = this->ray_colection[v_num].ray[1];
           return ;}
-      
       this->ray_colection[v_num].t_time = this->loop_stime;
-      this->ray_colection[v_num].ray[0] += this->ray_colection[v_num].x_rot;
-      //std::cout<< " X R " << this->ray_colection[v_num].ray[0] << "   " << this->ray_colection[v_num].x_rot << std::endl;
+      
+      this->ray_colection[v_num].ray[0] += this->ray_colection[v_num].x_rot * this->ray_colection[v_num].direction;
       if (abs(this->ray_colection[v_num].ray[0]-this->ray_colection[v_num].center[0]) >= this->ray_colection[v_num].r)
           this->ray_colection[v_num].x_rot *= -1;
-      double tmp_x = abs(this->ray_colection[v_num].center[0] - this->ray_colection[v_num].ray[0]);
+      
+      double tmp_x = abs(this->ray_colection[v_num].center[0] - this->ray_colection[v_num].ray[0]);      
+      char up_down = (this->ray_colection[v_num].x_rot < 0) ? 1 : -1;      
       this->ray_colection[v_num].ray[1] =
-        this->ray_colection[v_num].center[1] + sqrt(abs(pow(this->ray_colection[v_num].r, 2) - pow(tmp_x, 2)));
+        this->ray_colection[v_num].center[1] + sqrt(abs(pow(this->ray_colection[v_num].r, 2) - pow(tmp_x, 2))) * up_down;
+      
+      std::cout<< this->ray_colection[v_num].x_rot << std::endl;      
+      
       out->center[0] = this->ray_colection[v_num].center[0];
       out->center[1] = this->ray_colection[v_num].center[1];
       out->ray[0]    = this->ray_colection[v_num].ray[0];
       out->ray[1]    = this->ray_colection[v_num].ray[1];
+      //std::cout<< sqrt(abs(pow(out->center[0]-out->ray[0],2) - pow(out->center[1]-out->ray[1],2))) << std::endl;
   }
 /*
   void Rot::t_step(st_xy* out, uint64_t mil){
@@ -123,8 +131,8 @@ namespace nbt{
       return this->loop_stime;
   }
 
-    void Rot::add_ray(double x1, double y1, double x2, double y2, double xx){
-        d2_ray  tmp(x1, y1, x2, y2, xx, this->loop_stime);
+    void Rot::add_ray(double x1, double y1, double ro, double xx){
+        d2_ray  tmp(x1, y1, ro, xx, this->loop_stime);
         this->ray_colection.push_back(tmp);
     }
 }

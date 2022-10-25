@@ -1,11 +1,16 @@
 
-#include <GLUT/GLUT.h>
+#ifdef __APPLE__
+    #include <GLUT/GLUT.h>
+#elif __linux__
+    #include <GL/freeglut.h>
+#endif
 
 #include <GLFW/glfw3.h>
-//#include <time.h>
-#include "cl_rot.h"
 #include <chrono>
 #include "unistd.h"
+
+#include "cl_rot.h"
+#include "draw_fun.h"
 
 int main(void)
 {
@@ -29,33 +34,38 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
     
-    nbt::Rot     Obj;
-    Obj.add_ray(0.3, 0.2, 0.5, 0.7, -0.04);
     nbt::d2_ray  xy_coord;
+    nbt::Rot     Obj(100);
+    Obj.add_ray(-0.7, 0.7, 0.28, -0.02);
+    Obj.add_ray(-0.1, 0.7, 0.15, +0.05);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        usleep(pow(10, 6));
+        //usleep(pow(10, 6));
         
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
         
-
         Obj.tMilSec();
         
-        Obj.elipse_step(&xy_coord, 0);
+        Obj.elipse_step(&xy_coord, 1);
+        //draw_ray(&xy_coord);
+
         glBegin(GL_LINES);
         glVertex2d(xy_coord.center[0], xy_coord.center[1]);
-        glVertex2d(xy_coord.ray[0], xy_coord.ray[1]);
+        glVertex2d(xy_coord.ray[0],    xy_coord.ray[1]);
         glEnd();
-        /*
-        Obj.t_step(&xy_coord, pow(10, 2.5));
+        
+        Obj.elipse_step(&xy_coord, 0);
+        //draw_ray(&xy_coord);
+
         glBegin(GL_LINES);
-        glVertex2d(0.,0.);
-        glVertex2d(xy_coord.x, xy_coord.y);
+        glVertex2d(xy_coord.center[0], xy_coord.center[1]);
+        glVertex2d(xy_coord.ray[0],    xy_coord.ray[1]);
         glEnd();
-         */
+        glEnd();
+
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
 

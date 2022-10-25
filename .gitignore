@@ -10,6 +10,7 @@ linked_list
 serealization
 rotation
 *.DS_Store*
+clock
 
 /.vscode
 __pycache__

@@ -9,13 +9,14 @@
 #include <chrono>
 #include "unistd.h"
 
-#include "cl_rot.h"
-#include "draw_fun.h"
+//#include "cl_rot.h"
+//#include "draw_fun.h"
+#include "../nbt/prim_head/primitives.h"
 
 int main(void)
 {
-    std::cout<< "START\n";
-    char    rub;
+    std::cout<< sizeof(nbt::d2_ray) << "  "
+        << sizeof(nbt::Rot) << std::endl;
     
     GLFWwindow* window;
 
@@ -35,42 +36,33 @@ int main(void)
     glfwMakeContextCurrent(window);
     
     nbt::d2_ray  xy_coord;
-    nbt::Rot     Obj(100);
-    Obj.add_ray(-0.7, 0.7, 0.28, -0.02);
-    Obj.add_ray(-0.1, 0.7, 0.15, +0.05);
+    nbt::Rot     Obj(40);                  // standart frame time
+    Obj.add_ray(-0.67, 0.7, -0.27, 1500);    // center: x, y; radius > 0 clock < 0 cclock, time to draw full cicle
+    Obj.add_ray(-0.1,  0.7, +0.18, 2500);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         //usleep(pow(10, 6));
-        
+
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
-        
-        Obj.tMilSec();
+
+        Obj.tMilS();
         
         Obj.elipse_step(&xy_coord, 1);
-        //draw_ray(&xy_coord);
+        draw_ray(&xy_coord);
 
-        glBegin(GL_LINES);
-        glVertex2d(xy_coord.center[0], xy_coord.center[1]);
-        glVertex2d(xy_coord.ray[0],    xy_coord.ray[1]);
-        glEnd();
-        
         Obj.elipse_step(&xy_coord, 0);
-        //draw_ray(&xy_coord);
-
-        glBegin(GL_LINES);
-        glVertex2d(xy_coord.center[0], xy_coord.center[1]);
-        glVertex2d(xy_coord.ray[0],    xy_coord.ray[1]);
-        glEnd();
-        glEnd();
+        draw_ray(&xy_coord);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
 
         /* Poll for and process events */
         glfwPollEvents();
+
+        Obj.lock_screen();
     }
 
     glfwTerminate();

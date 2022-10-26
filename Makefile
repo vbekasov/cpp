@@ -35,7 +35,7 @@ reser:
 reclock:
 	$(RM) $(BIN)clock
 	$(CC) $(SCLOCK) $(CFLAGS)  $(OGLLIB) \
-	-o $(BIN)clock
+		-o $(BIN)clock
 
 clean:
 	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) \

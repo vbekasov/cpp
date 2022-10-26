@@ -8,14 +8,13 @@
 #endif
 
 #include <GLFW/glfw3.h>
-#include "cl_rot.h"
+#include "cl_rot.hpp"
 
 void draw_ray(nbt::d2_ray* xy){
-    glBegin(GL_LINES);
+  glBegin(GL_LINES);
     glVertex2d(xy->center[0], xy->center[1]);
     glVertex2d(xy->ray[0], xy->ray[1]);
-    glEnd();
+  glEnd();
 }
-
 
 #endif

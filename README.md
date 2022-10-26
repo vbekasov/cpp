@@ -28,20 +28,17 @@ You will see implementation of this algorithm in Huffman coding.
 * [Files](#project-files)
 * [Linked List](#linked-list-(LL))
 * [Serealization](#serealization)
-* [Rotation](#rotation)
+* [Rotation](#primitives)
 * [Binary Tree problem](#binary-tree-problem-description-(bt))
 * [LL & BT in Python3](py_analog)
 * [Set to Tree](#set-to-tree)
 * [OpenGL](#openGL)
 
-
 ## Project Files
-
 This project contained files:
 
 * [/nbt](nbt) : directory with header file <b>nbt.h</b> and supdirectories with libraries.
 <b>nbt.h</b> header file, that collects BT, LL and Serealization classes to <b>nbt::</b> - namespace binary tree
-
 
 * [/cpp_src](cpp_src) : C++ source files to be compiled as binaries
 
@@ -118,9 +115,9 @@ To restore the BT, and objects saved there, we need to have the size and type of
 As any object is represented in the memory as a structure of the variables, methods of class are stored separately, we can write and read objects represented in the byte array.
 
 ---
-## Rotation
+## Primitives
 
-In case coordinates are stored in <i>/data/rot.txt</i> run <i>./bin/rotation</i>.
+2D/3D [primitives](nbt/prim_head/) disigned to use with [OpenGL](openGL/). Potantionaly would by used with different C++ framework. 
 
 ---
 ## Binary Tree Problem Description (BT)
@@ -150,3 +147,5 @@ In the [OpenGL](/openGL) directory, you can find the <i>main.cpp</i> source code
 $f(Δt)= x + Δt*const$<br><br>
 
 In case OpenGL is a cross-platform framework, please mind, FPS or refresh rate could be locked on diffirent [devices.](https://support.apple.com/en-us/HT210742)
+
+And please, remamber the float rounding error!!! $(0.2-0.2)>0 AND (0.8+0.2)>1$; Not only $0.1+0.3$ problem. Use inegers to find the coordinates first, then covert it into the pixels positions on your devices.

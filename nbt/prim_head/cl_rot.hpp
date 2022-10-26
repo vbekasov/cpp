@@ -14,6 +14,11 @@
 
 namespace nbt{
 
+    struct d2_ray{
+      float   center[2];
+      float   ray[2];
+    };
+
     struct d2_ellipse{
         float              r;
         int                x_rot;
@@ -47,11 +52,11 @@ namespace nbt{
       Rot(unsigned int tT){ this->min_frame_time = tT; this->loop_stime = this->tMilS();};
       uint64_t     tMilS();
       virtual void add_ray(float x1, float y1, float ro, int loop);
-      virtual void elipse_step(d2_ellipse* out, int v_num);
+      virtual void elipse_step(d2_ray* out, int v_num);
       virtual void lock_screen();
   };
 
-  void Rot::elipse_step(d2_ellipse* out, int v_num){
+  void Rot::elipse_step(d2_ray* out, int v_num){
       if (loop_stime - (uint64_t)this->ray_colection[v_num].t_time < (uint64_t)ray_colection[v_num].t_loop){
           out->center[0] = ray_colection[v_num].center[0];
           out->center[1] = ray_colection[v_num].center[1];

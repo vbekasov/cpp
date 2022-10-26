@@ -1,17 +1,16 @@
 
 #ifdef __APPLE__
     #include <GLUT/GLUT.h>
+    #include "/Users/v-bek/Documents/bi-tree/g_cpp/nbt/prim_head/primitives.h"
 #elif __linux__
     #include <GL/freeglut.h>
+    #include "../nbt/prim_head/primitives.h"
 #endif
 
 #include <GLFW/glfw3.h>
 #include <chrono>
 #include "unistd.h"
 
-//#include "cl_rot.h"
-//#include "draw_fun.h"
-#include "../nbt/prim_head/primitives.h"
 
 int main(void)
 {
@@ -37,8 +36,9 @@ int main(void)
     
     nbt::d2_ray  xy_coord;
     nbt::Rot     Obj(40);                  // standart frame time
-    Obj.add_ray(-0.67, 0.7, -0.27, 1500);    // center: x, y; radius > 0 clock < 0 cclock, time to draw full cicle
+    Obj.add_ray(-0.67, 0.7, -0.27, 1500);    // center: x, y; (r>0=clock)|(r<0=cclock), time to draw full cicle
     Obj.add_ray(-0.1,  0.7, +0.18, 2500);
+    Obj.add_ray(0., 0., +0.2, 3000);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -50,10 +50,13 @@ int main(void)
 
         Obj.tMilS();
         
+        Obj.elipse_step(&xy_coord, 0);
+        draw_ray(&xy_coord);
+        
         Obj.elipse_step(&xy_coord, 1);
         draw_ray(&xy_coord);
-
-        Obj.elipse_step(&xy_coord, 0);
+        
+        Obj.cycle_step(&xy_coord, 2);
         draw_ray(&xy_coord);
 
         /* Swap front and back buffers */
@@ -62,7 +65,6 @@ int main(void)
         /* Poll for and process events */
         glfwPollEvents();
 
-        Obj.lock_screen();
     }
 
     glfwTerminate();

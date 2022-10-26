@@ -19,15 +19,13 @@ namespace nbt{
       float   ray[2];
     };
 
-    struct d2_ellipse{
+    struct d2_ellipse: d2_ray{
         float              r;
         int                x_rot;
         char               direction;
         char               u_d;        //up & down
         uint64_t           t_time;
         unsigned short int t_loop;
-        float              center[2];  //xy
-        float              ray[2];     //xy
         d2_ellipse(){}
         d2_ellipse(float x1, float y1, float ro, uint64_t tm, int loop){
             center[0] = x1; center[1] = y1;
@@ -37,7 +35,7 @@ namespace nbt{
             direction = (ro < 0) ? -1 : 1;
             x_rot     = 0;
             u_d       = 1;
-            t_loop    = loop / 20;
+            t_loop    = loop / 100;
         }
     };
 
@@ -46,56 +44,52 @@ namespace nbt{
       std::vector<d2_ellipse>   ray_colection;
       uint64_t              loop_stime;
       unsigned short int    min_frame_time;
-      void read_last();
+      void     read_last();
       uint64_t cMilS();
+      void     ret_out(d2_ray *out, int v_num);
     public:
       Rot(unsigned int tT){ this->min_frame_time = tT; this->loop_stime = this->tMilS();};
       uint64_t     tMilS();
       virtual void add_ray(float x1, float y1, float ro, int loop);
       virtual void elipse_step(d2_ray* out, int v_num);
+      virtual void cycle_step(d2_ray* out, int v_num);
       virtual void lock_screen();
   };
 
   void Rot::elipse_step(d2_ray* out, int v_num){
       if (loop_stime - (uint64_t)this->ray_colection[v_num].t_time < (uint64_t)ray_colection[v_num].t_loop){
-          out->center[0] = ray_colection[v_num].center[0];
-          out->center[1] = ray_colection[v_num].center[1];
-          out->ray[0]    = ray_colection[v_num].ray[0];
-          out->ray[1]    = ray_colection[v_num].ray[1];
+          ret_out(out, v_num);         
           return ;}
-      ray_colection[v_num].t_time = loop_stime;
-      
+    
+      ray_colection[v_num].t_time = loop_stime;      
       ray_colection[v_num].x_rot += ray_colection[v_num].direction;
-      if (abs(ray_colection[v_num].x_rot) == 10){
+      if (abs(ray_colection[v_num].x_rot) == 50){
         ray_colection[v_num].direction *= -1;
-        ray_colection[v_num].u_d *= -1;
-      }
+        ray_colection[v_num].u_d *= -1;}
       
-      ray_colection[v_num].ray[0] = ray_colection[v_num].center[0] + (float)ray_colection[v_num].x_rot * ray_colection[v_num].r / 10.;
+      ray_colection[v_num].ray[0] = ray_colection[v_num].center[0] + (float)ray_colection[v_num].x_rot * ray_colection[v_num].r / 50.;
       ray_colection[v_num].ray[1] = ray_colection[v_num].center[1] + 
                       sqrt(abs(pow(ray_colection[v_num].r, 2) - pow(ray_colection[v_num].center[0]-ray_colection[v_num].ray[0], 2))) * ray_colection[v_num].u_d;
-      
-      out->center[0] = this->ray_colection[v_num].center[0];
-      out->center[1] = this->ray_colection[v_num].center[1];
-      out->ray[0]    = this->ray_colection[v_num].ray[0];
-      out->ray[1]    = this->ray_colection[v_num].ray[1];
+      ret_out(out, v_num);
   }
-/*
-  void Rot::t_step(st_xy* out, uint64_t mil){
-      if (this->tMilSec() - this->t_time < mil){
-          out->x = cos(t_ray[0]) * this->r;
-          out->y = sin(this->t_ray[0]) * this->r;
-          std::cout<< tMilSec() - t_time << std::endl;
+
+  void Rot::cycle_step(d2_ray* out, int v_num){
+    if (loop_stime - (uint64_t)this->ray_colection[v_num].t_time < (uint64_t)ray_colection[v_num].t_loop){
+          ret_out(out, v_num);
           return ;}
 
-      this->t_time = this->tMilSec();
-      this->t_ray[0] -= (M_PI / 20) * this->direction;
-      out->x = cos(t_ray[0]) * this->r;
-      if (abs(out->x) >= this->r)
-          this->direction *= -1;
-      out->y = sin(this->t_ray[0]) * this->r;
-  }
+      ray_colection[v_num].t_time = loop_stime;
+      ray_colection[v_num].x_rot += ray_colection[v_num].direction;
+      if (abs(ray_colection[v_num].x_rot) == 50)
+        ray_colection[v_num].direction *= -1;
 
+    ray_colection[v_num].ray[0] = ray_colection[v_num].center[0] + cos(ray_colection[v_num].x_rot * (M_PI / 100.))
+                     * ray_colection[v_num].r * ray_colection[v_num].direction;
+    ray_colection[v_num].ray[1] = ray_colection[v_num].center[1] + sin(ray_colection[v_num].x_rot * (M_PI / 100.))
+                     * ray_colection[v_num].r;
+    ret_out(out, v_num);
+  }
+/*
   void Rot::in_put(){
     std::ofstream MyWrite("rot.txt", std::ios::app);
     std::string out = "|" + std::to_string(ray[0]) + " " + std::to_string(ray[1]) + "\n";
@@ -117,6 +111,13 @@ namespace nbt{
   void Rot::add_ray(float x1, float y1, float ro, int loop){
     d2_ellipse  tmp(x1, y1, ro, tMilS() - loop_stime, loop);
     this->ray_colection.push_back(tmp);
+  }
+
+  void Rot::ret_out(d2_ray *out, int v_num){
+    out->center[0] = ray_colection[v_num].center[0];
+    out->center[1] = ray_colection[v_num].center[1];
+    out->ray[0]    = ray_colection[v_num].ray[0];
+    out->ray[1]    = ray_colection[v_num].ray[1];
   }
 
   void Rot::lock_screen(){

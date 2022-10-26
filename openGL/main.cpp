@@ -15,7 +15,7 @@
 
 int main(void)
 {
-    std::cout<< sizeof(nbt::d2_ray) << "  "
+    std::cout<< sizeof(nbt::d2_ellipse) << "  "
         << sizeof(nbt::Rot) << std::endl;
     
     GLFWwindow* window;
@@ -35,7 +35,7 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
     
-    nbt::d2_ray  xy_coord;
+    nbt::d2_ellipse  xy_coord;
     nbt::Rot     Obj(40);                  // standart frame time
     Obj.add_ray(-0.67, 0.7, -0.27, 1500);    // center: x, y; radius > 0 clock < 0 cclock, time to draw full cicle
     Obj.add_ray(-0.1,  0.7, +0.18, 2500);

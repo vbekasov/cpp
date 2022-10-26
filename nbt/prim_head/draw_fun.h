@@ -10,7 +10,7 @@
 #include <GLFW/glfw3.h>
 #include "cl_rot.hpp"
 
-void draw_ray(nbt::d2_ray* xy){
+void draw_ray(nbt::d2_ellipse* xy){
   glBegin(GL_LINES);
     glVertex2d(xy->center[0], xy->center[1]);
     glVertex2d(xy->ray[0], xy->ray[1]);

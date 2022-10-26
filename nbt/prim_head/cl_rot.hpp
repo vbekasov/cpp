@@ -14,7 +14,7 @@
 
 namespace nbt{
 
-    struct d2_ray{
+    struct d2_ellipse{
         float              r;
         int                x_rot;
         char               direction;
@@ -23,8 +23,8 @@ namespace nbt{
         unsigned short int t_loop;
         float              center[2];  //xy
         float              ray[2];     //xy
-        d2_ray(){}
-        d2_ray(float x1, float y1, float ro, uint64_t tm, int loop){
+        d2_ellipse(){}
+        d2_ellipse(float x1, float y1, float ro, uint64_t tm, int loop){
             center[0] = x1; center[1] = y1;
             ray[0]    = x1 ; ray[1]   = y1 + ro;
             t_time    = tm;
@@ -38,7 +38,7 @@ namespace nbt{
 
   class Rot{
     private:
-      std::vector<d2_ray>   ray_colection;
+      std::vector<d2_ellipse>   ray_colection;
       uint64_t              loop_stime;
       unsigned short int    min_frame_time;
       void read_last();
@@ -47,12 +47,11 @@ namespace nbt{
       Rot(unsigned int tT){ this->min_frame_time = tT; this->loop_stime = this->tMilS();};
       uint64_t     tMilS();
       virtual void add_ray(float x1, float y1, float ro, int loop);
-      virtual void elipse_step(d2_ray* out, int v_num);
+      virtual void elipse_step(d2_ellipse* out, int v_num);
       virtual void lock_screen();
   };
 
-  void Rot::elipse_step(d2_ray* out, int v_num){
-      //if (loop_stime - (uint64_t)this->ray_colection[v_num].t_time < min_frame_time){
+  void Rot::elipse_step(d2_ellipse* out, int v_num){
       if (loop_stime - (uint64_t)this->ray_colection[v_num].t_time < (uint64_t)ray_colection[v_num].t_loop){
           out->center[0] = ray_colection[v_num].center[0];
           out->center[1] = ray_colection[v_num].center[1];
@@ -111,7 +110,7 @@ namespace nbt{
   }
 
   void Rot::add_ray(float x1, float y1, float ro, int loop){
-    d2_ray  tmp(x1, y1, ro, tMilS() - loop_stime, loop);
+    d2_ellipse  tmp(x1, y1, ro, tMilS() - loop_stime, loop);
     this->ray_colection.push_back(tmp);
   }
 

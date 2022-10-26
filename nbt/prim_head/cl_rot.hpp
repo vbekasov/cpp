@@ -14,30 +14,33 @@
 
 namespace nbt{
 
-    struct d2_ray{
-      float   center[2];
-      float   ray[2];
-    };
+  struct d2_point{
+    float   center[2];
+  };
 
-    struct d2_ellipse: d2_ray{
-        float              r;
-        int                x_rot;
-        char               direction;
-        char               u_d;        //up & down
-        uint64_t           t_time;
-        unsigned short int t_loop;
-        d2_ellipse(){}
-        d2_ellipse(float x1, float y1, float ro, uint64_t tm, int loop){
-            center[0] = x1; center[1] = y1;
-            ray[0]    = x1 ; ray[1]   = y1 + ro;
-            t_time    = tm;
-            r         = abs(ro);
-            direction = (ro < 0) ? -1 : 1;
-            x_rot     = 0;
-            u_d       = 1;
-            t_loop    = loop / 100;
-        }
-    };
+  struct d2_ray: d2_point{
+    float   ray[2];
+  };
+
+  struct d2_ellipse: d2_ray{
+    float              r;
+    int                x_rot;
+    char               direction;
+    char               u_d;        //up & down
+    uint64_t           t_time;
+    unsigned short int t_loop;
+    d2_ellipse(){}
+    d2_ellipse(float x1, float y1, float ro, uint64_t tm, int loop){
+      center[0] = x1; center[1] = y1;
+      ray[0]    = x1 ; ray[1]   = y1 + ro;
+      t_time    = tm;
+      r         = abs(ro);
+      direction = (ro < 0) ? -1 : 1;
+      x_rot     = 0;
+      u_d       = 1;
+      t_loop    = loop / 100;
+    }
+  };
 
   class Rot{
     private:
@@ -51,12 +54,12 @@ namespace nbt{
       Rot(unsigned int tT){ this->min_frame_time = tT; this->loop_stime = this->tMilS();};
       uint64_t     tMilS();
       virtual void add_ray(float x1, float y1, float ro, int loop);
-      virtual void elipse_step(d2_ray* out, int v_num);
+      virtual void ellipse_step(d2_ray* out, int v_num);
       virtual void cycle_step(d2_ray* out, int v_num);
       virtual void lock_screen();
   };
 
-  void Rot::elipse_step(d2_ray* out, int v_num){
+  void Rot::ellipse_step(d2_ray* out, int v_num){
       if (loop_stime - (uint64_t)this->ray_colection[v_num].t_time < (uint64_t)ray_colection[v_num].t_loop){
           ret_out(out, v_num);         
           return ;}
@@ -69,7 +72,7 @@ namespace nbt{
       
       ray_colection[v_num].ray[0] = ray_colection[v_num].center[0] + (float)ray_colection[v_num].x_rot * ray_colection[v_num].r / 50.;
       ray_colection[v_num].ray[1] = ray_colection[v_num].center[1] + 
-                      sqrt(abs(pow(ray_colection[v_num].r, 2) - pow(ray_colection[v_num].center[0]-ray_colection[v_num].ray[0], 2))) * ray_colection[v_num].u_d;
+                      sqrt(abs(pow(ray_colection[v_num].r, 2) - pow(ray_colection[v_num].center[0]-ray_colection[v_num].ray[0], 2))); * ray_colection[v_num].u_d;
       ret_out(out, v_num);
   }
 
@@ -123,7 +126,7 @@ namespace nbt{
   void Rot::lock_screen(){
     usleep(1000 * this->min_frame_time);
   }
-
+////////////////////////////////////////////////////////////////////////////
   void Rot::read_last(){
     std::ifstream MyRead("rot.txt");
     std::string out = "";

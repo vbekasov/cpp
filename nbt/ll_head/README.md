@@ -31,7 +31,7 @@ Save and load LL
 ## LL class methods
 
 Public methods:
-* <i>template< typename T> void push_back(T add_val);</i><br>
+* `template< typename T> void push_back(T add_val);`<br>
 This function receives any argument and add it at the end of LL.
 * <i>template< typename T> void push_forword(T add_val);</i><br>
 This function receives any argument and add it at tne begining of LL.

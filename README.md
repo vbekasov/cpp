@@ -11,6 +11,7 @@ Make Docker with cpp and python modules running Jupyter Lab in the browser.
 Connect it to my https://www.pythonanywhere.com/ projeckt.
 
 try it https://www.khronos.org/api/webgl
+https://linux.die.net/man/1/size
 
 Add pyscrypt.
 
@@ -70,19 +71,19 @@ This project contained files:
 A Linked List (LL) is a kind of Data Structure, where the next element is pointed by the current. It is not a random access array, but elements still can have their IDs. LLs use much more memory
  (+8 bytes) for each element then arrays, but have some advantages:
  1. Adding a new element to the end or beginning of the list does not require memory reallocation for the whole list, only memory for the new element;
- 2. New elements can be inserted or deleted without copying and moving list: <b>A->B => A->C->B</b>; Bigger list you have -- more profit you have;
+ 2. New elements can be inserted or deleted without copying and moving list: $A->B => A->C->B$ ; Bigger list you have -- more profit you have;
  3. LL can care mixed data types, which is impossible with <i>standard</i> array in C/C++;
  4. Greater size of element you care -- less difference against the array you have. E.g. you have an object size of 128 bytes. It will be: in the arrey 128 bytes, in the LL 136 bytes. 128~136;
 <br><br>
 Chart Format: |Linked List ; Array | 
 
-Complexity\Problem |Find Element|Find by ID|Push Forward`|Push Back|Insert   |Replace  |Delete|
+Complexity\Problem |Find Element|Find by ID|Push Forward'|Push Back|Insert   |Replace  |Delete|
 -------------------|------------|----------|-------------|---------|---------|---------|------|
 <b> Space </b>     |            |          |O(1)/O(n)    |O(1)/O(n)|O(1)/O(n)|O(1)/O(1)|RanD  |
 <b> Time </b>      | O(n)/O(n)  |O(n)/O(1) |O(1)/O(n)    |O(n)/O(n)|O(n)/O(n)|O(n)/O(1)|RanD  |
 <b> Performance</b>| same       |✘/✔       |✔/✘          |✔/✘      |✔/✘      |✘/✔      |RanD  |
 
-` Push Forward : works extremely slow with array and vary rapid in LL. To add an element at the beginning of the array OS have to reallocate all array. To push the element forward at the beginning of the LL program will only allocate the memory for the new element, and rewrite the root pointer.
+`'Push Forward` : works extremely slow with array and vary rapid in LL. To add an element at the beginning of the array OS have to reallocate all array. To push the element forward at the beginning of the LL program will only allocate the memory for the new element, and rewrite the root pointer.
 
 Classes you can find in [LL header directory.](nbt/ll_head)
 
@@ -143,9 +144,11 @@ To generate sets of random unique integers I have used [gen_rang.py.](py_analog/
 
 https://www.opengl.org/
 <br>
-In the [OpenGL](/openGL) directory, you can find the <i>main.cpp</i> source code file using the <b>nbt::Rot</b> class. This program displays several animated primitives in 2D/3D. Movement depends on $Δt$ inside an infinite loop.<br>
-$f(Δt)= x + Δt*const$<br><br>
+In the [OpenGL](/openGL) directory, you can find the <i>main.cpp</i> source code file using the <b>nbt::Rot</b> class. This program displays several animated primitives in 2D/3D. Movement depends on revolution time passed by user. One step of object is calculated:<br>
+$Δt=T/100$<br>
+$f(Δt)= x + Δt*const$
+<br><br>
 
 In case OpenGL is a cross-platform framework, please mind, FPS or refresh rate could be locked on diffirent [devices.](https://support.apple.com/en-us/HT210742)
 
-And please, remamber the float rounding error!!! $(0.2-0.2)>0 AND (0.8+0.2)>1$; Not only $0.1+0.3$ problem. Use inegers to find the coordinates first, then covert it into the pixels positions on your devices.
+And please, remamber the float rounding error!!! $(0.2-0.2)>0.$ AND $(0.8+0.2)>1.$; Not only $0.1+0.3$ problem. Use inegers to find the coordinates first, then convert it into the pixels positions on your devices.

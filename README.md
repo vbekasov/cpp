@@ -11,6 +11,7 @@ Make Docker with cpp and python modules running Jupyter Lab in the browser.
 Connect it to my https://www.pythonanywhere.com/ projeckt.
 
 try it https://www.khronos.org/api/webgl
+<br>
 https://linux.die.net/man/1/size
 
 Add pyscrypt.
@@ -151,4 +152,4 @@ $f(Δt)= x + Δt*const$
 
 In case OpenGL is a cross-platform framework, please mind, FPS or refresh rate could be locked on diffirent [devices.](https://support.apple.com/en-us/HT210742)
 
-And please, remamber the float rounding error!!! $(0.2-0.2)>0.$ AND $(0.8+0.2)>1.$; Not only $0.1+0.3$ problem. Use inegers to find the coordinates first, then convert it into the pixels positions on your devices.
+And please, remamber the float rounding error!!! $(0.2-0.2)>0.$ AND $(0.8+0.2)>1.$; Not only $0.1+0.3$ problem. Use integers to find the coordinates first, then convert it into the pixels positions on your devices.

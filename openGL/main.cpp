@@ -12,7 +12,7 @@
 #include "unistd.h"
 
 
-int main(void)
+int main(int argc, char *argv[])
 {
     std::cout<< sizeof(nbt::d2_ellipse) << "  "
         << sizeof(nbt::Rot) << std::endl;
@@ -24,7 +24,7 @@ int main(void)
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(480, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -33,12 +33,16 @@ int main(void)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
-    
-    nbt::d2_ray  xy_coord;
+    //glfwSetCursorPosCallback(window, cursor_position_callback);
+    //double xpos, ypos;
+    //glfwGetCursorPos(window, &xpos, &ypos);
+    glfwSetMouseButtonCallback(window, nbt::Rot::mouse_button_callback);
+
+    nbt::d2_rect  xy_coord;
     nbt::Rot     Obj(40);                  // standart frame time
-    Obj.add_ray(-0.67, 0.7, -0.27, 1500);    // center: x, y; (r>0=clock)|(r<0=cclock), time to draw full cicle
-    Obj.add_ray(-0.1,  0.7, +0.18, 2500);
-    Obj.add_ray(0., 0., +0.2, 3000);
+    Obj.add_ray(-0.7, 0.7, -0.25, 1500);    // center: x, y; (r>0=clock)|(r<0=cclock), time to draw full cicle
+    Obj.add_ray(-0.2, 0.7, +0.18, 2500);
+    Obj.add_ray(-0.3, 0.3,  +0.2, 3000);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -50,10 +54,12 @@ int main(void)
 
         Obj.tMilS();
         
-        Obj.elipse_step(&xy_coord, 0);
+        draw_grid();
+        
+        Obj.ellipse_step(&xy_coord, 0);
         draw_ray(&xy_coord);
         
-        Obj.elipse_step(&xy_coord, 1);
+        Obj.ellipse_step(&xy_coord, 1);
         draw_ray(&xy_coord);
         
         Obj.cycle_step(&xy_coord, 2);
@@ -66,7 +72,7 @@ int main(void)
         glfwPollEvents();
 
     }
-
+    std::cout<<nbt::Rot::st_mouse.x << " ! " << nbt::Rot::st_mouse.y << std::endl;
     glfwTerminate();
     return 0;
 }

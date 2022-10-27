@@ -55,7 +55,10 @@ This project contained files:
 ```
 `d2_ray(float x1, float y1, float ro, uint64_t tm, int loop)` : constructor. Center X, Center Y, Radius, Current Time, Time in Milliseconds.
 
-## 2D Classes
+## 2D Static Classes
+Text
+
+## 2D Motion Classes
 ### Class Rot
 Object of <b>Rot::</b> stores 2D motioned primitives: elipse ...
 ```

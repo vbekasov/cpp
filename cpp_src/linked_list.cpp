@@ -33,15 +33,27 @@ int main()
 
   Obj1.print_ll();
 
+  
+  char* p = new char[sizeof(Der)];
+  Der* ap = new (p) Der(456, 'Q');
+  Obj1.push_back(p);
+
+  /*  
   Der                 inObj(546, 'Q');
-  Obj1.push_back(inObj); inObj.~Der();
+  Obj1.push_back(inObj); inObj.~Der();*/
   Obj1.print_ll();
   std::cout<< "Len  " << Obj1.ll_length() << std::endl;
 
-  nbt::ClassData<Der>* outObj = (nbt::ClassData<Der>*)Obj1[5];
-  Der outClass;
-  outClass = (Der)outObj->val;
-  outClass.print_val();
+  //nbt::ClassData<Der>* outObj = (nbt::ClassData<Der>*)Obj1[5];
+  //Der outClass;
+  //outObj->val.print_val();
+  char* b = new char[sizeof(nbt::ClassData<Der>)];
+  b = (char*)(nbt::ClassData<Der>*)Obj1[5];
+  nbt::ClassData<Der>* outObj = (nbt::ClassData<Der>*)b;
+  //Der ttmmmpp = (Der)outObj->val;
+  outObj->val.print_val();
+  
+  //outClass.print_val();
 
   std::cout<< "Finished\n";
 

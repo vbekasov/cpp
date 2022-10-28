@@ -7,8 +7,23 @@
 #include <string>
 #include <vector>
 
+
+
 namespace nbt
 {
+
+class Der 
+{
+  public:
+    char    a;
+    int     b;
+    virtual void    print_val(){std::cout << "Der val: "<< a << "  " << b << "!" << std::endl;}
+    Der(char v1, int v2): a{v1}, b{v2} {}
+    Der() {}
+    virtual ~Der() {}
+    void ret_a(){ std::cout<< "Text\n";}
+};
+
   class   LinkedList
   {
     private:
@@ -28,10 +43,11 @@ namespace nbt
       void    print_val(size_t num = 0);
       char    ret_obj_type();
       void    print_ll();
-      char*   operator[] (const int num);
+      void*   operator[] (const int num);
   };
 
-  char* LinkedList::operator[] (const int num){
+  //char* LinkedList::operator[] (const int num){
+  void* LinkedList::operator[] (const int num){
     if (!this->s_root || num > icount)
       {return nullptr;}
 
@@ -49,6 +65,7 @@ namespace nbt
       {return nullptr;}
     this->position = tmp;
     this->id = num;
+    auto kk = (Der*)tmp->obj_cont; kk->print_val();
     return tmp->obj_cont;
   }
 
@@ -64,10 +81,14 @@ namespace nbt
     this->icount++;
     st_node*    ins = new st_node;
     ins->next = nullptr;
-    ins->obj_cont = new char[sizeof(ClassData<T>)];
+    //ins->obj_cont = new char[sizeof(ClassData<T>)];
     ins->set_type(&add_val);
-    ClassData<T>* tmpObj = new (ins->obj_cont) ClassData<T>;
-    tmpObj->val = add_val;
+    //ClassData<T>* tmpObj = new (ins->obj_cont) ClassData<T>;
+    //tmpObj->val = add_val;
+    T* oo = new T;
+    *oo = add_val;
+    ins->obj_cont = oo;
+    oo->print_val();
     if (!this->s_root){
       this->s_root = ins;
       return ;}

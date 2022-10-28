@@ -1,10 +1,9 @@
 #########OS##############
-ifeq ($(OS), Linux)
-	SIS    = Linux
-	CFLAGS = -Wall -Werror -Wno-unused-variable -std=c++20
+SIS    = $(shell uname)
+ifeq ($(SIS), Linux)
+CFLAGS = -Wall -Werror -Wno-unused-variable -std=c++20
 else
-	SIS    = Mac
-	CFLAGS = -std=c++20
+CFLAGS = -std=c++20
 endif
 ########VALS#############
 CC     = g++
@@ -25,7 +24,7 @@ SCLOCK = openGL/main.cpp
 B_SER = data.dat
 #########################
 
-all: os_info rell resbt reser reclock
+all: os_info rell resbt reser
 
 rell: os_info
 	$(RM) $(BIN)$(LL) 

@@ -21,13 +21,14 @@ namespace nbt
   struct  st_node
   {
     char      et;
-    char*     obj_cont;
+    //char*     obj_cont;
+    void*     obj_cont;
     st_node*  next;
     ~st_node()
     {
       if (obj_cont && et != '+') 
       { 
-        delete [] obj_cont;
+        //delete [] obj_cont;
         obj_cont = nullptr;
       }
       next = nullptr;

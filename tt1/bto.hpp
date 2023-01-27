@@ -45,6 +45,11 @@ namespace nbt
     };
 
     template <class T> void BTree<T>::add_node(T n){
+        if (this->root == nullptr){
+            this->root = new BtNode<T>(n);
+            return ;
+        }
+        
         bool        flag = true;
         BtNode<T>*  tmp = this->root;
 

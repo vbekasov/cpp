@@ -38,10 +38,13 @@ namespace nbt
             BTree (T n): root(new BtNode<T>(n)), btsize(1) {}
             void    add_node(T n);
             void    arr_to_tree(T* arr, unsigned int sz);
+            void    vec_to_tree(std::vector<T>& vc);
             void    print_tree();
+            void    del_by_val(T vl);
+            void    replace_val(T oldv, T newv);
+            void    balance_tree();
             unsigned int    ret_size(){ return btsize;}
             std::vector<T>  tree_to_vec();
-            void    del_by_val(T vl);
     };
 
     template <class T> void BTree<T>::add_node(T n){
@@ -65,7 +68,7 @@ namespace nbt
         }
 
         if (n < tmp->val)
-            tmp->left = new BtNode<T>(n);
+            tmp->left  = new BtNode<T>(n);
         else
             tmp->right = new BtNode<T>(n);
         
@@ -110,6 +113,7 @@ namespace nbt
     template<class T> void BTree<T>::del_by_val(T vl){
         BtNode<T>*  tmp = sup_ret_prev(vl);
         if (!tmp) return ;
+        if (root->val == vl){sup_del(this->root); this->root = nullptr; }
         if (tmp->val > vl) {sup_del(tmp->left);  tmp->left  = nullptr; }
         else               {sup_del(tmp->right); tmp->right = nullptr; }
     }
@@ -161,6 +165,22 @@ namespace nbt
             add_node(arr[1]);
             add_node(arr[0]);
         }
+    }
+
+    template<class T> void BTree<T>::vec_to_tree(std::vector<T>& vc){
+        arr_to_tree(&vc[0], vc.size());
+    }
+
+    template<class T> void BTree<T>::replace_val(T oldv, T newv){
+        BtNode<T>*  tmp = sup_ret_node(oldv);
+        if (!tmp) return ;
+        tmp->val = newv;
+    }
+
+    template<class T> void BTree<T>::balance_tree(){
+        std::vector<T>  tmp = tree_to_vec();
+        sup_del(this->root); this->root = nullptr;
+        //arr_to_tree()
     }
 
     

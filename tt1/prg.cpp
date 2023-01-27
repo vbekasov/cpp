@@ -30,8 +30,8 @@ int main(){
 
     int arr[5] = {9,8,7,6,5};
     std::vector<int> av = {1,2,3,4,5,6,7,8,9};
-    nbt::BTree<int> BObj1(5);
-    BObj1.arr_to_tree(&av[0] , av.size());
+    nbt::BTree<int> BObj1;
+    BObj1.vec_to_tree(av);
     BObj1.print_tree();
 
     std::cout<< "-----------finish-------------\n";

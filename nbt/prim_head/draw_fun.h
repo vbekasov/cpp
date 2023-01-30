@@ -34,8 +34,12 @@ void draw_rect(nbt::d2_rect* xy){
   glEnd();
 }
 
-void draw_point(){
-
+void draw_point(nbt::d2_point* xy){
+  glColor3f(0.5, 0.5, 0.5);
+  glBegin(GL_POINT);
+    glVertex2d(xy->center[0], xy->center[1]);
+    glVertex2d(xy->center[0], xy->center[1]);
+  glEnd();
 }
 
 #endif

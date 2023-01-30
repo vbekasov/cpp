@@ -14,7 +14,7 @@ namespace nbt
             BtNode  (T n);
             ~BtNode (){ }
             void    set_val(T n){ *val = n;}
-            void    show_val(){ std::cout<< "Node " << *val << std::endl;}
+            void    show_val(){ std::cout<< "Node " << val << std::endl;}
     };
 
     template <class T>
@@ -44,7 +44,9 @@ namespace nbt
             void    del_by_val(T vl);
             void    replace_val(T oldv, T newv);
             void    balance_tree();
-            void    erace_tree();
+            void    erase_tree();
+            void    arr_by_order(T* arr, unsigned int sz);
+            void    vec_by_order(std::vector<T>& vc);
             unsigned int    ret_size(){ return btsize;}
             std::vector<T>  tree_to_vec();
     };
@@ -74,7 +76,7 @@ namespace nbt
             tmp->left  = new BtNode<T>(n);
         else
             tmp->right = new BtNode<T>(n);
-        
+        this->btsize++;
     }
 
     template<class T>
@@ -105,7 +107,7 @@ namespace nbt
     std::vector<T> BTree<T>::tree_to_vec(){
         std::vector<T> ret;
         sup_vec(this->root, ret);
-        sort(ret.begin(), ret.end());
+        //sort(ret.begin(), ret.end());
 
         return ret;
     }
@@ -121,7 +123,7 @@ namespace nbt
     void BTree<T>::del_by_val(T vl){
         BtNode<T>*  tmp = sup_ret_prev(vl);
         if (!tmp) return ;
-        if (root->val == vl){sup_del(this->root); this->root = nullptr; }
+        if (root->val == vl){sup_del(this->root); this->root = nullptr; return ;}
         if (tmp->val > vl)  {sup_del(tmp->left);  tmp->left  = nullptr; }
         else                {sup_del(tmp->right); tmp->right = nullptr; }
     }
@@ -200,9 +202,21 @@ namespace nbt
     }
 
     template<class T>
-    void BTree<T>::erace_tree(){
+    void BTree<T>::erase_tree(){
         sup_del(this->root);
         this->root = nullptr;
+    }
+
+    template<class T>
+    void BTree<T>::arr_by_order(T* arr, unsigned int sz){
+        for (int i = 0; i < sz; i++)
+            add_node(arr[i]);
+    }
+
+    template<class T>
+    void BTree<T>::vec_by_order(std::vector<T>& vc){
+        for(auto it = vc.begin(); it != vc.end(); it++)
+            this->add_node(*it);
     }
 
     

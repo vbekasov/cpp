@@ -55,6 +55,7 @@ namespace nbt
     void BTree<T>::add_node(T n){
         if (this->root == nullptr){
             this->root = new BtNode<T>(n);
+            btsize++;
             return ;
         }
         
@@ -197,7 +198,7 @@ namespace nbt
     template<class T>
     void BTree<T>::balance_tree(){
         std::vector<T>  tmp = tree_to_vec();
-        this->erace_tree();
+        this->erase_tree();
         vec_to_tree(tmp);
     }
 

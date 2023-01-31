@@ -47,6 +47,7 @@ namespace nbt
             void    erase_tree();
             void    arr_by_order(T* arr, unsigned int sz);
             void    vec_by_order(std::vector<T>& vc);
+            //void    return_obj_by_val(T vl, T* obj);
             unsigned int    ret_size(){ return btsize;}
             std::vector<T>  tree_to_vec();
     };
@@ -181,6 +182,8 @@ namespace nbt
             add_node(arr[1]);
             add_node(arr[0]);
         }
+        else
+            add_node(arr[0]);
     }
 
     template<class T>

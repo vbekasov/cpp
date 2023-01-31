@@ -61,7 +61,7 @@ Public methods:
 * `BTree(T n);` - constructor. Allocates the first root with value `T n`, and assigns BT size to 0.
 * `void add_node(T n);` - adds node to the BT. Does not add duplicated objects.
 * `void arr_to_tree(T* arr, unsigned int sz);` - erases existing tree and generates new BT based on the passed array. `T* arr` - pointer to the arr. `unsigned int sz` - size of the array. The method uses binary search: middle goes first, then goes middle of the left side, then goes middle of the right side, and so on.
-* `void vec_to_tree(std::vector<T>& vc);` - erases existing tree and generates new BT based on the passed vector. `std::vector<T>& vc` - a reference to the arr. The method uses binary search: middle goes first, then goes middle of the left side, then goes middle of the right side, and so on.
+* `void vec_to_tree(std::vector<T>& vc);` - erases existing tree and generates new BT based on the passed vector. `std::vector<T>& vc` - a reference to the array. The method uses binary search: middle goes first, then goes middle of the left side, then goes middle of the right side, and so on.
 * `void arr_by_order(T* arr, unsigned int sz);` - erases existing tree and generates new BT based on the passed array. `T* arr` - pointer to the arr. `unsigned int sz` - the size of the array. The method adds elements to the BT by the order they are in the array.
 * `void vec_by_order(std::vector<T>& vc);` - erases existing tree and generates new BT based on the passed vector. `std::vector<T>& vc` - a reference to the vector. The method adds elements to the BT by the order they are in the vector.
 * `void print_tree();` - prints BT.

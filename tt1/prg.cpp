@@ -50,11 +50,9 @@ int main(){
         {1, "1st"}, {2, "2nd"},
         {3, "3rd"}, {4, "4th"},
         {5, "5th"}, {6, "6th"},
-        {7, "7th"}, {8, "8th"}
+        {7, "7th"}//, {8, "8th"}
     };
     nbt::BTree<ExComp> EXT;
-    //for (auto it = ECvec.begin(); it != ECvec.end(); it++)
-    //    EXT.add_node(*it);
     print_vec<ExComp>(ECvec);
     EXT.vec_to_tree(ECvec);
     std::cout<< EXT.ret_size() << std::endl;

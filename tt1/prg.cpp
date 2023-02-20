@@ -55,8 +55,11 @@ int main(){
     nbt::BTree<ExComp> EXT;
     print_vec<ExComp>(ECvec);
     EXT.vec_to_tree(ECvec);
-    std::cout<< EXT.ret_size() << std::endl;
+    std::cout<< EXT.ret_size() << " dups= " << ExComp::duplicates << std::endl;
     EXT.print_tree();
+    ExComp RetObj = EXT.return_obj(5);
+    std::cout<< RetObj << std::endl;
+    EXT.erase_tree();
 
     std::cout<< "\n-----------finish-------------\n";
 

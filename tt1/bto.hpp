@@ -12,9 +12,9 @@ namespace nbt
             BtNode<T>*  left;
             BtNode<T>*  right;
             BtNode  (T n);
-            ~BtNode (){ }
+            ~BtNode (){}
             void    set_val(T n){ *val = n;}
-            void    show_val(){ std::cout<< "Node " << val << std::endl;}
+            void    show_val()  { std::cout<< "Node " << val << std::endl;}
     };
 
     template <class T>
@@ -32,11 +32,12 @@ namespace nbt
             void        sup_print(BtNode<T>* node);
             void        sup_vec(BtNode<T>* node, std::vector<T>& vec_add);
             void        sup_del(BtNode<T>* node);
-            BtNode<T>*  sup_ret_node(T vl);
+            BtNode<T>*  sup_ret_node(auto vl);
             BtNode<T>*  sup_ret_prev(T vl);
         public:
             BTree () : root(nullptr), btsize(0) {}
             BTree (T n): root(new BtNode<T>(n)), btsize(1) {}
+            ~BTree(){erase_tree();};
             void    add_node(T n);
             void    arr_to_tree(T* arr, unsigned int sz);
             void    vec_to_tree(std::vector<T>& vc);
@@ -47,8 +48,7 @@ namespace nbt
             void    erase_tree();
             void    arr_by_order(T* arr, unsigned int sz);
             void    vec_by_order(std::vector<T>& vc);
-            T       return_obj(T vl);
-            //void    return_obj_by_val(T vl, T* obj);
+            T       return_obj(auto vl);
             unsigned int    ret_size(){ return btsize;}
             std::vector<T>  tree_to_vec();
     };
@@ -110,7 +110,6 @@ namespace nbt
     std::vector<T> BTree<T>::tree_to_vec(){
         std::vector<T> ret;
         sup_vec(this->root, ret);
-        //sort(ret.begin(), ret.end());
 
         return ret;
     }
@@ -158,15 +157,14 @@ namespace nbt
         }
         return nullptr;
     }
-    
     template<class T>
-    BtNode<T>* BTree<T>::sup_ret_node(T vl){
+    BtNode<T>* BTree<T>::sup_ret_node(auto vl){
         BtNode<T>*  tmp = this->root;
         while (true){
             if (vl == tmp->val) return tmp;
-            if (vl < tmp->val && tmp->left)
+            if (tmp->val > vl && tmp->left)
                 tmp = tmp->left;
-            else if (vl > tmp->val)
+            else if (tmp->val < vl)
                 tmp = tmp->right;
             else return nullptr;
         }
@@ -208,7 +206,8 @@ namespace nbt
 
     template<class T>
     void BTree<T>::erase_tree(){
-        sup_del(this->root);
+        if(this->root)
+            sup_del(this->root);
         this->root = nullptr;
     }
 
@@ -225,10 +224,8 @@ namespace nbt
     }
 
     template<class T>
-    T BTree<T>::return_obj(T vl){
-        BtNode<T>* sup_ret_node(vl);
-
+    T BTree<T>::return_obj(auto vl){
         return sup_ret_node(vl)->val;
-    } 
+    }
     
 } // namespace nbt

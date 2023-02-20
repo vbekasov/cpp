@@ -35,7 +35,7 @@ template <class T>
             void        sup_print(BtNode<T>* node);
             void        sup_vec(BtNode<T>* node, std::vector<T>& vec_add);
             void        sup_del(BtNode<T>* node);
-            BtNode<T>*  sup_ret_node(T vl);
+            BtNode<T>*  sup_ret_node(auto vl);
             BtNode<T>*  sup_ret_prev(T vl);
         public:
             BTree () : root(nullptr), btsize(0) {}
@@ -50,6 +50,7 @@ template <class T>
             void    replace_val(T oldv, T newv);
             void    balance_tree();
             void    erase_tree();
+            T       return_obj(auto vl);
             unsigned int    ret_size(){ return btsize;}
             std::vector<T>  tree_to_vec();
     };
@@ -71,6 +72,7 @@ Public methods:
 * `void erace_tree();` - eraces BT.
 * `unsigned int ret_size();` - returns the size of the BT.
 * `std::vector<T> tree_to_vec();` - returnes the BT in vector form.
+* `T return_obj(auto vl);` - returnes an object found by value.
 
 Private methods:
 * `BtNode<T>* root;` - pointer to the first element of the BT.

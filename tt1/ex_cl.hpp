@@ -12,11 +12,11 @@ class ExComp{
         ExComp(void){};
         ExComp(int v, const std::string& input);
         void    print_txt();
-        int     ret_val(){ return val;};
-        bool operator== (const ExComp& cmp);
-        bool operator<  (const ExComp& cmp);
-        bool operator>  (const ExComp& cmp);
-        friend std::ostream& operator<<(std::ostream& os, const ExComp& prnt);
+        int     ret_val()  {return val;};
+        bool    operator== (const ExComp& cmp);
+        bool    operator<  (const ExComp& cmp);
+        bool    operator>  (const ExComp& cmp);
+        friend  std::ostream& operator<<(std::ostream& os, const ExComp& prnt);
 };
 
 int ExComp::lastID = 0;

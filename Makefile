@@ -20,6 +20,8 @@ SLL    = $(LL).cpp
 SER    = serealization
 SSER   = $(SER).cpp
 SCLOCK = openGL/main.cpp
+OBBT   = o_bt
+SOBBT  = $(OBBT).cpp
 #########################
 B_SER = data.dat
 #########################
@@ -34,6 +36,11 @@ resbt: os_info
 	$(RM) $(D_DATA)size_dup.txt $(BIN)$(STBT)
 	echo "Len Dup" >> $(D_DATA)size_dup.txt;
 	$(CC) $(D_SRC)$(SSTBT) $(CFLAGS) -o $(BIN)$(STBT)
+
+obt: os_info
+	$(RM) $(D_DATA)size_dup.txt $(BIN)$(SOBBT)
+	echo "Len Dup" >> $(D_DATA)size_dup.txt;
+	$(CC) $(D_SRC)$(SOBBT) $(CFLAGS) -o $(BIN)$(OBBT) 
 
 reser: os_info
 	$(RM) $(BIN)$(SER) $(D_DATA)$(B_SER)

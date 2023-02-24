@@ -72,13 +72,9 @@ Public methods:
 * `void erace_tree();` - eraces BT.
 * `unsigned int ret_size();` - returns the size of the BT.
 * `std::vector<T> tree_to_vec();` - returnes the BT in vector form.
-* `T return_obj(auto vl);` - returnes an object found by value.
+* `T* return_obj(auto vl);` - returnes a pointer of an object found by value. If object was not found, function returns <i>nullptr</i>.
 
 Private methods:
 * `BtNode<T>* root;` - pointer to the first element of the BT.
 * `unsigned int btsize;` - number of elements in the BT.
 * Support functions for public methods.
-
-## Usage example
-
-Text text.

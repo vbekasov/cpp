@@ -47,18 +47,21 @@ int main(){
 
     std::cout<< "\nNew Objects\n";
     std::vector<ExComp> ECvec = {
-        {1, "1st"}, {2, "2nd"},
-        {3, "3rd"}, {4, "4th"},
-        {5, "5th"}, {6, "6th"},
-        {7, "7th"}//, {8, "8th"}
+        {1.4, "1st"}, {2.7, "2nd"},
+        {3.2, "3rd"}, {4.2, "4th"},
+        {5.9, "5th"}, {6.8, "6th"},
+        {7.3, "7th"}//, {8, "8th"}
     };
     nbt::BTree<ExComp> EXT;
     print_vec<ExComp>(ECvec);
     EXT.vec_to_tree(ECvec);
     std::cout<< EXT.ret_size() << " dups= " << ExComp::duplicates << std::endl;
     EXT.print_tree();
-    ExComp RetObj = EXT.return_obj(5);
-    std::cout<< RetObj << std::endl;
+    ExComp* RetObj = EXT.return_obj_ptr(5);
+    if (!RetObj) { std::cout<< "Not found\n";}
+    RetObj = EXT.return_obj_ptr(5.9);
+    std::cout<< *RetObj << std::endl;
+    RetObj->~ExComp(); 
     EXT.erase_tree();
 
     std::cout<< "\n-----------finish-------------\n";

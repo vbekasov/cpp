@@ -26,7 +26,7 @@ SOBBT  = $(OBBT).cpp
 B_SER = data.dat
 #########################
 
-all: os_info rell resbt reser
+all: os_info clean rell resbt reser obt
 
 rell: os_info
 	$(RM) $(BIN)$(LL) 
@@ -53,7 +53,7 @@ reclock: os_info
 
 clean:
 	$(RM) size_dup.txt $(BIN)$(STBT) $(BIN)$(LL) \
-	$(BIN)$(SER) $(BIN)$(ROT) $(BIN)clock
+	$(BIN)$(SER) $(BIN)clock $(BIN)$(OBBT)
 
 os_info:
 	$(info OS = ${SIS})

@@ -23,6 +23,7 @@ function m = tor(r1 = 10)
   xlabel('cos(x)');
   ylabel('sin(y)');
   zlabel('ring z');
+  view([67 45])
   grid on
   hold off
 end

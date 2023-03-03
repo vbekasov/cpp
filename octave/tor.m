@@ -1,4 +1,4 @@
-function m = tor(r1 = 10)
+function [x, y, z, r1] = tor(r1 = 10, prnt = false)
   # number of segments on XY surface = seg * 2 
   # horizontal points are defined by l
   seg = 10;
@@ -16,14 +16,16 @@ function m = tor(r1 = 10)
   y = ((ones(size(l)(1), size(lk)(1)).*sin(l)*r1).*lk)';
   z = (zeros(size(l)(1), size(lk)(1))+(cos([-pi/2:pi/seg:pi+pi/2])*r1+r1))';
   
-  surf(x, y, z, 'FaceAlpha', 0.2, 'FaceColor', 'interp')
-  hold on
-  plot3(0, 0, r1*6)
-  pbaspect([1 1 1])
-  xlabel('cos(x)');
-  ylabel('sin(y)');
-  zlabel('ring z');
-  view([67 45])
-  grid on
-  hold off
+  if prnt == true
+    surf(x, y, z, 'FaceAlpha', 0.2, 'FaceColor', 'interp')
+    hold on
+    plot3(0, 0, r1*6)
+    pbaspect([1 1 1])
+    xlabel('cos(x)');
+    ylabel('sin(y)');
+    zlabel('ring z');
+    view([67 45])
+    grid on
+    hold off
+  end
 end

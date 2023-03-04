@@ -24,11 +24,13 @@ classdef ClTor < handle
       r1 = obj.r1;
       surf(obj.X, obj.Y, obj.Z)
       hold on
-      #plot3(0, 0, obj.r1*6)
-      #surf([-obj.r1*3, -obj.r1*3], [obj.r1, obj.r1], [obj.r1*6, obj.r1*6])
-      x = [-r1*3, -r1*2; -r1*3, -r1*2];
-      y = [r1*3, r1*3;r1*3, r1*3];
-      z = [0, 0;r1*6, r1*6];
+      x = [-r1*4, -r1*3; -r1*4, -r1*3];
+      y = [r1*4, r1*4;r1*4, r1*4];
+      z = [0, 0; r1*8, r1*8];
+      surf(x,y,z)
+      x = [-r1*4, -r1*4;r1*4, r1*4];
+      y = [-r1*4, -r1*3;-r1*4, -r1*3];
+      z = [0,0;0,0];
       surf(x,y,z)
       pbaspect([1 1 1])
       xlabel('cos(x)');
@@ -40,9 +42,9 @@ classdef ClTor < handle
     end
     function make_gif(obj)
       filename = 'tor.gif';
-      DelayTime = 0.5;
+      DelayTime = 1/25;
       f = figure;
-      for n = [1:1:20]
+      for n = [1:1:45]
         obj.move_up
         obj.oplot
         title('Tor', "fontsize", 16)

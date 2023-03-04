@@ -23,7 +23,7 @@ function [x, y, z, r1] = tor(r1 = 10, prnt = false)
     pbaspect([1 1 1])
     xlabel('cos(x)');
     ylabel('sin(y)');
-    zlabel('ring z');
+    zlabel('cos(z)');
     view([67 45])
     grid on
     hold off

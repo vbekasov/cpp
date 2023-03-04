@@ -13,7 +13,7 @@ classdef ClSphere < handle
      methods
        function obj = ClSphere(r = 10)
          [obj.X, obj.Y, obj.Z] = sphere(r);
-         obj.r = r;
+         obj.r = 10;
          obj.vx = 5;
          obj.vy = 5;
          obj.vz = 20;
@@ -30,6 +30,17 @@ classdef ClSphere < handle
            obj.Z = obj.Z + obj.vz;
          end
        end
+       
+       function up_down2(obj)
+           obj.vz = obj.vz - obj.g - obj.af;
+           if 0 > min(min(obj.Z + obj.vz));
+             [obj.X, obj.Y, obj.Z] = sphere(obj.r);
+             obj.vz = obj.vz * -1;
+             obj.Z = obj.Z + obj.vz;
+           else
+              obj.Z = obj.Z + obj.vz;
+            end
+       endfunction
        
        function oplot(obj)
         surf(obj.X, obj.Y, obj.Z, 'FaceAlpha', 0.2, 'FaceColor', 'interp')
@@ -49,8 +60,8 @@ classdef ClSphere < handle
         ylabel('sin(y)');
         zlabel('sin(z)');
         view([67 45])
-        grid on
-        #axis off
+        #grid on
+        axis off
         hold off
        end
        
@@ -59,8 +70,8 @@ classdef ClSphere < handle
          filename = 'sphere.gif';
          DelayTime = 1/25;
          f = figure;
-         for n = [1:1:25]
-           obj.up_down;
+         for n = [1:1:75]
+           obj.up_down2;
            obj.oplot
            title('Sphere', "fontsize", 16)
            drawnow

@@ -16,31 +16,24 @@ classdef ClSphere < handle
          obj.r = 10;
          obj.vx = 5;
          obj.vy = 5;
-         obj.vz = 20;
-         obj.af = 0.5;
-         obj.g  = 1;
+         obj.vz = 30;
+         obj.af = 0.25;
+         obj.g  = 3;
        end
        
        function up_down(obj)
          if obj.vz > 0;
            obj.vz = obj.vz - obj.g - obj.af;
-           obj.Z = obj.Z + obj.vz;
          else
-           obj.vz = obj.vz - obj.g - obj.af;
-           obj.Z = obj.Z + obj.vz;
+           obj.vz = obj.vz - obj.g + obj.af;
+         end
+         if (min(min(obj.Z + obj.vz))) < 0;
+           [obj.X, obj.Y, obj.Z] = sphere(obj.r);
+           obj.vz = obj.vz * -1;       
+          else
+            obj.Z = obj.Z + obj.vz;
          end
        end
-       
-       function up_down2(obj)
-           obj.vz = obj.vz - obj.g - obj.af;
-           if 0 > min(min(obj.Z + obj.vz));
-             [obj.X, obj.Y, obj.Z] = sphere(obj.r);
-             obj.vz = obj.vz * -1;
-             obj.Z = obj.Z + obj.vz;
-           else
-              obj.Z = obj.Z + obj.vz;
-            end
-       endfunction
        
        function oplot(obj)
         surf(obj.X, obj.Y, obj.Z, 'FaceAlpha', 0.2, 'FaceColor', 'interp')
@@ -60,20 +53,21 @@ classdef ClSphere < handle
         ylabel('sin(y)');
         zlabel('sin(z)');
         view([67 45])
-        #grid on
-        axis off
+        #view([0 0])
+        grid on
+        #axis off
         hold off
        end
-       
-             
+                    
        function make_gif(obj)
          filename = 'sphere.gif';
          DelayTime = 1/25;
          f = figure;
-         for n = [1:1:75]
-           obj.up_down2;
+         for n = [1:1:110]
+           obj.up_down;
            obj.oplot
-           title('Sphere', "fontsize", 16)
+           obj.Z(1,1)
+           title(['Sphere| vz=' ; num2str(obj.vz)], "fontsize", 16)
            drawnow
            frame = getframe(f);
            im = frame2im(frame);

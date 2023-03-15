@@ -24,11 +24,12 @@ std::ostream& operator<<(std::ostream& os, const TstC& dt){
 
 class TstC1{
     private:
-        double d[5];
+        double  d[5];
         char*   carr;
     public:
         TstC1();
-        friend std::ostream& operator<<(std::ostream& os, const TstC1& dt);
+        friend  std::ostream& operator<<(std::ostream& os, const TstC1& dt);
+        TstC1*  ret_this();
 };
 
 TstC1::TstC1(){
@@ -50,6 +51,13 @@ std::ostream& operator<<(std::ostream& os, const TstC1& dt){
     }
     os<< str;
     return os;
+}
+
+TstC1* TstC1::ret_this(){
+    std::cout<< "Ret TstC1\n";
+    std::cout<< this->carr[1] << std::endl;
+
+    return this;
 }
 
 #endif

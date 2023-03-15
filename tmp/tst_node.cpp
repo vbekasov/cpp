@@ -22,10 +22,12 @@ int main(){
     long double* ia = (long double*)Obj.return_val();
     std::cout<< ia[1] << std::endl;
 
-    TstC1 TObj2;
-    //std::cout<< TObj2 << std::endl;
-    Obj.add_val(TObj2);
-    std::cout<< Obj.return_val() << std::endl;
+    char* p = new char[sizeof(TstC1)];
+    TstC1* ap = new (p) TstC1;
+    Obj.add_obj<TstC1>(p);
+    TstC1* qq = (TstC1*)Obj.return_val();
+    std::cout<< *ap << std::endl;
+    std::cout<< *qq << std::endl;
 
     return 0;
 }
